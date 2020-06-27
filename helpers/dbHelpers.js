@@ -1,11 +1,11 @@
 module.exports = db => {
-  // const getMenuItems = () => {
-  //   const query = {
-  //     text: `SELECT * FROM menu;`,
-  //     // values: []
-  //   }
-  //   return db.query(query).then(result => result.rows)
-  // };
+  const getMenuItems = () => {
+    const query = {
+      text: `SELECT * FROM menu_items;`
+      // values: []
+    }
+    return db.query(query).then(result => result.rows)
+  };
 
   // const getOrder = () => {
   //   const query = {
@@ -49,7 +49,7 @@ module.exports = db => {
     return db.query(query).then(result => result.rows)
   }
   return {
-    // getMenuItems,
+    getMenuItems,
     // getOrder,
     // getCompletedOrder,
     getUsers,
