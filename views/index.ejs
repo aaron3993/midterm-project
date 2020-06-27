@@ -18,12 +18,12 @@
       <h3>We are a super cool app that lets you order delicious food and get real-time notifications regarding your order status</h3>
       <p>Please log in to continue</p>
       <!-- Need to add POST '/login' to form -->
-      <form>
+      <form method="POST" action="/login">
         <div class="form-group">
-          <input type="email" class="form-control" id="userEmail" placeholder="Enter email">
+          <input name="userEmail" type="email" class="form-control" id="userEmail" placeholder="Enter email">
         </div>
         <div class="form-group">
-          <input type="password" class="form-control" id="userPassword" placeholder="Password">
+          <input name="userPassword" type="password" class="form-control" id="userPassword" placeholder="Password">
         </div>
         <button type="submit" class="btn btn-dark">Login</button>
       </form>

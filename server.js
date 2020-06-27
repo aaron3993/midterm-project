@@ -6,6 +6,7 @@ const PORT       = process.env.PORT || 8080;
 const ENV        = process.env.ENV || "development";
 const express    = require("express");
 const bodyParser = require("body-parser");
+const session    = require("express-session");
 const sass       = require("node-sass-middleware");
 const app        = express();
 const morgan     = require('morgan');
@@ -15,8 +16,12 @@ const { Pool } = require('pg');
 const dbParams = require('./lib/db.js');
 const db = new Pool(dbParams);
 db.connect();
+
 // Require functions from dbHelpers
 const dbHelpers = require('./helpers/dbHelpers')(db)
+
+// Require helper functions from helperFuncs
+const { generateUID, generateOID } = require('./helpers/helperFuncs');
 
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
@@ -33,6 +38,8 @@ app.use("/styles", sass({
   outputStyle: 'expanded'
 }));
 app.use(express.static("public"));
+app.use(session({secret: 'callback-cats'}));
+let sess;
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
@@ -62,6 +69,27 @@ app.use("/api/users", usersRoutes(dbHelpers));
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
   res.render("index");
+});
+
+app.post("/login", (req, res) => {
+  console.log('req body', req.body);
+
+  const sess = req.session;
+
+  let user_id = generateUID();
+  let order_id = generateOID();
+  let user_order = {};
+
+  sess.user_id = user_id;
+  sess.order_id = order_id;
+  sess.user_order = user_order;
+
+  // TODO: first check db to find user by email
+  // If user exists, use existing userID
+  // Else, generate new UID
+  // Always start with new OID and empty user_order
+
+  res.redirect('menu');
 });
 
 app.listen(PORT, () => {

@@ -4,6 +4,7 @@ const router  = express.Router();
 module.exports = ({ getMenuItems }) => {
   // GET menu items
   router.get("/", (req, res) => {
+    console.log('req session', req.session);
     getMenuItems()
       .then(menu => {
         console.log(menu[0].name)
