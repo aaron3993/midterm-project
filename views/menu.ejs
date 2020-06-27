@@ -14,7 +14,7 @@
 
   <body>
     <%- include('partials/_header') %>
-    <% const order = {} %>
+
     <h1>Our Menu</h1>
 
     <div class="container">
@@ -23,7 +23,7 @@
         <li class="bg-light p-2">
           <div class="card" style="width: 18rem;">
             <img src= <%= menuItem.thumbnail_url %> class="card-img-left" alt="...">
-            <div class="card-body">
+            <div class="card-body" data-itemId="<%= menuItem.id %>">
               <h5 class="card-title"> <%= menuItem.name %> </h5>
               <p class="card-text"> <%= menuItem.description %> </p>
               <p> <%= `$${(menuItem.price / 100).toFixed(2)}` %> </p>
