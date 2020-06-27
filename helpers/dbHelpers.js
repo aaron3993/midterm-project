@@ -15,8 +15,8 @@ module.exports = db => {
 
   // const placeOrder = () => {
   //   const query = {
-  //     text: 'INSERT INTO orders(...) VALUES ($1) RETURNING *',
-  //     // values: []
+  //     text: 'INSERT INTO ordered_items(order_id, menu_item_id, price_charged, qty) VALUES ($1, $2, $3, $4) RETURNING *',
+  //     values: [order_id, menu_item_id, price_charged, qty]
   //   }
   //   return db.query(query).then(result => result.rows)
   // };
@@ -51,6 +51,7 @@ module.exports = db => {
     getOrders,
     // getCompletedOrder,
     getUsers,
+    // placeOrder,
     addUser,
   }
 }

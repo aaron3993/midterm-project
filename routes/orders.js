@@ -20,13 +20,13 @@ module.exports = ({ getOrders, placeOrder }) => {
   
   // POST - place an order
   // router.post("/", (req, res) => {
-    //   const {...} = req.body
-    //   console.log(...)
-    //   placeOrder(...)
-    //     .then(order => {
-    //       res.json(order)
-    //     })
-    //     .catch(err => console.log(err))
-    // })
+  //     const {order_id, menu_item_id, price_charged, qty} = req.body
+  //     console.log(order_id, menu_item_id, price_charged, qty)
+  //     placeOrder(order_id, menu_item_id, price_charged, qty)
+  //       .then(orders => {
+  //         res.redirect("id")
+  //       })
+  //       .catch(err => console.log(err))
+  //   })
     return router;
 };
