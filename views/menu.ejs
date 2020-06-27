@@ -13,6 +13,7 @@
 
   <body>
     <%- include('partials/_header') %>
+    <% const order = { test: true } %>
     <h1>Our Menu</h1>
 
     <div class="container">
@@ -31,6 +32,7 @@
           </div>
         </li>
         <li class="bg-light p-2">
+          <% console.log(order); %>
           <div class="card" style="width: 18rem;">
             <img src="https://images.unsplash.com/photo-1514944288352-fffac99f0bdf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" class="card-img-left" alt="...">
             <div class="card-body">
