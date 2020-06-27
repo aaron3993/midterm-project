@@ -1,16 +1,15 @@
 const express = require('express');
 const router  = express.Router();
 
-module.exports = ({ getOrder, placeOrder }) => {
+module.exports = ({ getOrders, placeOrder }) => {
   // GET specific order
   router.get("/", (req, res) => {
-    getOrder()
-      .then(order => {
-        // res.json({ order });
-        // let templateVars = {
-        //   menuItems: menu
-        // };
-        res.render("order")
+    getOrders()
+      .then(orders => { 
+        let templateVars = {
+          orders
+        };
+        res.render("orders", templateVars)
       })
       .catch(err => {
         res

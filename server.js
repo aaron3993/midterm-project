@@ -40,7 +40,7 @@ app.use(express.static("public"));
 
 // const completedOrderRoutes = require("./routes/completed_order");
 const menuRoutes = require("./routes/menu");
-const orderRoutes = require("./routes/order");
+const ordersRoutes = require("./routes/orders");
 const usersRoutes = require("./routes/users");
 // const widgetsRoutes = require("./routes/widgets");
 
@@ -49,7 +49,7 @@ const usersRoutes = require("./routes/users");
 
 
 // app.use("/order/:id/completed", orderCompletedRoutes(dbHelpers));
-app.use("/order/:id", orderRoutes(dbHelpers));
+app.use("/orders/:id", ordersRoutes(dbHelpers));
 app.use("/menu", menuRoutes(dbHelpers));
 app.use("/api/users", usersRoutes(dbHelpers));
 // app.use("/api/widgets", widgetsRoutes(dbHelpers));

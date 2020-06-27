@@ -2,15 +2,13 @@ module.exports = db => {
   const getMenuItems = () => {
     const query = {
       text: `SELECT * FROM menu_items;`
-      // values: []
     }
     return db.query(query).then(result => result.rows)
   };
 
-  const getOrder = () => {
+  const getOrders = () => {
     const query = {
-      text: `SELECT * FROM orders;`,
-      // values: []
+      text: `SELECT ordered_items.*, menu_items.name FROM ordered_items JOIN menu_items ON menu_items.id = menu_item_id;`,
     }
     return db.query(query).then(result => result.rows)
   };
@@ -50,7 +48,7 @@ module.exports = db => {
   }
   return {
     getMenuItems,
-    getOrder,
+    getOrders,
     // getCompletedOrder,
     getUsers,
     addUser,
