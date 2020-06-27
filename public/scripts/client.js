@@ -1,5 +1,3 @@
-
-
 $(document).ready(() => {
 
   const order = {};
@@ -10,7 +8,10 @@ $(document).ready(() => {
       const itemId = cardBody[0].dataset.itemid;
       // If item is in order, increase its qty by one. Else, set its qty to 1
       order[itemId] ? order[itemId] += 1 : order[itemId] = 1;
-      console.log(order);
+
+      // update item qty on card
+      const itemQty = cardBody.find('.item-qty')[0];
+      itemQty.innerHTML -= -1;
     })
   })
 
@@ -20,12 +21,17 @@ $(document).ready(() => {
       const cardBody = $(e.target).parent();
       const itemId = cardBody[0].dataset.itemid;
       // If item is in order, decrease its qty by one.
-      order[itemId] > 0 ? order[itemId] -= 1 : '';
+      // update qty count on card
+      if (order[itemId]) {
+        order[itemId] -= 1;
+        const itemQty = cardBody.find('.item-qty')[0];
+        itemQty.innerHTML -= 1;
+      }
+
       // If the item is in the order but its quantity is 0, delete it from the order
       if (order[itemId] === 0) {
         delete order[itemId];
       }
-      console.log(order);
     })
   })
 })
