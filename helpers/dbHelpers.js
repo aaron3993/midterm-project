@@ -8,7 +8,9 @@ module.exports = db => {
 
   const getOrders = () => {
     const query = {
-      text: `SELECT ordered_items.*, menu_items.name FROM ordered_items JOIN menu_items ON menu_items.id = menu_item_id;`,
+      text: `SELECT ordered_items.*, menu_items.name
+      FROM ordered_items
+      JOIN menu_items ON menu_items.id = menu_item_id;`,
     }
     return db.query(query).then(result => result.rows)
   };
@@ -21,19 +23,20 @@ module.exports = db => {
   //   return db.query(query).then(result => result.rows)
   // };
 
-  // const getCompletedOrder = () => {
-  //   const query = {
-  //     text: `SELECT * FROM ordered_items;`,
-  //     // values: []
-  //   }
-  //   return db.query(query).then(result => result.rows)
-  // };
+  const getCompletedOrder = () => {
+    const query = {
+      text: `SELECT ordered_items.id as ordered_items_id, orders.* FROM ordered_items
+      JOIN orders ON orders.id = order_id
+      WHERE ordered_items.id = 1;`,
+      // Will change this WHERE to be dynamic after
+    }
+    return db.query(query).then(result => result.rows)
+  };
 
   // Template default
   const getUsers = () => {
     const query = {
       text: `SELECT * FROM users;`,
-      // values: []
     }
     return db.query(query).then(result => result.rows)
   };
@@ -49,7 +52,7 @@ module.exports = db => {
   return {
     getMenuItems,
     getOrders,
-    // getCompletedOrder,
+    getCompletedOrder,
     getUsers,
     // placeOrder,
     addUser,
