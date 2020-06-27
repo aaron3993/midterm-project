@@ -7,13 +7,13 @@ module.exports = db => {
     return db.query(query).then(result => result.rows)
   };
 
-  // const getOrder = () => {
-  //   const query = {
-  //     text: `SELECT * FROM orders;`,
-  //     // values: []
-  //   }
-  //   return db.query(query).then(result => result.rows)
-  // };
+  const getOrder = () => {
+    const query = {
+      text: `SELECT * FROM orders;`,
+      // values: []
+    }
+    return db.query(query).then(result => result.rows)
+  };
 
   // const placeOrder = () => {
   //   const query = {
@@ -50,7 +50,7 @@ module.exports = db => {
   }
   return {
     getMenuItems,
-    // getOrder,
+    getOrder,
     // getCompletedOrder,
     getUsers,
     addUser,

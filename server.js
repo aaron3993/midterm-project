@@ -40,7 +40,7 @@ app.use(express.static("public"));
 
 // const completedOrderRoutes = require("./routes/completed_order");
 const menuRoutes = require("./routes/menu");
-// const orderRoutes = require("./routes/order");
+const orderRoutes = require("./routes/order");
 const usersRoutes = require("./routes/users");
 // const widgetsRoutes = require("./routes/widgets");
 
@@ -48,8 +48,8 @@ const usersRoutes = require("./routes/users");
 // Note: Feel free to replace the example routes below with your own
 
 
-// app.use("/api/order/:id/completed", orderCompletedRoutes(dbHelpers));
-// app.use("/api/order/:id", orderRoutes(dbHelpers));
+// app.use("/order/:id/completed", orderCompletedRoutes(dbHelpers));
+app.use("/order/:id", orderRoutes(dbHelpers));
 app.use("/menu", menuRoutes(dbHelpers));
 app.use("/api/users", usersRoutes(dbHelpers));
 // app.use("/api/widgets", widgetsRoutes(dbHelpers));
