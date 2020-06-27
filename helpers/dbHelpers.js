@@ -6,6 +6,14 @@ module.exports = db => {
     return db.query(query).then(result => result.rows)
   };
 
+  // const addMenuItem = () => {
+  //   const query = {
+  //     text: 'INSERT INTO ordered_items(order_id, menu_item_id, price_charged, qty) VALUES ($1, $2, $3, $4) RETURNING *',
+  //     values: [order_id, menu_item_id, price_charged, qty]
+  //   }
+  //   return db.query(query).then(result => result.rows)
+  // };
+
   const getOrders = () => {
     const query = {
       text: `SELECT ordered_items.*, menu_items.name
@@ -17,8 +25,8 @@ module.exports = db => {
 
   // const placeOrder = () => {
   //   const query = {
-  //     text: 'INSERT INTO ordered_items(order_id, menu_item_id, price_charged, qty) VALUES ($1, $2, $3, $4) RETURNING *',
-  //     values: [order_id, menu_item_id, price_charged, qty]
+  //     text: 'INSERT INTO orders(user_id, order_placed_at, special_instructions, order_ready_duration, order_ready, order_complete_at) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',
+  //     values: [user_id, order_placed_at, special_instructions, order_ready_duration, order_ready, order_complete_at]
   //   }
   //   return db.query(query).then(result => result.rows)
   // };
@@ -50,6 +58,7 @@ module.exports = db => {
     return db.query(query).then(result => result.rows)
   }
   return {
+    // addMenuItem,
     getMenuItems,
     getOrders,
     getCompletedOrder,

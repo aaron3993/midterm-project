@@ -3,6 +3,7 @@ const router  = express.Router();
 
 module.exports = ({ getCompletedOrder }) => {
   // GET completed order
+  // GET SPECIFIC ORDER FROM ORDERS TABLE
   router.get("/", (req, res) => {
     getCompletedOrder()
       .then(completedOrder => {
