@@ -18,16 +18,5 @@ module.exports = ({ getMenuItems }) => {
       .json({ error: err.message });
     });
   });
-  // POST - Add menu items
-  // INSERT MENU ITEMS IN LOCAL STORAGE BY ID AND QTY INTO ORDERED_ITEMS TABLE ON FORM SUBMIT
-  // router.post("/", (req, res) => {
-  //   const {menu_item_id, qty} = req.body
-  //   console.log(menu_item_id, qty)
-  //   addMenuItems(menu_item_id, qty)
-  //     .then(orders => {
-  //       res.redirect("orders")
-  //     })
-  //     .catch(err => console.log(err))
-  // })
   return router;
 };
