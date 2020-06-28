@@ -1,0 +1,9 @@
+ id | id | user_id |   order_placed_at   | special_instructions | order_ready_duration | order_ready | order_complete_at 
+----+----+---------+---------------------+----------------------+----------------------+-------------+-------------------
+  1 |  1 |       1 | 2020-06-27 08:05:06 | No plastic cutlery   |                   15 | f           | 
+  2 |  1 |       1 | 2020-06-27 08:05:06 | No plastic cutlery   |                   15 | f           | 
+  3 |  1 |       1 | 2020-06-27 08:05:06 | No plastic cutlery   |                   15 | f           | 
+  4 |  1 |       1 | 2020-06-27 08:05:06 | No plastic cutlery   |                   15 | f           | 
+  5 |  1 |       1 | 2020-06-27 08:05:06 | No plastic cutlery   |                   15 | f           | 
+(5 rows)
+

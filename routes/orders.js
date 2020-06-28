@@ -2,7 +2,8 @@ const express = require('express');
 const router  = express.Router();
 
 module.exports = ({ getOrders, placeOrder }) => {
-  // GET specific order
+  // GET all orders
+  // GET * FROM ORDERED_ITEMS TABLE
   router.get("/", (req, res) => {
     getOrders()
       .then(orders => { 
@@ -17,16 +18,17 @@ module.exports = ({ getOrders, placeOrder }) => {
           .json({ error: err.message });
       });
   });
-  
   // POST - place an order
+  // INSERT ALL ORDERS MADE (MANY) INTO THE ORDERS TABLE (ONE)
   // router.post("/", (req, res) => {
-    //   const {...} = req.body
-    //   console.log(...)
-    //   placeOrder(...)
-    //     .then(order => {
-    //       res.json(order)
-    //     })
-    //     .catch(err => console.log(err))
-    // })
+  //     const {user_id, order_placed_at, special_instructions, order_ready_duration, order_ready, order_complete_at} = req.body
+  //     console.log(user_id, order_placed_at, special_instructions, order_ready_duration, order_ready, order_complete_at)
+  //     placeOrder(user_id, order_placed_at, special_instructions, order_ready_duration, order_ready, order_complete_at)
+  //       .then(orders => {
+  //         res.redirect("completed_order")
+  //       })
+  //       .catch(err => console.log(err))
+  //   })
+
     return router;
 };
