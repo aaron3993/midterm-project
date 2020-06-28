@@ -7,9 +7,8 @@ module.exports = ({ getMenuItems }) => {
   router.get("/", (req, res) => {
     getMenuItems()
       .then(menu => {
-        console.log(menu[0].name)
         let templateVars = {
-          menuItems: menu
+          menuItems: menu,
         };
         res.render("menu", templateVars)
       })
@@ -20,17 +19,15 @@ module.exports = ({ getMenuItems }) => {
     });
   });
   // POST - Add menu items
-  // INSERT SELECTED MENU ITEMS BY ID (ONE) INTO ORDERED_ITEMS TABLE (MANY) ON FORM SUBMIT
-  // Since we have multiple menu items to add, how can we insert them all at once when we submit?
-  // Can we add them by clicking the + button instead? Is this not many to many?
+  // INSERT MENU ITEMS IN LOCAL STORAGE BY ID AND QTY INTO ORDERED_ITEMS TABLE ON FORM SUBMIT
   // router.post("/", (req, res) => {
-//     const {order_id, menu_item_id, price_charged, qty} = req.body
-//     console.log(order_id, menu_item_id, price_charged, qty)
-//     addMenuItems(order_id, menu_item_id, price_charged, qty)
-//       .then(orders => {
-//         res.redirect("orders")
-//       })
-//       .catch(err => console.log(err))
-//   })
+  //   const {menu_item_id, qty} = req.body
+  //   console.log(menu_item_id, qty)
+  //   addMenuItems(menu_item_id, qty)
+  //     .then(orders => {
+  //       res.redirect("orders")
+  //     })
+  //     .catch(err => console.log(err))
+  // })
   return router;
 };
