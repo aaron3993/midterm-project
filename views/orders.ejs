@@ -18,7 +18,9 @@
         <h2>My order:</h2>
 
         <ul class="list-group">
-          <% for (const order of orders) { %>
+          <% console.log('menu stuff', menu); %>
+          <% console.log('local storage: ', localStorage.getItem('user_order')); %>
+          <!-- <% for (const order of orders) { %>
           <li class="list-group-item">
             <span> <%= order.qty %> X </span>
             <span> <%= order.name %> </span>
@@ -29,7 +31,7 @@
             </span>
             <span><%= `$${(order.price_charged / 100).toFixed(2)}` %></span>
           </li>
-          <!-- <li class="list-group-item">
+          <!-- <li class="list-group-item"> -->
             <span>2 X </span>
             <span>Dumplings</span>
             <span>
