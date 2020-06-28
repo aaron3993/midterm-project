@@ -18,18 +18,5 @@ module.exports = ({ getMenuItems }) => {
       .json({ error: err.message });
     });
   });
-  // POST - Add menu items
-  // INSERT SELECTED MENU ITEMS BY ID (ONE) INTO ORDERED_ITEMS TABLE (MANY) ON FORM SUBMIT
-  // Since we have multiple menu items to add, how can we insert them all at once when we submit?
-  // Can we add them by clicking the + button instead? Is this not many to many?
-  // router.post("/", (req, res) => {
-//     const {order_id, menu_item_id, price_charged, qty} = req.body
-//     console.log(order_id, menu_item_id, price_charged, qty)
-//     addMenuItems(order_id, menu_item_id, price_charged, qty)
-//       .then(orders => {
-//         res.redirect("orders")
-//       })
-//       .catch(err => console.log(err))
-//   })
   return router;
 };

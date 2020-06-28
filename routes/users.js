@@ -22,16 +22,16 @@ module.exports = ({ getUsers, addUser }) => {
       });
   });
   // Template POST
-  router.post("/", (req, res) => {
-    const {name, email, password} = req.body
-    console.log(name, email, password)
-    // Can test post request using CURL or Insomnia (49:35 in lecture)
-    addUser(name, email, password)
-      .then(user => {
-        res.json(user)
-      })
-      .catch(err => console.log(err))
-  })
+  // router.post("/", (req, res) => {
+  //   const {name, email, password} = req.body
+  //   console.log(name, email, password)
+  //   // Can test post request using CURL or Insomnia (49:35 in lecture)
+  //   addUser(name, email, password)
+  //     .then(user => {
+  //       res.json(user)
+  //     })
+  //     .catch(err => console.log(err))
+  // })
 
   return router;
 };
