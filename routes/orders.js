@@ -42,8 +42,8 @@ module.exports = ({ getMenuItems, getCompletedOrder, placeOrder }) => {
     console.log("creating a new order");
     placeOrder(1, new Date(), "no cheese", 30, false, null)
       .then((order) => {
-        console.log(order);
-        // notifyOwner(order)
+        console.log("calling notify owner");
+        notifyOwner();
         res.redirect(`/orders/1/completed`);
       })
       .catch((err) => console.log(err));

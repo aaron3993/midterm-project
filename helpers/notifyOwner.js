@@ -1,23 +1,20 @@
 // Download the helper library from https://www.twilio.com/docs/node/install
 // Your Account Sid and Auth Token from twilio.com/console
-// DANGER! This is insecure. See http://twil.io/secure
+// DANGER! This is insecure. See http://twil.io/secure //
 
-const accountSid = "AC183ebdd0e581b4381b607fd57bc100cf";
-const authToken = "956e9ff9c8f08fdeb64af521282d18d7";
+const accountSid = process.env.TWILIO_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
 const client = require("twilio")(accountSid, authToken);
 
-function notifyOwner(order) {
-  console.log(`notifyOwner ${JSON.stringify(order)}`);
-
-  /*  const { oderID, userID, special_instructions } = order;
-
+const notifyOwner = (id = 1234, phoneNumber = "+16477837891") => {
   client.messages
     .create({
-      body: "Your got new order ID with 3 items Please reply with ",
+      body: `New order #${id}. Please log in to confirm order`,
       from: "+12028901491",
-      to: "+16477837891",
+      to: phoneNumber,
     })
-    .then((message) => console.log(message.sid)); */
-}
+    .then((message) => console.log(message.sid))
+    .catch((error) => console.log(error));
+};
 
 module.exports = { notifyOwner };
