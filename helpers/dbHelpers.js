@@ -6,30 +6,36 @@ module.exports = db => {
     return db.query(query).then(result => result.rows)
   };
 
-  // const addMenuItem = () => {
+  // const addMenuItem = (menu_item_id, qty) => {
+  //   // const query = {
+  //   //   text: 'INSERT INTO ordered_items(order_id, menu_item_id, price_charged, qty) VALUES ($1, $2, $3, $4) RETURNING *',
+  //   //   values: [order_id, menu_item_id, price_charged, qty]
+  //   // }
+  //     const query = {
+  //       text: 'INSERT INTO ordered_items(menu_item_id, qty) VALUES ($1, $2) RETURNING *',
+  //       values: [menu_item_id, qty]
+  //     }
+  //     return db.query(query).then(result => result.rows)
+  //   };
+  
+
+  // const getOrders = () => {
   //   const query = {
-  //     text: 'INSERT INTO ordered_items(order_id, menu_item_id, price_charged, qty) VALUES ($1, $2, $3, $4) RETURNING *',
-  //     values: [order_id, menu_item_id, price_charged, qty]
+  //     text: `SELECT ordered_items.*, menu_items.name
+  //     FROM ordered_items
+  //     JOIN menu_items ON menu_items.id = menu_item_id;`,
   //   }
   //   return db.query(query).then(result => result.rows)
   // };
 
-  const getOrders = () => {
+  const placeOrder = (user_id, order_placed_at, special_instructions, order_ready_duration, order_ready, order_complete_at) => {
     const query = {
-      text: `SELECT ordered_items.*, menu_items.name
-      FROM ordered_items
-      JOIN menu_items ON menu_items.id = menu_item_id;`,
+      text: `INSERT INTO orders(user_id, order_placed_at, special_instructions, order_ready_duration, order_ready, order_complete_at)
+      VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`,
+      values: [user_id, order_placed_at, special_instructions, order_ready_duration, order_ready, order_complete_at]
     }
     return db.query(query).then(result => result.rows)
   };
-
-  // const placeOrder = () => {
-  //   const query = {
-  //     text: 'INSERT INTO orders(user_id, order_placed_at, special_instructions, order_ready_duration, order_ready, order_complete_at) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',
-  //     values: [user_id, order_placed_at, special_instructions, order_ready_duration, order_ready, order_complete_at]
-  //   }
-  //   return db.query(query).then(result => result.rows)
-  // };
 
   const getCompletedOrder = () => {
     const query = {
@@ -60,10 +66,10 @@ module.exports = db => {
   return {
     // addMenuItem,
     getMenuItems,
-    getOrders,
+    // getOrders,
     getCompletedOrder,
     getUsers,
-    // placeOrder,
+    placeOrder,
     addUser,
   }
 }
