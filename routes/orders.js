@@ -33,18 +33,26 @@ module.exports = ({ getMenuItems, getCompletedOrder, placeOrder }) => {
         res
           .status(500)
           .json({ error: err.message });
-      });
+      }); 
   });
   // POST - place an order
   // INSERT ALL ORDERS MADE (MANY) INTO THE ORDERS TABLE (ONE)
   router.post("/:id", (req, res) => {
     console.log(req.body);
+    console.log(req.body.specialInstructions)
+  // { specialInstructions: '',
+  // orderDetails: '{"1":1,"3":1}' }
       // const {user_id, order_placed_at, special_instructions, order_ready_duration, order_ready, order_complete_at} = req.body
       // console.log(user_id, order_placed_at, special_instructions, order_ready_duration, order_ready, order_complete_at)
       console.log("creating a new order")
-      placeOrder(1, new Date(), 'no cheese', 30, false, null)
-        .then(order => {
-          console.log(order)
+      placeOrder(1, new Date(), req.body.specialInstructions, 30, false, null)
+      getCompletedOrder()
+        .then(completedOrder => {
+          console.log(completedOrder)
+          let templateVars = {
+            completedOrder
+          };
+          res.render("completed_order", templateVars) 
           // notifyOwner(order)
           res.redirect(`/orders/1/completed`)
         })

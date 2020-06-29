@@ -39,9 +39,8 @@ module.exports = db => {
 
   const getCompletedOrder = () => {
     const query = {
-      text: `SELECT ordered_items.id as ordered_items_id, orders.* FROM ordered_items
-      JOIN orders ON orders.id = order_id
-      WHERE ordered_items.id = 1;`,
+      text: `SELECT users.name as name, users.phone as phone_number, orders.* FROM users
+      JOIN orders ON users.id = user_id;`,
       // Will change this WHERE to be dynamic after
     }
     return db.query(query).then(result => result.rows)
