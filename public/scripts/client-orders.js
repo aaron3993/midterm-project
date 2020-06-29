@@ -66,30 +66,28 @@ $(document).ready(() => {
     });
   });
 
-  // (data.itemId)
-
-  // const order = JSON.parse(localStorage.getItem('user_order'));
-  // const cardBody = $(e.target).parent();
-  // const itemId = cardBody[0].dataset.itemid;
-  // // If item is in order, increase its qty by one. Else, set its qty to 1
-  // order[itemId] ? order[itemId] += 1 : order[itemId] = 1;
-
-  // // update item qty on card
-  // const itemQty = cardBody.find('.item-qty')[0];
-  // itemQty.innerHTML = order[itemId];
-  // localStorage.setItem('user_order', JSON.stringify(order));
-  // console.log(localStorage.getItem('user_order'));
-
-
-
-
-
-
-
-
-
-
-
+  $('.decrement').each(function() {
+    this.addEventListener('click', function(e) {
+      const parentLi = $(e.target).parent().parent();
+      const itemId = (parentLi[0].dataset.itemid);
+      const itemPrice = menuObjects[itemId].price;
+      //decrement count in localStorage
+      userOrder[itemId] -= 1;
+      // If item count is now 0, remove it from local storage and from order
+      if (!userOrder[itemId]) {
+        delete userOrder[itemId];
+        localStorage.setItem('user_order', JSON.stringify(userOrder));
+        $(parentLi).remove();
+      } else {
+        // adjust count in li
+        $(parentLi).find('.item-count').html(userOrder[itemId]);
+        // // adjust price for this li
+        $(parentLi).find('.item-total').html(`$${((userOrder[itemId] * menuObjects[itemId].price)/100).toFixed(2)}`);
+      }
+      // // adjust total price
+      setTotalPrice(userOrder, menuObjects);
+    });
+  });
 });
 
 
@@ -98,24 +96,3 @@ $(document).ready(() => {
 
 
 
-//  // Add evt listener to - button on menu-items
-//  $('.remove-item').each(function() {
-//   this.addEventListener('click', function(e) {
-//     const order = JSON.parse(localStorage.getItem('user_order'));
-//     const cardBody = $(e.target).parent();
-//     const itemId = cardBody[0].dataset.itemid;
-//     // If item is in order, decrease its qty by one.
-//     // update qty count on card
-//     if (order[itemId]) {
-//       order[itemId] -= 1;
-//       const itemQty = cardBody.find('.item-qty')[0];
-//       itemQty.innerHTML = order[itemId];
-//     }
-
-//     // If the item is in the order but its quantity is 0, delete it from the order
-//     if (order[itemId] === 0) {
-//       delete order[itemId];
-//     }
-//     localStorage.setItem('user_order', JSON.stringify(order));
-//     console.log(localStorage.getItem('user_order'));
-//   })
