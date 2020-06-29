@@ -24,10 +24,10 @@ module.exports = ({ getMenuItems, placeOrder }) => {
   // POST - place an order
   // INSERT ALL ORDERS MADE (MANY) INTO THE ORDERS TABLE (ONE)
   router.post("/", (req, res) => {
-      const {user_id, order_placed_at, special_instructions, order_ready_duration, order_ready, order_complete_at} = req.body
-      console.log(user_id, order_placed_at, special_instructions, order_ready_duration, order_ready, order_complete_at)
-      placeOrder(user_id, order_placed_at, special_instructions, order_ready_duration, order_ready, order_complete_at)
-        .then(orders => {
+      placeOrder(1, Date.now(), 'no cheese', 30, false, null)
+        .then(order => {
+          // notifyOwner(order)
+          console.log('order: ', order)
           res.redirect("completed_order")
         })
         .catch(err => console.log(err))
