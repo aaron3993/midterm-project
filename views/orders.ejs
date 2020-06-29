@@ -17,6 +17,7 @@
       <form class="border border-secondary p-4">
         <h2>My order:</h2>
         <ul class="list-group">
+          <% let sum = 0 %>
           <% for (const menuItem in menuItems) { %>
           <li class="list-group-item">
             <span> <%= menuItems[menuItem] %> X </span>
@@ -27,6 +28,7 @@
               <a href="#" class="btn btn-dark">X</a>
             </span>
             <span><%= `$${(orders[menuItem].price * menuItems[menuItem] / 100).toFixed(2)}` %></span>
+            <% sum += orders[menuItem].price * menuItems[menuItem] / 100 %>
           </li>
           <!-- <li class="list-group-item">
             <span>2 X </span>
@@ -53,7 +55,7 @@
         </ul>
 
         <!-- Mapped the order price * order qty for each item in an array, then added them together -->
-        <p>total: <span class="ml-auto"></span></p>
+        <p>total: <%= `$${sum.toFixed(2)}` %><span class="ml-auto"></span></p>
 
         <div class="form-group">
           <label for="specialInstructions">Special Instructions:</label>
