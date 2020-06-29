@@ -38,21 +38,6 @@ module.exports = ({ getMenuItems, getCompletedOrder, placeOrder }) => {
   // POST - place an order
   // INSERT ALL ORDERS MADE (MANY) INTO THE ORDERS TABLE (ONE)
   router.post("/", (req, res) => {
-<<<<<<< HEAD
-  //   const {user_id, order_placed_at, special_instructions, order_ready_duration, order_ready, order_complete_at} = req.body
-  //   console.log(user_id, order_placed_at, special_instructions, order_ready_duration, order_ready, order_complete_at)
-  //   placeOrder(user_id, order_placed_at, special_instructions, order_ready_duration, order_ready, order_complete_at)
-  //     .then(orders => {
-  //       res.redirect("completed_order");
-  //     })
-  //     .catch(err => console.log(err))
-    console.log(req.body);
-    res.send('ok');
-  });
-
-  return router;
-};
-=======
       // const {user_id, order_placed_at, special_instructions, order_ready_duration, order_ready, order_complete_at} = req.body
       // console.log(user_id, order_placed_at, special_instructions, order_ready_duration, order_ready, order_complete_at)
       console.log("creating a new order")
@@ -67,4 +52,3 @@ module.exports = ({ getMenuItems, getCompletedOrder, placeOrder }) => {
 
     return router;
 };
->>>>>>> master
