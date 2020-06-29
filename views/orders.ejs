@@ -14,7 +14,7 @@
 
     <%- include('partials/_header') %>
     <div class="container mt-5">
-      <form class="border border-secondary p-4" action="/orders" method="POST">
+      <form class="border border-secondary p-4" method="post" action="/orders/:id">
         <h2>My order:</h2>
 
         <ul class="list-group order-list"></ul>
@@ -24,19 +24,20 @@
 
         <div class="form-group">
           <label for="specialInstructions">Special Instructions:</label>
-          <textarea class="form-control"></textarea>
+          <textarea name="specialInstructions" class="form-control"></textarea>
         </div>
 
         <div class="form-group">
           <label for="userName">Name</label>
-          <input type="text" class="form-control" id="userName" placeholder="Enter name">
+          <input type="text" name="userName" class="form-control" id="userName" placeholder="Enter name">
         </div>
 
         <div class="form-group">
           <label for="userPhoneNumber">Phone Number</label>
-          <input type="tel" class="form-control" id="userPhoneNumber" placeholder="Enter phone number">
+          <input type="tel" name="userPhoneNumber" class="form-control" id="userPhoneNumber" placeholder="Enter phone number">
           <small class="form-text text-muted">We'll never share your phone number with anyone else.</small>
         </div>
+        <input type="hidden" name="orderDetails" class="form-order-details" value='{}'></input>
 
         <button type="submit" class="btn btn-dark">Place Order</button>
       </form>
