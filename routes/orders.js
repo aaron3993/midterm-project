@@ -7,10 +7,10 @@ module.exports = ({ getMenuItems, placeOrder }) => {
   router.get("/", (req, res) => {
     const menuItemsObj = {"1": 2, "2": 1, "5": 1, "6": 3}
       getMenuItems()
-      .then(orders => {
+      .then(menu => {
         let templateVars = {
-          orders,
-          menuItems: menuItemsObj
+          orders: [1, 2, 3],
+          menuItems: menu
         };
         console.log(templateVars)
         res.render("orders", templateVars)
