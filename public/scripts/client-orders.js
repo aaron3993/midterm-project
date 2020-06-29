@@ -17,26 +17,21 @@ const populateOrder = function(userOrder, menuObjects){
   };
 };
 
-
-
-// Move this to client helpers
 const formatMenu = function(menu) {
   const menuObjects = {};
   menu.forEach(menuItem => {
     menuObjects[menuItem.id] = menuItem;
   });
   return menuObjects;
-}
+};
 
 const setTotalPrice = function(userOrder, menuObjects) {
-  // $${(orders.map(order => order.price_charged * order.qty).reduce((a, b) => a + b) / 100).toFixed(2)}`
   let totalInCents = 0;
   for (let [key, value] of Object.entries(userOrder)) {
     totalInCents += menuObjects[key].price * value;
   }
   $('.order-total').html((totalInCents/100).toFixed(2));
-}
-
+};
 
 $(document).ready(() => {
   userOrder = JSON.parse(localStorage.getItem('user_order'));
@@ -44,16 +39,11 @@ $(document).ready(() => {
   populateOrder(userOrder, menuObjects);
   setTotalPrice(userOrder, menuObjects);
 
-  console.log(userOrder);
-  // addClickHandlers();
-
   // Increment count and price when user clicks +
   $('.increment').each(function() {
     this.addEventListener('click', function(e) {
       const parentLi = $(e.target).parent().parent();
       const itemId = (parentLi[0].dataset.itemid);
-      const itemPrice = menuObjects[itemId].price;
-
       // increment count in localStorage
       userOrder[itemId] += 1;
       localStorage.setItem('user_order', JSON.stringify(userOrder));
@@ -66,11 +56,11 @@ $(document).ready(() => {
     });
   });
 
+  // Decrement count and price when user clicks +
   $('.decrement').each(function() {
     this.addEventListener('click', function(e) {
       const parentLi = $(e.target).parent().parent();
       const itemId = (parentLi[0].dataset.itemid);
-      const itemPrice = menuObjects[itemId].price;
       //decrement count in localStorage
       userOrder[itemId] -= 1;
       // If item count is now 0, remove it from local storage and from order
@@ -88,11 +78,19 @@ $(document).ready(() => {
       setTotalPrice(userOrder, menuObjects);
     });
   });
+
+  // Remove item from order and adjust price when user clicks X
+  $('.remove').each(function() {
+    this.addEventListener('click', function(e) {
+      const parentLi = $(e.target).parent().parent();
+      const itemId = (parentLi[0].dataset.itemid);
+      // remove item from local storage
+      delete userOrder[itemId];
+      localStorage.setItem('user_order', JSON.stringify(userOrder));
+      // remove li for that item from the order ul
+      $(parentLi).remove();
+      // // adjust total price
+      setTotalPrice(userOrder, menuObjects);
+    });
+  });
 });
-
-
-
-
-
-
-
