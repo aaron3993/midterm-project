@@ -1,8 +1,19 @@
+const updateItemCounts = function(userOrder) {
+  for (let [id, count] of Object.entries(userOrder)) {
+    $(`[data-itemId="${id}"]`).find('.item-qty').html(count);
+  }
+};
+
 $(document).ready(() => {
+  // Check if user order exists. If not, set to empty obj
+  if (localStorage.getItem('user_order')) {
+    const order = JSON.parse(localStorage.getItem('user_order'));
+    // Make sure counts on item cards represent user_order
+    updateItemCounts(order);
+  } else {
+    localStorage.setItem('user_order', '{}');
+  }
 
-  localStorage.setItem('user_order', '{}');
-
-  console.log('doc ready', localStorage.getItem('user_order'));
   // Add evt listener to + button on menu-items
   $('.add-item').each(function() {
     this.addEventListener('click', function(e) {
