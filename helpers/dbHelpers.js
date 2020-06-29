@@ -1,9 +1,9 @@
-module.exports = db => {
+module.exports = (db) => {
   const getMenuItems = () => {
     const query = {
-      text: `SELECT * FROM menu_items;`
-    }
-    return db.query(query).then(result => result.rows)
+      text: `SELECT * FROM menu_items;`,
+    };
+    return db.query(query).then((result) => result.rows);
   };
 
   // const addMenuItem = (menu_item_id, qty) => {
@@ -17,7 +17,6 @@ module.exports = db => {
   //     }
   //     return db.query(query).then(result => result.rows)
   //   };
-  
 
   // const getOrders = () => {
   //   const query = {
@@ -28,13 +27,27 @@ module.exports = db => {
   //   return db.query(query).then(result => result.rows)
   // };
 
-  const placeOrder = (user_id, order_placed_at, special_instructions, order_ready_duration, order_ready, order_complete_at) => {
+  const placeOrder = (
+    user_id,
+    order_placed_at,
+    special_instructions,
+    order_ready_duration,
+    order_ready,
+    order_complete_at
+  ) => {
     const query = {
       text: `INSERT INTO orders(user_id, order_placed_at, special_instructions, order_ready_duration, order_ready, order_complete_at)
       VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`,
-      values: [user_id, order_placed_at, special_instructions, order_ready_duration, order_ready, order_complete_at]
-    }
-    return db.query(query).then(result => result.rows)
+      values: [
+        user_id,
+        order_placed_at,
+        special_instructions,
+        order_ready_duration,
+        order_ready,
+        order_complete_at,
+      ],
+    };
+    return db.query(query).then((result) => result.rows);
   };
 
   const getCompletedOrder = () => {
@@ -43,26 +56,36 @@ module.exports = db => {
       JOIN orders ON orders.id = order_id
       WHERE ordered_items.id = 1;`,
       // Will change this WHERE to be dynamic after
-    }
-    return db.query(query).then(result => result.rows)
+    };
+    return db.query(query).then((result) => result.rows);
   };
 
   // Template default
   const getUsers = () => {
     const query = {
       text: `SELECT * FROM users;`,
-    }
-    return db.query(query).then(result => result.rows)
+    };
+    return db.query(query).then((result) => result.rows);
+  };
+
+  // Template default
+  const getUserByID = (id) => {
+    const query = {
+      text: `SELECT * FROM users where id=$1;`,
+      value: id,
+    };
+    return db.query(query).then((result) => result.rows);
   };
 
   // Template default
   const addUser = (name, email, password) => {
     const query = {
-      text: 'INSERT INTO users(name) VALUES ($1) RETURNING *',
-      values: [name]
-    }
-    return db.query(query).then(result => result.rows)
-  }
+      text: "INSERT INTO users(name) VALUES ($1) RETURNING *",
+      values: [name],
+    };
+    return db.query(query).then((result) => result.rows);
+  };
+
   return {
     // addMenuItem,
     getMenuItems,
@@ -71,5 +94,5 @@ module.exports = db => {
     getUsers,
     placeOrder,
     addUser,
-  }
-}
+  };
+};

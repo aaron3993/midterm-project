@@ -7,7 +7,9 @@ const authToken = "956e9ff9c8f08fdeb64af521282d18d7";
 const client = require("twilio")(accountSid, authToken);
 
 function notifyOwner(order) {
-  const { oderID, userID, special_instructions } = order;
+  console.log(`notifyOwner ${JSON.stringify(order)}`);
+
+  /*  const { oderID, userID, special_instructions } = order;
 
   client.messages
     .create({
@@ -15,5 +17,7 @@ function notifyOwner(order) {
       from: "+12028901491",
       to: "+16477837891",
     })
-    .then((message) => console.log(message.sid));
+    .then((message) => console.log(message.sid)); */
 }
+
+module.exports = { notifyOwner };
