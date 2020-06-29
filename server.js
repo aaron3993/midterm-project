@@ -53,7 +53,7 @@ const userRegister = require("./routes/register");
 
 // app.use("/orders/completed", completedOrderRoutes(dbHelpers));
 app.use("/login", userLogin(dbHelpers));
-app.use("/login", userRegister(dbHelpers));
+app.use("/register", userRegister(dbHelpers));
 app.use("/orders", ordersRoutes(dbHelpers));
 app.use("/menu", menuRoutes(dbHelpers));
 app.use("/api/users", usersRoutes(dbHelpers));
