@@ -10,53 +10,17 @@
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
   </head>
-
   <body>
+
     <%- include('partials/_header') %>
     <div class="container mt-5">
       <form class="border border-secondary p-4">
         <h2>My order:</h2>
 
-        <ul class="list-group">
-          <% console.log('menu stuff', menu); %>
-          <% console.log('local storage: ', localStorage.getItem('user_order')); %>
-          <!-- <% for (const order of orders) { %>
-          <li class="list-group-item">
-            <span> <%= order.qty %> X </span>
-            <span> <%= order.name %> </span>
-            <span>
-              <a href="#" class="btn btn-dark">+</a>
-              <a href="#" class="btn btn-dark">-</a>
-              <a href="#" class="btn btn-dark">X</a>
-            </span>
-            <span><%= `$${(order.price_charged / 100).toFixed(2)}` %></span>
-          </li>
-          <!-- <li class="list-group-item"> -->
-            <span>2 X </span>
-            <span>Dumplings</span>
-            <span>
-              <a href="#" class="btn btn-dark">+</a>
-              <a href="#" class="btn btn-dark">-</a>
-              <a href="#" class="btn btn-dark">X</a>
-            </span>
-            <span>$25.98</span>
-          </li>
+        <ul class="list-group order-list"></ul>
 
-          <li class="list-group-item">
-            <span>1 X </span>
-            <span>Ginger prawns</span>
-            <span>
-              <a href="#" class="btn btn-dark">+</a>
-              <a href="#" class="btn btn-dark">-</a>
-              <a href="#" class="btn btn-dark">X</a>
-            </span>
-            <span>$12.99</span>
-          </li> -->
-          <% } %>
-        </ul>
 
-        <!-- Mapped the order price * order qty for each item in an array, then added them together -->
-        <p>total: <span class="ml-auto"><%= `$${(orders.map(order => order.price_charged * order.qty).reduce((a, b) => a + b) / 100).toFixed(2)}` %></span></p>
+        <p>total: $<span class="ml-auto order-total"></span></p>
 
         <div class="form-group">
           <label for="specialInstructions">Special Instructions:</label>
@@ -77,5 +41,10 @@
         <button type="submit" class="btn btn-dark">Place Order</button>
       </form>
     </div>
+
+    <script>
+      const menu= <%- JSON.stringify(menuItems) %>;
+    </script>
+    <script type ="text/javascript" src="/scripts/client-orders.js"></script>
   </body>
 </html>
