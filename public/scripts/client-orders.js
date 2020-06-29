@@ -33,11 +33,16 @@ const setTotalPrice = function(userOrder, menuObjects) {
   $('.order-total').html((totalInCents/100).toFixed(2));
 };
 
+const updateFormOrderDetails = function(userOrder) {
+  $('.form-order-details').val(JSON.stringify(userOrder));
+}
+
 $(document).ready(() => {
   userOrder = JSON.parse(localStorage.getItem('user_order'));
   const menuObjects = formatMenu(menu);
   populateOrder(userOrder, menuObjects);
   setTotalPrice(userOrder, menuObjects);
+  updateFormOrderDetails(userOrder);
 
   // Increment count and price when user clicks +
   $('.increment').each(function() {
@@ -51,8 +56,9 @@ $(document).ready(() => {
       $(parentLi).find('.item-count').html(userOrder[itemId]);
       // adjust price for this li
       $(parentLi).find('.item-total').html(`$${((userOrder[itemId] * menuObjects[itemId].price)/100).toFixed(2)}`)
-      // adjust total price
+      // adjust total price and order value
       setTotalPrice(userOrder, menuObjects);
+      updateFormOrderDetails(userOrder);
     });
   });
 
@@ -74,8 +80,9 @@ $(document).ready(() => {
         // // adjust price for this li
         $(parentLi).find('.item-total').html(`$${((userOrder[itemId] * menuObjects[itemId].price)/100).toFixed(2)}`);
       }
-      // // adjust total price
+      // // adjust total price and order value
       setTotalPrice(userOrder, menuObjects);
+      updateFormOrderDetails(userOrder);
     });
   });
 
@@ -89,8 +96,9 @@ $(document).ready(() => {
       localStorage.setItem('user_order', JSON.stringify(userOrder));
       // remove li for that item from the order ul
       $(parentLi).remove();
-      // // adjust total price
+      // // adjust total price and order value
       setTotalPrice(userOrder, menuObjects);
+      updateFormOrderDetails(userOrder);
     });
   });
 });
