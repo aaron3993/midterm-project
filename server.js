@@ -46,6 +46,7 @@ const ordersRoutes = require("./routes/orders");
 const usersRoutes = require("./routes/users");
 const userLogin = require("./routes/login");
 const userRegister = require("./routes/register");
+const completedOrderRoutes = require("./routes/completed_order");
 // const widgetsRoutes = require("./routes/widgets");
 
 // Mount all resource routes
@@ -55,6 +56,7 @@ const userRegister = require("./routes/register");
 app.use("/login", userLogin(dbHelpers));
 app.use("/register", userRegister(dbHelpers));
 app.use("/orders", ordersRoutes(dbHelpers));
+app.use("/completed_order", completedOrderRoutes(dbHelpers));
 app.use("/menu", menuRoutes(dbHelpers));
 app.use("/api/users", usersRoutes(dbHelpers));
 // app.use("/api/widgets", widgetsRoutes(dbHelpers));
