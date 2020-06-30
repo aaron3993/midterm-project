@@ -6,9 +6,11 @@
     </div>
     <div class="navbar-nav ml-auto">
       <a class="nav-item nav-link" href="/orders/new">Checkout</a>
+      <% if (user) { %>
       <form method="post" action="/logout">
         <a onclick="this.parentNode.submit();" class="nav-item nav-link">Logout</a>
       </form>
+      <% } %>
     </div>
   </nav>
 </header>

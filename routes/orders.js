@@ -7,10 +7,14 @@ module.exports = ({ getMenuItems, getCompletedOrder, placeOrder, addMenuItem }) 
   // GET all orders
   // GET * FROM ORDERED_ITEMS TABLE
   router.get("/new", (req, res) => {
+    if (!req.session.user_id) {
+      return res.redirect("/menu");
+    }
     getMenuItems()
       .then(menu => {
         let templateVars = {
           menuItems: menu,
+          user: req.session.user_id
         };
         res.render("new_order", templateVars);
       })
@@ -18,37 +22,42 @@ module.exports = ({ getMenuItems, getCompletedOrder, placeOrder, addMenuItem }) 
         res.status(500).json({ error: err.message });
       });
   });
+
   router.get("/:id/completed", (req, res) => {
-    getCompletedOrder()
+    if (!req.session.user_id) {
+      return res.redirect("/menu");
+    }
+    getCompletedOrder(req.params.id)
       .then(completedOrder => {
+        console.log('get req.session: ', req.session);
         let templateVars = {
           completedOrder,
+          user: req.session.user_id
         };
-        res.render("completed_order", templateVars);
+        if (completedOrder.user_id === req.session.user_id) {
+          res.render("completed_order", templateVars);
+        } else {
+          res.redirect("/menu")
+        }
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
       });
   });
+
   // POST - place an order
-  router.post("/:id", (req, res) => {
+  router.post("/", (req, res) => {
     console.log("creating a new order");
     const menuItems = JSON.parse(req.body.orderDetails);
-    // Loop the menuItems object and call addMenuItem add each menu item to a new ordered_item
     placeOrder(req.session.user_id, new Date(), req.body.specialInstructions, null, 'pending', null).then(order => {
-      req.session.order_id = order[0].id
-      console.log('req.session: ', req.session)
+      // Mentor says the following is a bad approach, mixing backend with frontend
+      // req.session.order_id = order[0].id;
+      // Loop the menuItems object and call addMenuItem add each menu item to a new ordered_item
       for (const menuItem in menuItems) {
-        addMenuItem(order[0].id, Number(menuItem), menuItems[menuItem]);
+        addMenuItem(order.id, Number(menuItem), menuItems[menuItem]);
       }
-    }).then(id => {
-      getCompletedOrder()
-        .then(completedOrder => {
-          console.log('completedOrder: ', completedOrder)
-          res.redirect(`/orders/${req.session.order_id}/completed`);
-        })
-        .catch(err => console.log(err));
-    });
+      res.redirect(`/orders/${order.id}/completed`);
+    }).catch(err => console.log(err));
   });
   return router;
 };
