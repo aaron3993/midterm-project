@@ -7,6 +7,9 @@ module.exports = ({ getMenuItems, getCompletedOrder, placeOrder, addMenuItem }) 
   // GET all orders
   // GET * FROM ORDERED_ITEMS TABLE
   router.get("/new", (req, res) => {
+    if (!req.session.user_id) {
+      return res.redirect("/menu");
+    }
     getMenuItems()
       .then(menu => {
         let templateVars = {
@@ -20,8 +23,12 @@ module.exports = ({ getMenuItems, getCompletedOrder, placeOrder, addMenuItem }) 
   });
 
   router.get("/:id/completed", (req, res) => {
-    getCompletedOrder()
+    if (!req.session.user_id) {
+      return res.redirect("/menu");
+    }
+    getCompletedOrder(req.session.order_id)
       .then(completedOrder => {
+        console.log('get req.session: ', req.session);
         let templateVars = {
           completedOrder,
         };
@@ -39,12 +46,12 @@ module.exports = ({ getMenuItems, getCompletedOrder, placeOrder, addMenuItem }) 
     // Loop the menuItems object and call addMenuItem add each menu item to a new ordered_item
     placeOrder(req.session.user_id, new Date(), req.body.specialInstructions, null, 'pending', null).then(order => {
       req.session.order_id = order[0].id;
-      console.log('req.session: ', req.session);
+      console.log('post req.session: ', req.session);
       for (const menuItem in menuItems) {
         addMenuItem(order[0].id, Number(menuItem), menuItems[menuItem]);
       }
     });
-    getCompletedOrder()
+    getCompletedOrder(req.session.order_id)
       .then(completedOrder => {
         res.redirect(`/orders/${req.session.order_id}/completed`);
       })

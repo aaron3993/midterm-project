@@ -62,10 +62,11 @@ module.exports = (db) => {
     return db.query(query).then((result) => result.rows);
   };
 
-  const getCompletedOrder = () => {
+  const getCompletedOrder = (id) => {
     const query = {
       text: `SELECT users.name as name, users.phone as phone_number, orders.* FROM users
-      JOIN orders ON users.id = user_id;`
+      JOIN orders ON users.id = user_id
+      WHERE orders.id = ${id};`
     }
     return db.query(query).then(result => result.rows)
   };
