@@ -14,7 +14,8 @@ CREATE TABLE users(
   name VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL,
   password VARCHAR(255) NOT NULL,
-  phone VARCHAR(255) NOT NULL
+  phone VARCHAR(255) NOT NULL,
+  role TEXT NOT NULL
 );
 
 CREATE TABLE menu_items(
@@ -32,7 +33,7 @@ CREATE TABLE orders(
   placed_at TIMESTAMP NOT NULL,
   special_instructions TEXT,
   wait_time INTEGER,
-  order_status BOOLEAN NOT NULL,
+  order_status TEXT NOT NULL,
   ready_at TIMESTAMP
 );
 
