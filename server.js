@@ -76,14 +76,18 @@ app.use("/logout", userLogout(dbHelpers));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
-  console.log('REQ DOT SESSION BELOW');
-  console.log(req.session);
   let templateVars = {
     isLoggedIn: JSON.stringify(req.session)
   };
   res.render("index", templateVars);
 });
 
+app.get("/admin", (req, res) => {
+  res.render('admin');
+})
+
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
+
+
