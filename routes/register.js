@@ -5,16 +5,25 @@ module.exports = ({ registerUser }) => {
   // GET menu items
   // GET * FROM MENU_ITEMS TABLE
   router.get("/", (req, res) => {
-    res.render("register");
+    templateVars = {
+      errorMsg: null
+    };
+    res.render("register", templateVars);
   });
 
   router.post("/", (req, res) => {
     const {userName, userEmail, userPhone, userPassword} = req.body;
+    // If user submits with missing inputs, redirect back to register page with error message
+    if (!userName || !userEmail || !userPhone || !userPassword) {
+      let templateVars = {
+        errorMsg: 'Please fill out all fields before submitting'
+      };
+      res.render("register", templateVars)
+    };
     const values = [userName, userEmail, userPhone, userPassword];
     registerUser(values)
       .then(newUser => {
-        // new user is an object that looks like this {id: 9};
-        // set cookie here
+        req.session.user_id = newUser.id;
         res.redirect("menu");
       })
       .catch(err => {
