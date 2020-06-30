@@ -22,18 +22,21 @@ module.exports = (db) => {
     return db.query(query).then(result => result.rows[0]);
   };
 
-  // const addMenuItem = (menu_item_id, qty) => {
-  //   // const query = {
-  //   //   text: 'INSERT INTO ordered_items(order_id, menu_item_id, price_charged, qty) VALUES ($1, $2, $3, $4) RETURNING *',
-  //   //   values: [order_id, menu_item_id, price_charged, qty]
-  //   // }
-  //     const query = {
-  //       text: 'INSERT INTO ordered_items(menu_item_id, qty) VALUES ($1, $2) RETURNING *',
-  //       values: [menu_item_id, qty]
-  //     }
-  //     return db.query(query).then(result => result.rows)
-  //   };
+  const addMenuItem = (order_id, menu_item_id, price_charged, qty) => {
+      const query = {
+        text: 'INSERT INTO ordered_items(order_id, menu_item_id, price_charged, qty) VALUES ($1, $2, $3, $4) RETURNING *',
+        values: [order_id, menu_item_id, price_charged, qty]
+      }
+      return db.query(query).then(result => result.rows)
+    };
 
+  const getPriceById = (id) => {
+    const query = {
+      text: `SELECT price FROM menu_items WHERE id = ${id};`
+    }
+    return db.query(query).then(result => result.rows)
+  }
+  
   // const getOrders = () => {
   //   const query = {
   //     text: `SELECT ordered_items.*, menu_items.name
@@ -66,14 +69,19 @@ module.exports = (db) => {
     return db.query(query).then((result) => result.rows);
   };
 
+  const getLastOrder = () => {
+    const query = {
+      text: `SELECT MAX(id) FROM ordered_items`
+    }
+    return db.query(query).then(result => result.rows)
+  }
+
   const getCompletedOrder = () => {
     const query = {
-      text: `SELECT ordered_items.id as ordered_items_id, orders.* FROM ordered_items
-      JOIN orders ON orders.id = order_id
-      WHERE ordered_items.id = 1;`,
-      // Will change this WHERE to be dynamic after
-    };
-    return db.query(query).then((result) => result.rows);
+      text: `SELECT users.name as name, users.phone as phone_number, orders.* FROM users
+      JOIN orders ON users.id = user_id;`
+    }
+    return db.query(query).then(result => result.rows)
   };
 
   // Template default
@@ -103,9 +111,10 @@ module.exports = (db) => {
   };
 
   return {
-    // addMenuItem,
+    addMenuItem,
     getMenuItems,
-    // getOrders,
+    getPriceById,
+    getLastOrder,
     getCompletedOrder,
     getUsers,
     placeOrder,
