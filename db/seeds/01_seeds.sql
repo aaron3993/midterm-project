@@ -1,43 +1,13 @@
 
-INSERT INTO users
-  (
-  name, email, password, phone)
+INSERT INTO users (name, email, password, phone, role)
 VALUES
-  (
-    'Devin Sanders', 'tristanjacobs@gmail.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', '(255) 633-6919');
-INSERT INTO users
-  (
-  name, email, password, phone)
-VALUES
-  (
-    'Iva Harrison', 'allisonjackson@mail.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', '(517
-) 311-5301');
-INSERT INTO users
-  (
-  name, email, password, phone)
-VALUES
-  (
-    'Lloyd Jefferson', 'asherpoole@gmx.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', '(308) 441-4630');
-INSERT INTO users
-  (
-  name, email, password, phone)
-VALUES
-  (
-    'Dale Coleman', 'michaelgray@mail.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', '(450) 547-7689');
-INSERT INTO users
-  (
-  name, email, password, phone)
-VALUES
-  (
-    'Alejandro Osborne', 'ariaatkinson@outlook.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', '(387
-) 647-6695');
-INSERT INTO users
-  (
-  name, email, password, phone)
-VALUES
-  (
-    'Nell Medina', 'juliansantos@aol.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', '(575
-) 912-7053');
+  ('Devin Sanders', 'tristanjacobs@gmail.com', 'password', '(255) 633-6919', 'customer'),
+  ('Iva Harrison', 'allisonjackson@mail.com', 'password', '(517) 311-5301', 'customer'),
+  ('Lloyd Jefferson', 'asherpoole@gmx.com', 'password', '(308) 441-4630', 'customer'),
+  ('Dale Coleman', 'michaelgray@mail.com', 'password', '(450) 547-7689', 'customer'),
+  ('Alejandro Osborne', 'ariaatkinson@outlook.com', 'password', '(387) 647-6695', 'customer'),
+  ('Nell Medina', 'juliansantos@aol.com', 'password', '(575) 912-7053', 'customer'),
+  ('Bob Robertson', 'bob@bob.com', 'password', '(575) 913-7053', 'owner');
 
 
 INSERT INTO menu_items
@@ -56,14 +26,31 @@ VALUES
   ('Soft Drink', 'https://bit.ly/2VmXl7d', 120, 'Cold Freezy Chilled Soft Drink Can', 'drinks'),
   ('Water', 'https://bit.ly/2VmXl7d', 120, 'Cold Freezy Chilled Soft Water', 'drinks');
 
-  INSERT INTO orders (user_id, order_placed_at, special_instructions, order_ready_duration)
-  VALUES(1, '2020-06-27 08:05:06', 'No plastic cutlery', 15);
+
+  INSERT INTO orders (user_id, placed_at, special_instructions, wait_time, order_status, ready_at)
+  VALUES
+    (4, '2020-06-27 08:05:06', 'No plastic cutlery', 15, 'complete', '2020-06-27 08:20:06'),
+    (2, '2020-06-28 06:05:06', 'Extra sauce', 20, 'complete', '2020-06-28 06:25:06'),
+    (3, '2020-06-29 07:05:06', 'No onions', 30, 'ready', '2020-06-29 07:35:06'),
+    (4, '2020-06-29 08:05:06', 'Extra napkins', 30, 'confirmed', '2020-06-27 08:35:06'),
+    (5, '2020-06-29 09:05:06', 'Extra napkins', null, 'pending', null);
+
 
   INSERT INTO ordered_items
-    (order_id, menu_item_id, price_charged, qty)
+    (order_id, menu_item_id, qty)
   VALUES
-    (1, 3, 750, 2),
-    (1, 4, 1299, 1),
-    (1, 2, 1399, 1),
-    (1, 6, 1199, 1),
-    (1, 3, 120, 4);
+    (1, 1, 2),
+    (1, 2, 1),
+    (1, 3, 1),
+    (2, 4, 2),
+    (2, 5, 1),
+    (2, 6, 1),
+    (3, 7, 2),
+    (3, 8, 1),
+    (3, 9, 1),
+    (4, 10, 2),
+    (4, 11, 1),
+    (4, 12, 1),
+    (5, 1, 2),
+    (5, 2, 1),
+    (5, 5, 1);
