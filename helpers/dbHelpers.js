@@ -6,6 +6,14 @@ module.exports = (db) => {
     return db.query(query).then((result) => result.rows);
   };
 
+  const registerUser = (values) => {
+    const query = {
+      text: `INSERT INTO users (name, email, password, phone) VALUES ($1, $2, $3, $4) RETURNING id`,
+      values
+    }
+    return db.query(query).then(result => result.rows[0]);
+  };
+
   // const addMenuItem = (menu_item_id, qty) => {
   //   // const query = {
   //   //   text: 'INSERT INTO ordered_items(order_id, menu_item_id, price_charged, qty) VALUES ($1, $2, $3, $4) RETURNING *',
@@ -94,5 +102,6 @@ module.exports = (db) => {
     getUsers,
     placeOrder,
     addUser,
+    registerUser
   };
 };
