@@ -77,7 +77,8 @@ app.use("/logout", userLogout(dbHelpers));
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
   let templateVars = {
-    isLoggedIn: JSON.stringify(req.session)
+    isLoggedIn: JSON.stringify(req.session),
+    user: req.session.user_id
   };
   res.render("index", templateVars);
 });

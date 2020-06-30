@@ -59,7 +59,7 @@ module.exports = (db) => {
         ready_at,
       ],
     };
-    return db.query(query).then((result) => result.rows);
+    return db.query(query).then((result) => result.rows[0]);
   };
 
   const getCompletedOrder = (id) => {
@@ -68,7 +68,7 @@ module.exports = (db) => {
       JOIN orders ON users.id = user_id
       WHERE orders.id = ${id};`
     }
-    return db.query(query).then(result => result.rows)
+    return db.query(query).then(result => result.rows[0])
   };
 
   // Template default
