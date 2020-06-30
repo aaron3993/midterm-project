@@ -46,7 +46,7 @@ module.exports = ({ getMenuItems, getCompletedOrder, placeOrder, addMenuItem }) 
   });
 
   // POST - place an order
-  router.post("/:id", (req, res) => {
+  router.post("/", (req, res) => {
     console.log("creating a new order");
     const menuItems = JSON.parse(req.body.orderDetails);
     placeOrder(req.session.user_id, new Date(), req.body.specialInstructions, null, 'pending', null).then(order => {
