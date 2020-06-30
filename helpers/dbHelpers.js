@@ -14,6 +14,14 @@ module.exports = (db) => {
     return db.query(query).then(result => result.rows[0]);
   };
 
+  const getUserByEmail = (email) => {
+    const query = {
+      text: `SELECT * FROM users WHERE email = $1`,
+      values: [email]
+    }
+    return db.query(query).then(result => result.rows[0]);
+  };
+
   // const addMenuItem = (menu_item_id, qty) => {
   //   // const query = {
   //   //   text: 'INSERT INTO ordered_items(order_id, menu_item_id, price_charged, qty) VALUES ($1, $2, $3, $4) RETURNING *',
@@ -102,6 +110,7 @@ module.exports = (db) => {
     getUsers,
     placeOrder,
     addUser,
-    registerUser
+    registerUser,
+    getUserByEmail
   };
 };

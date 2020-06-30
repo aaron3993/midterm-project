@@ -2,8 +2,6 @@ const express = require("express");
 const router = express.Router();
 
 module.exports = ({ registerUser }) => {
-  // GET menu items
-  // GET * FROM MENU_ITEMS TABLE
   router.get("/", (req, res) => {
     templateVars = {
       errorMsg: null
@@ -32,6 +30,5 @@ module.exports = ({ registerUser }) => {
           .json({ error: err.message });
     });
   });
-
   return router;
 };
