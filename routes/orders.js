@@ -10,11 +10,9 @@ module.exports = ({ getMenuItems, getCompletedOrder, placeOrder }) => {
     getMenuItems()
       .then((menu) => {
         let templateVars = {
-          orders: [1, 2, 3],
           menuItems: menu,
         };
-        console.log(templateVars);
-        res.render("orders", templateVars);
+        res.render("new_order", templateVars);
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
