@@ -33,24 +33,20 @@ module.exports = ({ getMenuItems, getCompletedOrder, placeOrder, addMenuItem }) 
   });
   // POST - place an order
   router.post("/:id", (req, res) => {
-  // { specialInstructions: '',
-  // orderDetails: '{"1":1,"3":1}' }
-  console.log('req.body: ', req.body)
     console.log("creating a new order");
-    //       (id, order_placed_at, special_instructions, order_ready_duration, order_ready, order_complete_at)
     const menuItems = JSON.parse(req.body.orderDetails);
     // Loop the menuItems object and call addMenuItem add each menu item to a new ordered_item
-    placeOrder(1, new Date(), req.body.specialInstructions, 30, false, null).then(menuItemId => {
-      // req.session.menu_item_id = menuItemId[0].id
-      // console.log('req.session: ', req.session)
+    placeOrder(req.session.user_id, new Date(), req.body.specialInstructions, null, 'pending', null).then(order => {
+      req.session.order_id = order[0].id
+      console.log('req.session: ', req.session)
       for (const menuItem in menuItems) {
-        addMenuItem(menuItemId[0].id, Number(menuItem), 0, menuItems[menuItem]);
+        addMenuItem(order[0].id, Number(menuItem), menuItems[menuItem]);
       }
     }).then(id => {
       getCompletedOrder()
         .then(completedOrder => {
           console.log('completedOrder: ', completedOrder)
-          res.redirect(`/orders/1/completed`);
+          res.redirect(`/orders/${req.session.order_id}/completed`);
         })
         .catch(err => console.log(err));
     });

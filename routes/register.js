@@ -18,10 +18,11 @@ module.exports = ({ registerUser }) => {
       };
       res.render("register", templateVars)
     };
-    const values = [userName, userEmail, userPhone, userPassword];
+    const values = [userName, userEmail, userPhone, userPassword, 'customer'];
     registerUser(values)
       .then(newUser => {
         req.session.user_id = newUser.id;
+        req.session.role = newUser.role;
         res.redirect("menu");
       })
       .catch(err => {
