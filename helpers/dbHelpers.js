@@ -1,11 +1,4 @@
 module.exports = (db) => {
-  const getMenuItems = () => {
-    const query = {
-      text: `SELECT * FROM menu_items;`,
-    };
-    return db.query(query).then((result) => result.rows);
-  };
-
   const registerUser = (values) => {
     const query = {
       text: `INSERT INTO users (name, email, password, phone, role) VALUES ($1, $2, $3, $4, $5) RETURNING id`,
@@ -22,6 +15,13 @@ module.exports = (db) => {
     return db.query(query).then(result => result.rows[0]);
   };
 
+  const getMenuItems = () => {
+    const query = {
+      text: `SELECT * FROM menu_items;`,
+    };
+    return db.query(query).then((result) => result.rows);
+  };
+
   const addMenuItem = (order_id, menu_item_id, qty) => {
       const query = {
         text: 'INSERT INTO ordered_items(order_id, menu_item_id, qty) VALUES ($1, $2, $3) RETURNING *',
@@ -29,13 +29,6 @@ module.exports = (db) => {
       }
       return db.query(query).then(result => result.rows)
     };
-
-  const getPriceById = (id) => {
-    const query = {
-      text: `SELECT price FROM menu_items WHERE id = ${id};`
-    }
-    return db.query(query).then(result => result.rows)
-  }
   
   // const getOrders = () => {
   //   const query = {
@@ -68,13 +61,6 @@ module.exports = (db) => {
     };
     return db.query(query).then((result) => result.rows);
   };
-
-  const getLastOrder = () => {
-    const query = {
-      text: `SELECT MAX(id) FROM ordered_items`
-    }
-    return db.query(query).then(result => result.rows)
-  }
 
   const getCompletedOrder = () => {
     const query = {
@@ -113,8 +99,6 @@ module.exports = (db) => {
   return {
     addMenuItem,
     getMenuItems,
-    getPriceById,
-    getLastOrder,
     getCompletedOrder,
     getUsers,
     placeOrder,

@@ -16,7 +16,7 @@
      <!-- Order pending (waiting for confirmation from owner) -->
     <div class="container mt-5 bg-white p-4 text-center">
       <h3>Your order has been confirmed</h3>
-      <h3>Order #: <%= completedOrder[0].ordered_items_id %></h3>
+      <h3>Order #: <%= completedOrder[0].id %></h3>
       <h4>Order Placed At: <%= completedOrder[0].placed_at.toLocaleString("en-US", {timeZone: "Canada/Eastern"}); %> </h4>
       <h4>Expected Pickup Time: <%= `${completedOrder[0].wait_time} minutes` %> </h4>
       <div class="progress mx-auto" style="width: 70%">
