@@ -22,6 +22,26 @@ module.exports = (db) => {
     return db.query(query).then(result => result.rows[0]);
   };
 
+  const fetchPendingOrders = () => {
+    const query = {
+      text: `SELECT id as order_id, user_id, placed_at, special_instructions
+            FROM orders
+            WHERE order_status = 'pending';`
+    }
+    return db.query(query).then(result => JSON.stringify(result.rows));
+  };
+
+  const fetchPendingOrderDetails = () => {
+    const query = {
+      text: `SELECT orders.id as order_id, menu_items.name, ordered_items.qty
+      FROM ordered_items
+      JOIN menu_items ON menu_items.id = ordered_items.menu_item_id
+      JOIN orders ON orders.id = ordered_items.order_id
+      WHERE orders.order_status = 'pending';`
+    }
+    return db.query(query).then(result => JSON.stringify(result.rows));
+  }
+
   // const addMenuItem = (menu_item_id, qty) => {
   //   // const query = {
   //   //   text: 'INSERT INTO ordered_items(order_id, menu_item_id, price_charged, qty) VALUES ($1, $2, $3, $4) RETURNING *',
@@ -111,6 +131,8 @@ module.exports = (db) => {
     placeOrder,
     addUser,
     registerUser,
-    getUserByEmail
+    getUserByEmail,
+    fetchPendingOrders,
+    fetchPendingOrderDetails
   };
 };

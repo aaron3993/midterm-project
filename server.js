@@ -55,6 +55,7 @@ const userLogin = require("./routes/login");
 const userRegister = require("./routes/register");
 const completedOrderRoutes = require("./routes/completed_order");
 const userLogout = require("./routes/logout");
+const admin = require("./routes/admin");
 // const widgetsRoutes = require("./routes/widgets");
 
 // Mount all resource routes
@@ -68,6 +69,7 @@ app.use("/completed_order", completedOrderRoutes(dbHelpers));
 app.use("/menu", menuRoutes(dbHelpers));
 app.use("/api/users", usersRoutes(dbHelpers));
 app.use("/logout", userLogout(dbHelpers));
+app.use('/admin', admin(dbHelpers));
 // app.use("/api/widgets", widgetsRoutes(dbHelpers));
 
 // Note: mount other resources here, using the same pattern above
@@ -83,11 +85,37 @@ app.get("/", (req, res) => {
 });
 
 app.get("/admin", (req, res) => {
+  const templateVars = {
+    pendingOrders: [],
+    allOrders: []
+  };
   res.render('admin');
 })
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
+
+
+/*
+FIRST QUERY
+
+SELECT id, user_id, placed_at, special_instructions
+FROM orders
+WHERE order_status = 'pending';
+
+-> [id, user_id, placed_at, special_instructions]
+*/
+
+/*
+Using id from first query
+
+SELECT orders.id as order_id, menu_items.name, ordered_items.qty
+FROM ordered_items
+JOIN menu_items ON menu_items.id = ordered_items.menu_item_id
+JOIN orders ON orders.id = ordered_items.order_id
+WHERE orders.order_status = 'pending';
+-> [name, qty]
+*/
 
 
