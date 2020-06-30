@@ -3,17 +3,16 @@ const router = express.Router();
 
 const { notifyOwner } = require("../helpers/notifyOwner");
 
-module.exports = ({ getMenuItems, getCompletedOrder, placeOrder }) => {
+module.exports = ({ getMenuItems, getCompletedOrder, placeOrder, addMenuItem }) => {
   // GET all orders
   // GET * FROM ORDERED_ITEMS TABLE
   router.get("/new", (req, res) => {
     getMenuItems()
-      .then((menu) => {
+      .then(menu => {
         let templateVars = {
           orders: [1, 2, 3],
           menuItems: menu,
         };
-        console.log(templateVars);
         res.render("orders", templateVars);
       })
       .catch((err) => {
@@ -22,8 +21,7 @@ module.exports = ({ getMenuItems, getCompletedOrder, placeOrder }) => {
   });
   router.get("/:id/completed", (req, res) => {
     getCompletedOrder()
-      .then((completedOrder) => {
-        console.log(completedOrder);
+      .then(completedOrder => {
         let templateVars = {
           completedOrder,
         };
@@ -34,20 +32,30 @@ module.exports = ({ getMenuItems, getCompletedOrder, placeOrder }) => {
       });
   });
   // POST - place an order
-  // INSERT ALL ORDERS MADE (MANY) INTO THE ORDERS TABLE (ONE)
   router.post("/:id", (req, res) => {
-    console.log(req.body);
-    // const {user_id, order_placed_at, special_instructions, order_ready_duration, order_ready, order_complete_at} = req.body
-    // console.log(user_id, order_placed_at, special_instructions, order_ready_duration, order_ready, order_complete_at)
     console.log("creating a new order");
-    placeOrder(1, new Date(), "no cheese", 30, false, null)
-      .then((order) => {
-        console.log("calling notify owner");
-        notifyOwner();
-        res.redirect(`/orders/1/completed`);
-      })
-      .catch((err) => console.log(err));
+    const menuItems = JSON.parse(req.body.orderDetails);
+    // Loop the menuItems object and call addMenuItem add each menu item to a new ordered_item
+    placeOrder(req.session.user_id, new Date(), req.body.specialInstructions, null, 'pending', null).then(order => {
+      req.session.order_id = order[0].id
+      console.log('req.session: ', req.session)
+      for (const menuItem in menuItems) {
+        addMenuItem(order[0].id, Number(menuItem), menuItems[menuItem]);
+      }
+    }).then(id => {
+      getCompletedOrder()
+        .then(completedOrder => {
+          console.log('completedOrder: ', completedOrder)
+          res.redirect(`/orders/${req.session.order_id}/completed`);
+        })
+        .catch(err => console.log(err));
+    });
   });
-
   return router;
 };
+
+// let templateVars = {
+//   completedOrder
+// };
+// res.render("completed_order", templateVars)
+// notifyOwner(order)
