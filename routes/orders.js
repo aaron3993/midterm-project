@@ -6,7 +6,7 @@ const { notifyOwner } = require("../helpers/notifyOwner");
 module.exports = ({ getMenuItems, getCompletedOrder, placeOrder }) => {
   // GET all orders
   // GET * FROM ORDERED_ITEMS TABLE
-  router.get("/:id", (req, res) => {
+  router.get("/new", (req, res) => {
     getMenuItems()
       .then((menu) => {
         let templateVars = {
