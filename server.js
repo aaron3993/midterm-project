@@ -54,6 +54,7 @@ const usersRoutes = require("./routes/users");
 const userLogin = require("./routes/login");
 const userRegister = require("./routes/register");
 const completedOrderRoutes = require("./routes/completed_order");
+const userLogout = require("./routes/logout");
 // const widgetsRoutes = require("./routes/widgets");
 
 // Mount all resource routes
@@ -66,6 +67,7 @@ app.use("/orders", ordersRoutes(dbHelpers));
 app.use("/completed_order", completedOrderRoutes(dbHelpers));
 app.use("/menu", menuRoutes(dbHelpers));
 app.use("/api/users", usersRoutes(dbHelpers));
+app.use("/logout", userLogout(dbHelpers));
 // app.use("/api/widgets", widgetsRoutes(dbHelpers));
 
 // Note: mount other resources here, using the same pattern above
@@ -74,7 +76,12 @@ app.use("/api/users", usersRoutes(dbHelpers));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
-  res.render("index");
+  console.log('REQ DOT SESSION BELOW');
+  console.log(req.session);
+  let templateVars = {
+    isLoggedIn: JSON.stringify(req.session)
+  };
+  res.render("index", templateVars);
 });
 
 app.listen(PORT, () => {
