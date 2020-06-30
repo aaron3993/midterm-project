@@ -14,50 +14,42 @@
 
   <body>
     <%- include('partials/_header') %>
-    <h1>Our Menu</h1>
-    <% if (pending_orders) { %>
-
-    <div class="container pending-orders">
-      <ul style="list-style-type: none">
-        <% for (const pending_order of pending_orders) { %>
-        <li class="bg-light p-2">
-          <div class="card" style="width: 18rem;">
-            <img src= <%= menuItem.thumbnail_url %> class="card-img-left" alt="...">
-            <div class="card-body" data-itemId="<%= menuItem.id %>">
-              <h5 class="card-title"> <%= menuItem.name %> </h5>
-              <p class="card-text"> <%= menuItem.description %> </p>
-              <p> <%= `$${(menuItem.price / 100).toFixed(2)}` %> </p>
-              <p class="item-qty">0</p>
-              <a class="btn btn-dark add-item">+</a>
-              <a class="btn btn-dark remove-item">-</a>
+    <div class="container bg-white mt-5">
+      <ul style="list-style: none">
+        <li>
+          <div class="card" style="width: 18rem">
+            <div class="card-body">
+              <h5 class="card-title"> Order #7 </h5>
+              <h6 class="card-subtitle mb-2 text-muted">2020-06-29 09:05:06</h6>
+              <ul>
+                <li class="card-text">2X braised beef</li>
+                <li class="card-text">3X stirfry </li>
+                <li class="card-text">1X water bottle </li>
+              </ul>
+              <p class="card-text">Special instructions: extra napkins please</p>
+              <form action="/admin" method="post">
+                <input type="hidden" value="7" name="order_id">
+                <input type="text" placeholder="estimated wait time" name="wait_time">
+                <input type="submit" class="btn btn-dark" value="confirm order">
+              </form>
             </div>
           </div>
         </li>
-        <% } %>
       </ul>
-    </div>
-     <% } %>
 
 
-    <div class="container pending-orders">
-      <ul style="list-style-type: none">
-        <% for (const menuItem of menuItems) { %>
-        <li class="bg-light p-2">
-          <div class="card" style="width: 18rem;">
-            <img src= <%= menuItem.thumbnail_url %> class="card-img-left" alt="...">
-            <div class="card-body" data-itemId="<%= menuItem.id %>">
-              <h5 class="card-title"> <%= menuItem.name %> </h5>
-              <p class="card-text"> <%= menuItem.description %> </p>
-              <p> <%= `$${(menuItem.price / 100).toFixed(2)}` %> </p>
-              <p class="item-qty">0</p>
-              <a class="btn btn-dark add-item">+</a>
-              <a class="btn btn-dark remove-item">-</a>
-            </div>
-          </div>
-        </li>
-        <% } %>
-      </ul>
+
     </div>
+
+    <!-- <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="card-link">Card link</a>
+        <a href="#" class="card-link">Another link</a>
+      </div>
+    </div> -->
 
   </body>
 </html>
