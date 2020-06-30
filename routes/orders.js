@@ -34,7 +34,11 @@ module.exports = ({ getMenuItems, getCompletedOrder, placeOrder, addMenuItem }) 
           completedOrder,
           user: req.session.user_id
         };
-        res.render("completed_order", templateVars);
+        if (completedOrder.user_id === req.session.user_id) {
+          res.render("completed_order", templateVars);
+        } else {
+          res.redirect("/menu")
+        }
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
@@ -45,11 +49,10 @@ module.exports = ({ getMenuItems, getCompletedOrder, placeOrder, addMenuItem }) 
   router.post("/:id", (req, res) => {
     console.log("creating a new order");
     const menuItems = JSON.parse(req.body.orderDetails);
-    // Loop the menuItems object and call addMenuItem add each menu item to a new ordered_item
     placeOrder(req.session.user_id, new Date(), req.body.specialInstructions, null, 'pending', null).then(order => {
       // Mentor says the following is a bad approach, mixing backend with frontend
       // req.session.order_id = order[0].id;
-      console.log('post req.session: ', req.session);
+      // Loop the menuItems object and call addMenuItem add each menu item to a new ordered_item
       for (const menuItem in menuItems) {
         addMenuItem(order.id, Number(menuItem), menuItems[menuItem]);
       }
