@@ -5,6 +5,9 @@ module.exports = ({ getCompletedOrder }) => {
   // GET completed order
   // GET SPECIFIC ORDER FROM ORDERS TABLE
   router.get("/", (req, res) => {
+    if (!req.session.user_id) {
+      return res.redirect("/");
+    }
     getCompletedOrder()
       .then(completedOrder => {
         console.log(completedOrder)

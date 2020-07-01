@@ -5,6 +5,9 @@ const { notifyCustomerOrderConfirmed, notifyCustomerOrderReady } = require("../h
 
 module.exports = ({ fetchOrderDetailsByStatus, fetchOrdersByStatus, confirmOrder, updateOrderReady, getPhoneNumberByOrderID }) => {
   router.get("/", (req, res) => {
+    if (!req.session.user_id) {
+      return res.redirect("/");
+    }
     const templateVars = {};
 
     fetchOrdersByStatus('pending')

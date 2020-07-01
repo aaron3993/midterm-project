@@ -13,7 +13,7 @@ module.exports = ({
   // GET * FROM ORDERED_ITEMS TABLE
   router.get("/new", (req, res) => {
     if (!req.session.user_id) {
-      return res.redirect("/menu");
+      return res.redirect("/");
     }
     getMenuItems()
       .then((menu) => {
@@ -30,11 +30,10 @@ module.exports = ({
 
   router.get("/:id", (req, res) => {
     if (!req.session.user_id) {
-      return res.redirect("/menu");
+      return res.redirect("/");
     }
     getCompletedOrder(req.params.id)
       .then((completedOrder) => {
-        console.log("get req.session: ", req.session);
         let templateVars = {
           completedOrder,
           user: req.session.username
