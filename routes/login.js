@@ -47,25 +47,28 @@ module.exports = ({ getUserByEmail }) => {
       res.render("login", templateVars);
     }
     // Fetch user from db
-    getUserByEmail(userEmail).then((user) => {
-      // If user is undefined, it means the db query retuned nothing and the email is not on file
-      if (!user) {
-        let templateVars = {
-          errorMsg: "That email is not registered",
-        };
-        res.render("login", templateVars);
-      } else if (user.password !== userPassword) {
-        // If password doesn't match, redirect to login with error message
-        let templateVars = {
-          errorMsg: "Invalid credentials",
-        };
-        res.render("login", templateVars);
-      } else {
-        // All good, set cookie to user id and redirect to menu
-        req.session.user_id = user.id;
-        res.redirect("/menu");
-      }
-    });
+    getUserByEmail(userEmail)
+      .then(user => {
+        // If user is undefined, it means the db query retuned nothing and the email is not on file
+        if (!user) {
+          let templateVars = {
+            errorMsg: 'That email is not registered'
+          }
+          res.render('login', templateVars);
+        } else if (user.password !== userPassword) {
+          // If password doesn't match, redirect to login with error message
+          let templateVars = {
+            errorMsg: 'Invalid credentials'
+          };
+          res.render('login', templateVars);
+        } else {
+          // All good, set cookie to user id and redirect to menu
+          req.session.user_id = user.id;
+          req.session.username = user.name;
+          req.session.role = user.role;
+          res.redirect('/menu');
+        }
+      });
   });
   return router;
 };

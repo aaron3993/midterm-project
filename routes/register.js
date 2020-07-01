@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-module.exports = ({ registerUser }) => {
+module.exports = ({ registerUser, getUserByEmail }) => {
   router.get("/", (req, res) => {
     templateVars = {
       errorMsg: null,
@@ -16,16 +16,23 @@ module.exports = ({ registerUser }) => {
       let templateVars = {
         errorMsg: "Please fill out all fields before submitting",
       };
-      res.render("register", templateVars);
-    }
-
-    //if user is already registed
-
-    const values = [userName, userEmail, userPhone, userPassword, "customer"];
+      res.render("register", templateVars)
+    };
+    getUserByEmail(userEmail)
+    .then(user => {
+      if (user.email === userEmail) {
+        let templateVars = {
+          errorMsg: 'Email is already taken'
+        };
+        res.render("register", templateVars)
+      }
+    })
+    const values = [userName, userEmail, userPhone, userPassword, 'customer'];
     registerUser(values)
       .then((newUser) => {
         req.session.user_id = newUser.id;
-        req.session.role = newUser.role;
+        req.session.username = newUser.name
+        req.session.role = 'customer';
         res.redirect("menu");
       })
       .catch((err) => {
