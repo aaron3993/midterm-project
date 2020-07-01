@@ -1,7 +1,7 @@
 module.exports = (db) => {
   const registerUser = (values) => {
     const query = {
-      text: `INSERT INTO users (name, email, password, phone, role) VALUES ($1, $2, $3, $4, $5) RETURNING id`,
+      text: `INSERT INTO users (name, email, password, phone, role) VALUES ($1, $2, $3, $4, $5) RETURNING *`,
       values
     }
     return db.query(query).then(result => result.rows[0]);

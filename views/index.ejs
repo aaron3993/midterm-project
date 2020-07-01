@@ -20,9 +20,10 @@
     <h3>We are a super cool app that lets you order delicious food and get real-time notifications regarding your order
       status</h3>
       <% console.log('I AM TRYING MAN'); %>
-      <% console.log(isLoggedIn); %>
+       <!-- console.log(isLoggedIn);  -->
 
-    <% if (isLoggedIn === '{}') { %>
+    <!--  if (isLoggedIn === '{}') {  -->
+    <% if (!user) { %>
       <p>Please login or register to continue</p>
       <a href="/login" class="btn btn-dark">Login</a>
       <br>

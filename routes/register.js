@@ -31,8 +31,9 @@ module.exports = ({ registerUser, getUserByEmail }) => {
     registerUser(values)
       .then(newUser => {
         req.session.user_id = newUser.id;
-        req.session.username = newUser.userName
-        req.session.role = newUser.role;
+        req.session.username = newUser.name
+        req.session.role = 'customer';
+        console.log('req.session: ', req.session)
         res.redirect("menu");
       })
       .catch(err => {
