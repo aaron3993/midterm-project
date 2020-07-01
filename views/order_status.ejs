@@ -22,19 +22,17 @@
     <h3>Your order has been confirmed</h3>
     <p>Order is being prepared</p>
     <div class="d-flex justify-content-center mt-5">
-      <div class="spinner-border" role="status">
-        <span class="sr-only">Pending...</span>
-      </div>
     </div>
-    <br>
-    <br>
     <h4>Expected Pickup Time: <%= `${completedOrder.wait_time} minutes` %> </h4>
     <div class="progress mx-auto" style="width: 70%">
       <div class="progress-bar bg-danger" role="progressbar" style="width: 25%"></div>
     </div>
     <% } else if (completedOrder.order_status === 'pending') { %>
-    <p>Thank you for choosing Aa-Sa-So!</p>
-    <p class="mt-4 mb-4"> Please wait while we confirm your order with the restaurant</p>
+      <p>Thank you for choosing Aa-Sa-So!</p>
+      <div class="spinner-border" role="status">
+        <span class="sr-only">Pending...</span>
+      </div>
+      <p class="mt-4 mb-4"> Please wait while we confirm your order with the restaurant</p>
     <% } %>
   </div>
 
