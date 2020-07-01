@@ -15,6 +15,9 @@ module.exports = ({
     if (!req.session.user_id) {
       return res.redirect("/");
     }
+    if (req.session.role === 'owner') {
+      return res.redirect("/admin")
+    }
     getMenuItems()
       .then((menu) => {
         let templateVars = {
@@ -31,6 +34,9 @@ module.exports = ({
   router.get("/:id", (req, res) => {
     if (!req.session.user_id) {
       return res.redirect("/");
+    }
+    if (req.session.role === 'owner') {
+      return res.redirect("/admin")
     }
     getCompletedOrder(req.params.id)
       .then((completedOrder) => {

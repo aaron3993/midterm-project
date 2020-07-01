@@ -8,6 +8,9 @@ module.exports = ({ getMenuItems }) => {
     if (!req.session.user_id) {
       return res.redirect("/");
     }
+    if (req.session.role === 'owner') {
+      return res.redirect("/admin")
+    }
     getMenuItems()
       .then((menu) => {
         let templateVars = {
