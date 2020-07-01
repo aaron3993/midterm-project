@@ -54,9 +54,10 @@ module.exports = ({
   router.post("/", (req, res) => {
     console.log("creating a new order");
     const menuItems = JSON.parse(req.body.orderDetails);
+    const date = new Date();
     placeOrder(
       req.session.user_id,
-      new Date(),
+      date.toLocaleString(),
       req.body.specialInstructions,
       null,
       "pending",

@@ -30,11 +30,11 @@ CREATE TABLE menu_items(
 CREATE TABLE orders(
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  placed_at TIMESTAMP NOT NULL,
+  placed_at VARCHAR(255) NOT NULL,
   special_instructions TEXT,
   wait_time INTEGER,
   order_status TEXT NOT NULL,
-  ready_at TIMESTAMP
+  ready_at VARCHAR(255)
 );
 
 CREATE TABLE ordered_items(

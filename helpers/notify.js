@@ -25,7 +25,7 @@ const notifyOwner = (id = 1234, phoneNumber = "+16477837891") => {
     text: `New Order ${id} recieved. Please log in to confirm.`,
     phoneNumber: phoneNumber,
   };
-  notifySMS(options);
+  // notifySMS(options);
 };
 
 const notifyCustomerOrderConfirmed = (
@@ -37,8 +37,7 @@ const notifyCustomerOrderConfirmed = (
     text: `Order id ${id} is confirmed and will be ready in ${waitTime}`,
     phoneNumber: phoneNumber,
   };
-  console.log('notifying the client');
-  notifySMS(options);
+  // notifySMS(options);
 };
 
 const notifyCustomerOrderReady = (id = 1234, phoneNumber = "+16477837891") => {
@@ -46,8 +45,7 @@ const notifyCustomerOrderReady = (id = 1234, phoneNumber = "+16477837891") => {
     text: `Order ${id} is ready. Please proceed to the restuarant to pick it up.`,
     phoneNumber,
   };
-  console.log('Notifying from notify owner');
-  notifySMS(options);
+  // notifySMS(options);
 };
 
 module.exports = {
