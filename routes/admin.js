@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const { notifyCustomerOrderConfirmed, notifyCustomerOrderReady } = require("../helpers/notifyOwner");
+const { notifyCustomerOrderConfirmed, notifyCustomerOrderReady } = require("../helpers/notify");
 
 module.exports = ({ fetchOrderDetailsByStatus, fetchOrdersByStatus, confirmOrder, updateOrderReady, getPhoneNumberByOrderID }) => {
   router.get("/", (req, res) => {

@@ -138,14 +138,6 @@ module.exports = (db) => {
     return db.query(query).then((result) => result.rows[0]);
   };
 
-  const getPhoneNumberByOrderID = (id) => {
-    const query = {
-      text: `SELECT orders.id, name, phone FROM orders JOIN users ON users.id = orders.user_id where orders.id = $1`,
-      values: [id],
-    };
-    return db.query(query).then((result) => result.rows[0]);
-  };
-
   // Template default
   const getUsers = () => {
     const query = {
@@ -185,10 +177,6 @@ module.exports = (db) => {
     fetchOrderDetailsByStatus,
     confirmOrder,
     updateOrderReady,
-<<<<<<< HEAD
     getPhoneNumberByOrderID
-=======
-    getPhoneNumberByOrderID,
->>>>>>> master
   };
 };
