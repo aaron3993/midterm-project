@@ -5,8 +5,11 @@
       <a class="nav-item nav-link" href="/menu">Menu</a>
     </div>
     <div class="navbar-nav ml-auto">
-      <a class="nav-item nav-link" href="/orders/new">Checkout</a>
       <% if (user) { %>
+        <p>Logged in as: <%= user %></p>
+        <% if (user !== 'Aaron') { %>
+          <a class="nav-item nav-link" href="/orders/new">Checkout</a>
+        <% } %>
       <form method="post" action="/logout">
         <a onclick="this.parentNode.submit();" class="nav-item nav-link">Logout</a>
       </form>
