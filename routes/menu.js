@@ -15,7 +15,7 @@ module.exports = ({ getMenuItems }) => {
       .then((menu) => {
         let templateVars = {
           menuItems: menu,
-          user: req.session.username
+          user: req.session
         };
         res.render("menu", templateVars)
       })

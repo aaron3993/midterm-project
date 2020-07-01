@@ -7,7 +7,7 @@ module.exports = ({ getUserByEmail }) => {
   router.get("/", (req, res) => {
     templateVars = {
       errorMsg: null,
-      user: req.session.username
+      user: req.session
     };
     res.render("login", templateVars);
   });
@@ -44,7 +44,7 @@ module.exports = ({ getUserByEmail }) => {
     if (!userEmail || !userPassword) {
       let templateVars = {
         errorMsg: "Please fill out all fields before submitting",
-        user: req.session.username
+        user: req.session
       };
       res.render("login", templateVars);
     }
@@ -55,14 +55,14 @@ module.exports = ({ getUserByEmail }) => {
         if (!user) {
           let templateVars = {
             errorMsg: 'That email is not registered',
-            user: req.session.username
+            user: req.session
           }
           res.render('login', templateVars);
         } else if (user.password !== userPassword) {
           // If password doesn't match, redirect to login with error message
           let templateVars = {
             errorMsg: 'Invalid credentials',
-            user: req.session.username
+            user: req.session
           };
           res.render('login', templateVars);
         } else {

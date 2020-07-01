@@ -5,7 +5,7 @@ module.exports = ({ registerUser, getUserByEmail }) => {
   router.get("/", (req, res) => {
     templateVars = {
       errorMsg: null,
-      user: req.session.username
+      user: req.session
     };
     res.render("register", templateVars);
   });
@@ -16,7 +16,7 @@ module.exports = ({ registerUser, getUserByEmail }) => {
     if (!userName || !userEmail || !userPhone || !userPassword) {
       let templateVars = {
         errorMsg: "Please fill out all fields before submitting",
-        user: req.session.username
+        user: req.session
       };
       res.render("register", templateVars)
     };
@@ -25,7 +25,7 @@ module.exports = ({ registerUser, getUserByEmail }) => {
       if (user.email === userEmail) {
         let templateVars = {
           errorMsg: 'Email is already taken',
-          user: req.session.username
+          user: req.session
         };
         res.render("register", templateVars)
       }

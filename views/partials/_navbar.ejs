@@ -1,12 +1,15 @@
 <header>
   <nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <div class="navbar-nav mr-auto">
-      <a class="navbar-brand" href="/">*APP-NAME*</a>
+      <a class="navbar-brand" href="/">Aa-So-Sa</a>
       <a class="nav-item nav-link" href="/menu">Menu</a>
     </div>
     <div class="navbar-nav ml-auto">
-      <a class="nav-item nav-link" href="/orders/new">Checkout</a>
-      <% if (user) { %>
+      <% if (user.username) { %>
+        <p>Logged in as: <%= user.username %></p>
+        <% if (user.role === 'customer') { %>
+          <a class="nav-item nav-link" href="/orders/new">Checkout</a>
+        <% } %>
       <form method="post" action="/logout">
         <a onclick="this.parentNode.submit();" class="nav-item nav-link">Logout</a>
       </form>

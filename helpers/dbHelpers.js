@@ -136,39 +136,11 @@ module.exports = (db) => {
     return db.query(query).then((result) => result.rows[0]);
   };
 
-  // Template default
-  const getUsers = () => {
-    const query = {
-      text: `SELECT * FROM users;`,
-    };
-    return db.query(query).then((result) => result.rows);
-  };
-
-  // Template default
-  const getUserByID = (id) => {
-    const query = {
-      text: `SELECT * FROM users where id=$1;`,
-      value: id,
-    };
-    return db.query(query).then((result) => result.rows);
-  };
-
-  // Template default
-  const addUser = (name, email, password) => {
-    const query = {
-      text: "INSERT INTO users(name) VALUES ($1) RETURNING *",
-      values: [name],
-    };
-    return db.query(query).then((result) => result.rows);
-  };
-
   return {
     addMenuItem,
     getMenuItems,
     getCompletedOrder,
-    getUsers,
     placeOrder,
-    addUser,
     registerUser,
     getUserByEmail,
     fetchOrdersByStatus,

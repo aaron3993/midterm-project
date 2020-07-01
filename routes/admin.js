@@ -34,23 +34,21 @@ module.exports = ({
           for (const order of JSON.parse(confirmedOrders)) {
             confirmedOrdersObj[order.order_id] = order;
             confirmedOrdersObj[order.order_id].menu_items = [];
-          }
-          fetchOrderDetailsByStatus("confirmed").then(
-            (confirmedOrderDetails) => {
-              for (const order_detail of JSON.parse(confirmedOrderDetails)) {
-                confirmedOrdersObj[order_detail.order_id].menu_items.push(
-                  order_detail
-                );
-              }
-              templateVars.confirmedOrders = confirmedOrdersObj;
-              templateVars.pendingOrders = pendingOrdersObj;
-              console.log(templateVars);
-              res.render("admin", templateVars);
-            }
-          );
-        });
-      });
-    });
+          };
+          fetchOrderDetailsByStatus('confirmed')
+          .then(confirmedOrderDetails => {
+            for (const order_detail of JSON.parse(confirmedOrderDetails)) {
+              confirmedOrdersObj[order_detail.order_id].menu_items.push(order_detail);
+            };
+            templateVars.confirmedOrders = confirmedOrdersObj;
+            templateVars.pendingOrders = pendingOrdersObj;
+            templateVars.user = req.session;
+            console.log(templateVars);
+            res.render('admin', templateVars);
+          })
+        })
+      })
+    })
   });
 
   router.post("/", (req, res) => {
