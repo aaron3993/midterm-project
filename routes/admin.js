@@ -34,8 +34,9 @@ module.exports = ({ fetchOrderDetailsByStatus, fetchOrdersByStatus, confirmOrder
             for (const order_detail of JSON.parse(confirmedOrderDetails)) {
               confirmedOrdersObj[order_detail.order_id].menu_items.push(order_detail);
             };
-            templateVars.confirmedOrders = confirmedOrdersObj
+            templateVars.confirmedOrders = confirmedOrdersObj;
             templateVars.pendingOrders = pendingOrdersObj;
+            templateVars.user = req.session;
             console.log(templateVars);
             res.render('admin', templateVars);
           })
