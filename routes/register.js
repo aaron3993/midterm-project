@@ -5,6 +5,7 @@ module.exports = ({ registerUser, getUserByEmail }) => {
   router.get("/", (req, res) => {
     templateVars = {
       errorMsg: null,
+      user: req.session.username
     };
     res.render("register", templateVars);
   });
@@ -14,7 +15,7 @@ module.exports = ({ registerUser, getUserByEmail }) => {
     // If user submits with missing inputs, redirect back to register page with error message
     if (!userName || !userEmail || !userPhone || !userPassword) {
       let templateVars = {
-        errorMsg: "Please fill out all fields before submitting",
+        errorMsg: "Please fill out all fields before submitting"
       };
       res.render("register", templateVars)
     };
