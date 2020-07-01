@@ -23,6 +23,13 @@ module.exports = (db) => {
     return db.query(query).then((result) => JSON.stringify(result.rows[0]));
   };
 
+  const getOwnerPhoneNumber = () => {
+    const query = {
+      text: `select phone from users where role='owner';`,
+    };
+    return db.query(query).then((result) => result.rows[0].phone);
+  };
+
   const fetchOrdersByStatus = (status) => {
     const query = {
       text: `SELECT id as order_id, user_id, placed_at, special_instructions
@@ -166,6 +173,7 @@ module.exports = (db) => {
     fetchOrderDetailsByStatus,
     confirmOrder,
     updateOrderReady,
-    getPhoneNumberByOrderID
+    getPhoneNumberByOrderID,
+    getOwnerPhoneNumber,
   };
 };
