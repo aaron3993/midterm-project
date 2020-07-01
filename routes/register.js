@@ -21,10 +21,6 @@ module.exports = ({ registerUser }) => {
 
     //if user is already registed
 
-    getUserByEmail(userEmail).then(function (res) {
-      console.log(res);
-    });
-
     const values = [userName, userEmail, userPhone, userPassword, "customer"];
     registerUser(values)
       .then((newUser) => {
