@@ -51,6 +51,8 @@ module.exports = (db) => {
   };
 
   const confirmOrder = (orderId, waitTime) => {
+    const date = new Date();
+    date.setMinutes(date.getMinutes() + parseInt(waitTime));
     // TODO: fix timestamp to be now + waittime
     const query = {
       text: `
@@ -59,7 +61,7 @@ module.exports = (db) => {
       WHERE id = $3
       RETURNING *;
       `,
-      values: [waitTime, "2020-06-29 09:05:06", orderId],
+      values: [waitTime, date.toLocaleString() , orderId],
     };
     return db.query(query).then((result) => JSON.stringify(result.rows));
   };
