@@ -1,42 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Midterm Project</title>
 
-    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-    <script type="text/javascript" src="/scripts/app.js"></script>
-    <script type ="text/javascript" src="/scripts/client-menu.js"></script>
-  </head>
+<head>
+  <title>Aa-So-Sa Admin Page</title>
 
-  <body>
-    <div class="container bg-white mt-5 text-center">
-      <h2>Pending Orders</h2>
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+    integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
 
-      <ul style="list-style: none">
+
+  <script type="text/javascript" src="/scripts/app.js"></script>
+  <script type="text/javascript" src="/scripts/client-menu.js"></script>
+</head>
+
+<body>
+  <div class="container bg-white mt-5 text-center">
+    <h2>Pending Orders</h2>
+
+    <ul style="list-style: none">
       <% for (const [id,order] of Object.entries(pendingOrders)) { %>
-        <li>
-          <div class="card" style="width: 18rem">
-            <div class="card-body">
-              <h5 class="card-title"> Order #<%=id%> </h5>
-              <h6 class="card-subtitle mb-2 text-muted"><%=order.placed_at%></h6>
-              <ul style="list-style: none">
-                <% for (const item of order.menu_items) {%>
-                <li class="card-text"><span><%=item.qty%></span>X <%=item.name%></li>
-                <% } %>
-              </ul>
-              <p class="card-text">Special instructions: <%=order.special_instructions%></p>
-              <form action="/admin" method="post">
-                <input type="hidden" value="<%=id%>" name="order_id">
-                <input type="text" placeholder="estimated wait time" name="wait_time">
-                <input type="submit" class="btn btn-dark" value="confirm order">
-              </form>
-            </div>
+      <li>
+        <div class="card" style="width: 18rem">
+          <div class="card-body">
+            <h5 class="card-title"> Order #<%=id%> </h5>
+            <h6 class="card-subtitle mb-2 text-muted"><%=order.placed_at%></h6>
+            <ul style="list-style: none">
+              <% for (const item of order.menu_items) {%>
+              <li class="card-text"><span><%=item.qty%></span>X <%=item.name%></li>
+              <% } %>
+            </ul>
+            <p class="card-text">Special instructions: <%=order.special_instructions%></p>
+            <form action="/admin" method="post">
+              <input type="hidden" value="<%=id%>" name="order_id">
+              <input type="text" placeholder="estimated wait time" name="wait_time">
+              <input type="submit" class="btn btn-dark" value="confirm order">
+            </form>
           </div>
-        </li>
+        </div>
+      </li>
       <%}%>
       </ul>
     </div>
@@ -47,26 +51,26 @@
 
       <ul style="list-style: none">
         <% for (const [id,order] of Object.entries(confirmedOrders)) { %>
-          <li>
-            <div class="card" style="width: 18rem">
-              <div class="card-body">
-                <h5 class="card-title"> Order #<%=id%> </h5>
-                <h6 class="card-subtitle mb-2 text-muted"><%=order.placed_at%></h6>
-                <ul style="list-style: none">
-                  <% for (const item of order.menu_items) {%>
-                    <li class="card-text"><span><%=item.qty%></span>X <%=item.name%></li>
-                    <% } %>
-                  </ul>
-                  <p class="card-text">Special instructions: <%=order.special_instructions%></p>
-                  <form action="/admin" method="post">
-                    <input type="hidden" value="<%=id%>" name="order_id">
-                    <input type="hidden" name="wait_time" value="0">
-                    <input type="submit" class="btn btn-dark" value="Ready!">
-                  </form>
-                </div>
-              </div>
-            </li>
-            <%}%>
+      <li>
+        <div class="card" style="width: 18rem">
+          <div class="card-body">
+            <h5 class="card-title"> Order #<%=id%> </h5>
+            <h6 class="card-subtitle mb-2 text-muted"><%=order.placed_at%></h6>
+            <ul style="list-style: none">
+              <% for (const item of order.menu_items) {%>
+              <li class="card-text"><span><%=item.qty%></span>X <%=item.name%></li>
+              <% } %>
+            </ul>
+            <p class="card-text">Special instructions: <%=order.special_instructions%></p>
+            <form action="/admin" method="post">
+              <input type="hidden" value="<%=id%>" name="order_id">
+              <input type="hidden" name="wait_time" value="0">
+              <input type="submit" class="btn btn-dark" value="Ready!">
+            </form>
+          </div>
+        </div>
+      </li>
+      <%}%>
           </ul>
       </div>
   </body>
