@@ -14,7 +14,7 @@ module.exports = ({ getMenuItems, getCompletedOrder, placeOrder, addMenuItem }) 
       .then(menu => {
         let templateVars = {
           menuItems: menu,
-          user: req.session
+          user: req.session.username
         };
         res.render("new_order", templateVars);
       })
@@ -32,7 +32,7 @@ module.exports = ({ getMenuItems, getCompletedOrder, placeOrder, addMenuItem }) 
         console.log('get req.session: ', req.session);
         let templateVars = {
           completedOrder,
-          user: req.session
+          user: req.session.username
         };
         if (completedOrder.user_id === req.session.user_id) {
           res.render("order_status", templateVars);

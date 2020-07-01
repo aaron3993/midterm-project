@@ -9,8 +9,9 @@ module.exports = ({ getMenuItems }) => {
       .then(menu => {
         let templateVars = {
           menuItems: menu,
-          user: req.session
+          user: req.session.username
         };
+        console.log('req.session: ', req.session)
         res.render("menu", templateVars)
       })
       .catch(err => {

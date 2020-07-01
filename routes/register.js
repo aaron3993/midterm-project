@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-module.exports = ({ registerUser }) => {
+module.exports = ({ registerUser, getUserByEmail }) => {
   router.get("/", (req, res) => {
     templateVars = {
       errorMsg: null
@@ -24,8 +24,8 @@ module.exports = ({ registerUser }) => {
         let templateVars = {
           errorMsg: 'Email is already taken'
         };
+        res.render("register", templateVars)
       }
-      res.render("register", templateVars)
     })
     const values = [userName, userEmail, userPhone, userPassword, 'customer'];
     registerUser(values)
