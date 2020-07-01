@@ -15,7 +15,6 @@ module.exports = (db) => {
     return db.query(query).then(result => result.rows[0]);
   };
 
-<<<<<<< HEAD
   const fetchOrdersByStatus = (status) => {
     const query = {
       text: `SELECT id as order_id, user_id, placed_at, special_instructions
@@ -74,14 +73,12 @@ module.exports = (db) => {
   //     }
   //     return db.query(query).then(result => result.rows)
   //   };
-=======
   const getMenuItems = () => {
     const query = {
       text: `SELECT * FROM menu_items;`,
     };
     return db.query(query).then((result) => result.rows);
   };
->>>>>>> master
 
   const addMenuItem = (order_id, menu_item_id, qty) => {
       const query = {
@@ -90,7 +87,7 @@ module.exports = (db) => {
       }
       return db.query(query).then(result => result.rows)
     };
-  
+
   // const getOrders = () => {
   //   const query = {
   //     text: `SELECT ordered_items.*, menu_items.name

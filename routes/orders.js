@@ -3,13 +3,9 @@ const router = express.Router();
 
 const { notifyOwner } = require("../helpers/notifyOwner");
 
-<<<<<<< HEAD
-module.exports = ({ getMenuItems, getCompletedOrder, placeOrder }) => {
-=======
 module.exports = ({ getMenuItems, getCompletedOrder, placeOrder, addMenuItem }) => {
   // GET all orders
   // GET * FROM ORDERED_ITEMS TABLE
->>>>>>> master
   router.get("/new", (req, res) => {
     if (!req.session.user_id) {
       return res.redirect("/menu");
