@@ -18,6 +18,15 @@ module.exports = ({ registerUser }) => {
       };
       res.render("register", templateVars)
     };
+    getUserByEmail(userEmail)
+    .then(user => {
+      if (user.email === userEmail) {
+        let templateVars = {
+          errorMsg: 'Email is already taken'
+        };
+      }
+      res.render("register", templateVars)
+    })
     const values = [userName, userEmail, userPhone, userPassword, 'customer'];
     registerUser(values)
       .then(newUser => {
