@@ -1,14 +1,7 @@
 module.exports = (db) => {
-  const getMenuItems = () => {
-    const query = {
-      text: `SELECT * FROM menu_items;`,
-    };
-    return db.query(query).then((result) => result.rows);
-  };
-
   const registerUser = (values) => {
     const query = {
-      text: `INSERT INTO users (name, email, password, phone) VALUES ($1, $2, $3, $4) RETURNING id`,
+      text: `INSERT INTO users (name, email, password, phone, role) VALUES ($1, $2, $3, $4, $5) RETURNING id`,
       values
     }
     return db.query(query).then(result => result.rows[0]);
@@ -22,6 +15,7 @@ module.exports = (db) => {
     return db.query(query).then(result => result.rows[0]);
   };
 
+<<<<<<< HEAD
   const fetchOrdersByStatus = (status) => {
     const query = {
       text: `SELECT id as order_id, user_id, placed_at, special_instructions
@@ -80,7 +74,23 @@ module.exports = (db) => {
   //     }
   //     return db.query(query).then(result => result.rows)
   //   };
+=======
+  const getMenuItems = () => {
+    const query = {
+      text: `SELECT * FROM menu_items;`,
+    };
+    return db.query(query).then((result) => result.rows);
+  };
+>>>>>>> master
 
+  const addMenuItem = (order_id, menu_item_id, qty) => {
+      const query = {
+        text: 'INSERT INTO ordered_items(order_id, menu_item_id, qty) VALUES ($1, $2, $3) RETURNING *',
+        values: [order_id, menu_item_id, qty]
+      }
+      return db.query(query).then(result => result.rows)
+    };
+  
   // const getOrders = () => {
   //   const query = {
   //     text: `SELECT ordered_items.*, menu_items.name
@@ -92,35 +102,34 @@ module.exports = (db) => {
 
   const placeOrder = (
     user_id,
-    order_placed_at,
+    placed_at,
     special_instructions,
-    order_ready_duration,
-    order_ready,
-    order_complete_at
+    wait_time,
+    order_status,
+    ready_at
   ) => {
     const query = {
-      text: `INSERT INTO orders(user_id, order_placed_at, special_instructions, order_ready_duration, order_ready, order_complete_at)
+      text: `INSERT INTO orders(user_id, placed_at, special_instructions, wait_time, order_status, ready_at)
       VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`,
       values: [
         user_id,
-        order_placed_at,
+        placed_at,
         special_instructions,
-        order_ready_duration,
-        order_ready,
-        order_complete_at,
+        wait_time,
+        order_status,
+        ready_at,
       ],
     };
-    return db.query(query).then((result) => result.rows);
+    return db.query(query).then((result) => result.rows[0]);
   };
 
-  const getCompletedOrder = () => {
+  const getCompletedOrder = (id) => {
     const query = {
-      text: `SELECT ordered_items.id as ordered_items_id, orders.* FROM ordered_items
-      JOIN orders ON orders.id = order_id
-      WHERE ordered_items.id = 1;`,
-      // Will change this WHERE to be dynamic after
-    };
-    return db.query(query).then((result) => result.rows);
+      text: `SELECT users.name as name, users.phone as phone_number, orders.* FROM users
+      JOIN orders ON users.id = user_id
+      WHERE orders.id = ${id};`
+    }
+    return db.query(query).then(result => result.rows[0])
   };
 
   // Template default
@@ -150,9 +159,8 @@ module.exports = (db) => {
   };
 
   return {
-    // addMenuItem,
+    addMenuItem,
     getMenuItems,
-    // getOrders,
     getCompletedOrder,
     getUsers,
     placeOrder,

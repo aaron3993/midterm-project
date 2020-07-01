@@ -3,12 +3,22 @@ const router = express.Router();
 
 const { notifyOwner } = require("../helpers/notifyOwner");
 
+<<<<<<< HEAD
 module.exports = ({ getMenuItems, getCompletedOrder, placeOrder }) => {
+=======
+module.exports = ({ getMenuItems, getCompletedOrder, placeOrder, addMenuItem }) => {
+  // GET all orders
+  // GET * FROM ORDERED_ITEMS TABLE
+>>>>>>> master
   router.get("/new", (req, res) => {
+    if (!req.session.user_id) {
+      return res.redirect("/menu");
+    }
     getMenuItems()
-      .then((menu) => {
+      .then(menu => {
         let templateVars = {
           menuItems: menu,
+          user: req.session.user_id
         };
         res.render("new_order", templateVars);
       })
@@ -16,34 +26,43 @@ module.exports = ({ getMenuItems, getCompletedOrder, placeOrder }) => {
         res.status(500).json({ error: err.message });
       });
   });
-  router.get("/:id/completed", (req, res) => {
-    getCompletedOrder()
-      .then((completedOrder) => {
-        console.log(completedOrder);
+
+  router.get("/:id", (req, res) => {
+    if (!req.session.user_id) {
+      return res.redirect("/menu");
+    }
+    getCompletedOrder(req.params.id)
+      .then(completedOrder => {
+        console.log('get req.session: ', req.session);
         let templateVars = {
           completedOrder,
+          user: req.session.user_id
         };
-        res.render("completed_order", templateVars);
+        if (completedOrder.user_id === req.session.user_id) {
+          res.render("order_status", templateVars);
+        } else {
+          res.redirect("/menu")
+        }
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
       });
   });
-  // POST - place an order
-  // INSERT ALL ORDERS MADE (MANY) INTO THE ORDERS TABLE (ONE)
-  router.post("/:id", (req, res) => {
-    console.log(req.body);
-    // const {user_id, order_placed_at, special_instructions, order_ready_duration, order_ready, order_complete_at} = req.body
-    // console.log(user_id, order_placed_at, special_instructions, order_ready_duration, order_ready, order_complete_at)
-    console.log("creating a new order");
-    placeOrder(1, new Date(), "no cheese", 30, false, null)
-      .then((order) => {
-        console.log("calling notify owner");
-        notifyOwner();
-        res.redirect(`/orders/1/completed`);
-      })
-      .catch((err) => console.log(err));
-  });
 
+  // POST - place an order
+  router.post("/", (req, res) => {
+    console.log("creating a new order");
+    const menuItems = JSON.parse(req.body.orderDetails);
+    placeOrder(req.session.user_id, new Date(), req.body.specialInstructions, null, 'pending', null).then(order => {
+      // Mentor says the following is a bad approach, mixing backend with frontend, so using req.params instead
+      // req.session.order_id = order[0].id;
+      // Loop the menuItems object and call addMenuItem add each menu item to a new ordered_item
+      for (const menuItem in menuItems) {
+        addMenuItem(order.id, Number(menuItem), menuItems[menuItem]);
+      }
+      // notifyOwner(order)
+      res.redirect(`/orders/${order.id}`);
+    }).catch(err => console.log(err));
+  });
   return router;
 };

@@ -9,9 +9,10 @@ module.exports = ({ getCompletedOrder }) => {
       .then(completedOrder => {
         console.log(completedOrder)
         let templateVars = {
-          completedOrder
+          completedOrder,
+          user: req.session.user_id
         };
-        res.render("completed_order", templateVars)
+        res.render("order_status", templateVars)
       })
       .catch(err => {
         res

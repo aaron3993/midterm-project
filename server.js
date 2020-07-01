@@ -53,7 +53,7 @@ const ordersRoutes = require("./routes/orders");
 const usersRoutes = require("./routes/users");
 const userLogin = require("./routes/login");
 const userRegister = require("./routes/register");
-const completedOrderRoutes = require("./routes/completed_order");
+const orderStatusRoutes = require("./routes/order_status");
 const userLogout = require("./routes/logout");
 const admin = require("./routes/admin");
 // const widgetsRoutes = require("./routes/widgets");
@@ -65,7 +65,7 @@ const admin = require("./routes/admin");
 app.use("/login", userLogin(dbHelpers));
 app.use("/register", userRegister(dbHelpers));
 app.use("/orders", ordersRoutes(dbHelpers));
-app.use("/completed_order", completedOrderRoutes(dbHelpers));
+app.use("/order_status", orderStatusRoutes(dbHelpers));
 app.use("/menu", menuRoutes(dbHelpers));
 app.use("/api/users", usersRoutes(dbHelpers));
 app.use("/logout", userLogout(dbHelpers));
@@ -79,7 +79,8 @@ app.use('/admin', admin(dbHelpers));
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
   let templateVars = {
-    isLoggedIn: JSON.stringify(req.session)
+    isLoggedIn: JSON.stringify(req.session),
+    user: req.session.user_id
   };
   res.render("index", templateVars);
 });

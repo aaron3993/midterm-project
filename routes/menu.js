@@ -9,6 +9,7 @@ module.exports = ({ getMenuItems }) => {
       .then(menu => {
         let templateVars = {
           menuItems: menu,
+          user: req.session.user_id
         };
         res.render("menu", templateVars)
       })
