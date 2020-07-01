@@ -4,68 +4,41 @@ const router = express.Router();
 module.exports = ({ fetchOrderDetailsByStatus, fetchOrdersByStatus, confirmOrder, updateOrderReady }) => {
   router.get("/", (req, res) => {
     const templateVars = {};
-      fetchOrdersByStatus('pending')
-      .then(pendingOrders => {
-        const pendingOrdersObj = {};
-        for (const order of JSON.parse(pendingOrders)) {
-          pendingOrdersObj[order.order_id] = order;
-          pendingOrdersObj[order.order_id].menu_items = [];
+
+    fetchOrdersByStatus('pending')
+    .then (pendingOrders => {
+      const pendingOrdersObj = {};
+      for (const order of JSON.parse(pendingOrders)) {
+        pendingOrdersObj[order.order_id] = order;
+        pendingOrdersObj[order.order_id].menu_items = [];
+      };
+      fetchOrderDetailsByStatus('pending')
+      .then(pendingOrderDetails => {
+        for (const order_detail of JSON.parse(pendingOrderDetails)) {
+          pendingOrdersObj[order_detail.order_id].menu_items.push(order_detail);
         };
-        fetchOrderDetailsByStatus('pending')
-        .then(pendingOrderDetails => {
-          for (const order_detail of JSON.parse(pendingOrderDetails)) {
-            pendingOrdersObj[order_detail.order_id].menu_items.push(order_detail);
-
-
-
-
-
-
-
-
-
+        fetchOrdersByStatus('confirmed')
+        .then(confirmedOrders => {
+          const confirmedOrdersObj = {};
+          for (const order of JSON.parse(confirmedOrders)) {
+            confirmedOrdersObj[order.order_id] = order;
+            confirmedOrdersObj[order.order_id].menu_items = [];
           };
-          templateVars.pendingOrders = pendingOrdersObj;
-          res.render('admin', templateVars);
+          fetchOrderDetailsByStatus('confirmed')
+          .then(confirmedOrderDetails => {
+            for (const order_detail of JSON.parse(confirmedOrderDetails)) {
+              confirmedOrdersObj[order_detail.order_id].menu_items.push(order_detail);
+            };
+            templateVars.confirmedOrders = confirmedOrdersObj
+            templateVars.pendingOrders = pendingOrdersObj;
+            console.log(templateVars);
+            res.render('admin', templateVars);
+          })
         })
-
-
-
-
-
-
-
-
-
-      });
-    //     // pendingOrders is an array of objects which includes order_id, user_id, placed_at, special_instructions
-    //     templateVars.pendingOrders = JSON.parse(pendingOrders);
-
-    //     // let pendingIds = JSON.parse(pendingOrders).map(order => order.order_id);
-
-    //     fetchPendingOrderDetails()
-    //       .then(pendingOrderDetails => {
-    //         console.log(JSON.parse(pendingOrderDetails));
-    //         res.send('ok');
-    //       });
-
-
-
-
-
-    //     // console.log(templateVars.pendingOrders.order_id);
-    //     // templateVars[pendingOrders] = pendingOrders;
-    //     // res.render('admin', templateVars);
-    //     // fetchPendingOrderDetails()
-    //     //  .then(pendingOrderDetails => {
-    //     //  });
-    //   })
-    //   .catch(err => {
-    //     res
-    //       .status(500)
-    //       .json({ error: err.message });
-    // });
+      })
+    })
   });
+
   router.post("/", (req, res) => {
     console.log(req.body);
     const {order_id, wait_time} = req.body;

@@ -46,29 +46,29 @@
     <div class="container bg-white mt-5 text-center">
       <h2>Confirmed Orders</h2>
 
-    </div>
-    <ul style="list-style: none">
-      <% for (const [id,order] of Object.entries(pendingOrders)) { %>
-        <li>
-          <div class="card" style="width: 18rem">
-            <div class="card-body">
-              <h5 class="card-title"> Order #<%=id%> </h5>
-              <h6 class="card-subtitle mb-2 text-muted"><%=order.placed_at%></h6>
-              <ul style="list-style: none">
-                <% for (const item of order.menu_items) {%>
-                <li class="card-text"><span><%=item.qty%></span>X <%=item.name%></li>
-                <% } %>
-              </ul>
-              <p class="card-text">Special instructions: <%=order.special_instructions%></p>
-              <form action="/admin" method="post">
-                <input type="hidden" value="<%=id%>" name="order_id">
-                <input type="hidden" name="wait_time" value="0">
-                <input type="submit" class="btn btn-dark" value="Ready!">
-              </form>
-            </div>
-          </div>
-        </li>
-      <%}%>
-      </ul>
+      <ul style="list-style: none">
+        <% for (const [id,order] of Object.entries(confirmedOrders)) { %>
+          <li>
+            <div class="card" style="width: 18rem">
+              <div class="card-body">
+                <h5 class="card-title"> Order #<%=id%> </h5>
+                <h6 class="card-subtitle mb-2 text-muted"><%=order.placed_at%></h6>
+                <ul style="list-style: none">
+                  <% for (const item of order.menu_items) {%>
+                    <li class="card-text"><span><%=item.qty%></span>X <%=item.name%></li>
+                    <% } %>
+                  </ul>
+                  <p class="card-text">Special instructions: <%=order.special_instructions%></p>
+                  <form action="/admin" method="post">
+                    <input type="hidden" value="<%=id%>" name="order_id">
+                    <input type="hidden" name="wait_time" value="0">
+                    <input type="submit" class="btn btn-dark" value="Ready!">
+                  </form>
+                </div>
+              </div>
+            </li>
+            <%}%>
+          </ul>
+      </div>
   </body>
 </html>
