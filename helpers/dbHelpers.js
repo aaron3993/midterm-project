@@ -15,6 +15,14 @@ module.exports = (db) => {
     return db.query(query).then(result => result.rows[0]);
   };
 
+  const getPhoneNumberByOrderID = (id) => {
+    const query = {
+      text: `SELECT phone FROM orders JOIN users ON users.id = orders.user_id where orders.id = $1`,
+      values: [id],
+    };
+    return db.query(query).then((result) => JSON.stringify(result.rows[0]));
+  };
+
   const fetchOrdersByStatus = (status) => {
     const query = {
       text: `SELECT id as order_id, user_id, placed_at, special_instructions
@@ -167,6 +175,7 @@ module.exports = (db) => {
     fetchOrdersByStatus,
     fetchOrderDetailsByStatus,
     confirmOrder,
-    updateOrderReady
+    updateOrderReady,
+    getPhoneNumberByOrderID
   };
 };

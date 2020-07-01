@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
 
-const { notifyOwner } = require("../helpers/notifyOwner");
+const { notifyCustomerOrderConfirmed, notifyCustomerOrderReady } = require("../helpers/notifyOwner");
 
-module.exports = ({ fetchOrderDetailsByStatus, fetchOrdersByStatus, confirmOrder, updateOrderReady }) => {
+module.exports = ({ fetchOrderDetailsByStatus, fetchOrdersByStatus, confirmOrder, updateOrderReady, getPhoneNumberByOrderID }) => {
   router.get("/", (req, res) => {
     const templateVars = {};
 
@@ -47,22 +47,20 @@ module.exports = ({ fetchOrderDetailsByStatus, fetchOrdersByStatus, confirmOrder
     if (parseInt(wait_time) === 0) {
       updateOrderReady(order_id)
         .then(order => {
-
-
-          console.log(`notifying guest order is ready for pickup`);
-          console.log(JSON.parse(order));
-          res.redirect("admin");
+          getPhoneNumberByOrderID(order_id)
+          .then(phone => {
+            notifyCustomerOrderReady(order_id, JSON.parse(phone).phone);
+            res.redirect("admin");
+          })
       })
     } else {
       confirmOrder(order_id, wait_time)
         .then(order => {
-          // Fetch number by id
-          // .then(number => {
-            // notifyCustomerOrderConfirmed(order_id, wait_time, number);
-          // })
-          console.log(`notifying guest it will take ${wait_time} minutes`);
-          console.log(JSON.parse(order));
-          res.redirect("admin");
+          getPhoneNumberByOrderID(order_id)
+          .then( phone => {
+            notifyCustomerOrderConfirmed(order_id, wait_time, JSON.parse(phone).phone);
+            res.redirect("admin");
+          });
       })
     }
   });
