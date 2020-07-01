@@ -43,7 +43,8 @@ module.exports = ({ getUserByEmail }) => {
     // If user submits with missing inputs, redirect back to register page with error message
     if (!userEmail || !userPassword) {
       let templateVars = {
-        errorMsg: "Please fill out all fields before submitting"
+        errorMsg: "Please fill out all fields before submitting",
+        user: req.session.username
       };
       res.render("login", templateVars);
     }
@@ -53,13 +54,15 @@ module.exports = ({ getUserByEmail }) => {
         // If user is undefined, it means the db query retuned nothing and the email is not on file
         if (!user) {
           let templateVars = {
-            errorMsg: 'That email is not registered'
+            errorMsg: 'That email is not registered',
+            user: req.session.username
           }
           res.render('login', templateVars);
         } else if (user.password !== userPassword) {
           // If password doesn't match, redirect to login with error message
           let templateVars = {
-            errorMsg: 'Invalid credentials'
+            errorMsg: 'Invalid credentials',
+            user: req.session.username
           };
           res.render('login', templateVars);
         } else {
