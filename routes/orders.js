@@ -23,7 +23,7 @@ module.exports = ({ getMenuItems, getCompletedOrder, placeOrder, addMenuItem }) 
       });
   });
 
-  router.get("/:id/completed", (req, res) => {
+  router.get("/:id", (req, res) => {
     if (!req.session.user_id) {
       return res.redirect("/menu");
     }
@@ -35,7 +35,7 @@ module.exports = ({ getMenuItems, getCompletedOrder, placeOrder, addMenuItem }) 
           user: req.session.user_id
         };
         if (completedOrder.user_id === req.session.user_id) {
-          res.render("completed_order", templateVars);
+          res.render("order_status", templateVars);
         } else {
           res.redirect("/menu")
         }
@@ -50,20 +50,15 @@ module.exports = ({ getMenuItems, getCompletedOrder, placeOrder, addMenuItem }) 
     console.log("creating a new order");
     const menuItems = JSON.parse(req.body.orderDetails);
     placeOrder(req.session.user_id, new Date(), req.body.specialInstructions, null, 'pending', null).then(order => {
-      // Mentor says the following is a bad approach, mixing backend with frontend
+      // Mentor says the following is a bad approach, mixing backend with frontend, so using req.params instead
       // req.session.order_id = order[0].id;
       // Loop the menuItems object and call addMenuItem add each menu item to a new ordered_item
       for (const menuItem in menuItems) {
         addMenuItem(order.id, Number(menuItem), menuItems[menuItem]);
       }
-      res.redirect(`/orders/${order.id}/completed`);
+      // notifyOwner(order)
+      res.redirect(`/orders/${order.id}`);
     }).catch(err => console.log(err));
   });
   return router;
 };
-
-// let templateVars = {
-//   completedOrder
-// };
-// res.render("completed_order", templateVars)
-// notifyOwner(order)

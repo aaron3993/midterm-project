@@ -12,7 +12,7 @@ module.exports = ({ getCompletedOrder }) => {
           completedOrder,
           user: req.session.user_id
         };
-        res.render("completed_order", templateVars)
+        res.render("order_status", templateVars)
       })
       .catch(err => {
         res
