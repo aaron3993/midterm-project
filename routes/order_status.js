@@ -10,7 +10,7 @@ module.exports = ({ getCompletedOrder }) => {
         console.log(completedOrder)
         let templateVars = {
           completedOrder,
-          user: req.session.user_id
+          user: req.session
         };
         res.render("order_status", templateVars)
       })

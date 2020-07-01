@@ -14,7 +14,7 @@ module.exports = ({ getMenuItems, getCompletedOrder, placeOrder, addMenuItem }) 
       .then(menu => {
         let templateVars = {
           menuItems: menu,
-          user: req.session.user_id
+          user: req.session
         };
         res.render("new_order", templateVars);
       })
@@ -32,7 +32,7 @@ module.exports = ({ getMenuItems, getCompletedOrder, placeOrder, addMenuItem }) 
         console.log('get req.session: ', req.session);
         let templateVars = {
           completedOrder,
-          user: req.session.user_id
+          user: req.session
         };
         if (completedOrder.user_id === req.session.user_id) {
           res.render("order_status", templateVars);
@@ -56,7 +56,7 @@ module.exports = ({ getMenuItems, getCompletedOrder, placeOrder, addMenuItem }) 
       for (const menuItem in menuItems) {
         addMenuItem(order.id, Number(menuItem), menuItems[menuItem]);
       }
-      // notifyOwner(order)
+      // notifyOwner()
       res.redirect(`/orders/${order.id}`);
     }).catch(err => console.log(err));
   });

@@ -64,6 +64,8 @@ module.exports = ({getUserByEmail}) => {
         } else {
           // All good, set cookie to user id and redirect to menu
           req.session.user_id = user.id;
+          req.session.username = user.name;
+          req.session.role = user.role;
           res.redirect('/menu');
         }
       });

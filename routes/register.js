@@ -22,6 +22,7 @@ module.exports = ({ registerUser }) => {
     registerUser(values)
       .then(newUser => {
         req.session.user_id = newUser.id;
+        req.session.username = newUser.userName
         req.session.role = newUser.role;
         res.redirect("menu");
       })
