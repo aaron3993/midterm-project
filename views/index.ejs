@@ -19,7 +19,7 @@
        <!-- console.log(isLoggedIn);  -->
 
     <!--  if (isLoggedIn === '{}') {  -->
-    <% if (!user) { %>
+    <% if (!user.username) { %>
       <p>Please login or register to continue</p>
       <a href="/login" class="btn btn-dark">Login</a>
       <br>

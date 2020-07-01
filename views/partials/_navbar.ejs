@@ -5,9 +5,9 @@
       <a class="nav-item nav-link" href="/menu">Menu</a>
     </div>
     <div class="navbar-nav ml-auto">
-      <% if (user) { %>
-        <p>Logged in as: <%= user %></p>
-        <% if (user !== 'Aaron') { %>
+      <% if (user.username) { %>
+        <p>Logged in as: <%= user.username %></p>
+        <% if (user.role === 'customer') { %>
           <a class="nav-item nav-link" href="/orders/new">Checkout</a>
         <% } %>
       <form method="post" action="/logout">

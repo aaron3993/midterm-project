@@ -80,7 +80,7 @@ app.use('/admin', admin(dbHelpers));
 app.get("/", (req, res) => {
   let templateVars = {
     // isLoggedIn: JSON.stringify(req.session),
-    user: req.session.username
+    user: req.session
   };
   res.render("index", templateVars);
 });
