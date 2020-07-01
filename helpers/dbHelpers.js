@@ -2,17 +2,17 @@ module.exports = (db) => {
   const registerUser = (values) => {
     const query = {
       text: `INSERT INTO users (name, email, password, phone, role) VALUES ($1, $2, $3, $4, $5) RETURNING id`,
-      values
-    }
-    return db.query(query).then(result => result.rows[0]);
+      values,
+    };
+    return db.query(query).then((result) => result.rows[0]);
   };
 
   const getUserByEmail = (email) => {
     const query = {
       text: `SELECT * FROM users WHERE email = $1`,
-      values: [email]
-    }
-    return db.query(query).then(result => result.rows[0]);
+      values: [email],
+    };
+    return db.query(query).then((result) => result.rows[0]);
   };
 
   const getPhoneNumberByOrderID = (id) => {
@@ -27,9 +27,9 @@ module.exports = (db) => {
     const query = {
       text: `SELECT id as order_id, user_id, placed_at, special_instructions
             FROM orders
-            WHERE order_status = '${status}';`
-    }
-    return db.query(query).then(result => JSON.stringify(result.rows));
+            WHERE order_status = '${status}';`,
+    };
+    return db.query(query).then((result) => JSON.stringify(result.rows));
   };
 
   const fetchOrderDetailsByStatus = (status) => {
@@ -38,9 +38,9 @@ module.exports = (db) => {
       FROM ordered_items
       JOIN menu_items ON menu_items.id = ordered_items.menu_item_id
       JOIN orders ON orders.id = ordered_items.order_id
-      WHERE orders.order_status = '${status}';`
-    }
-    return db.query(query).then(result => JSON.stringify(result.rows));
+      WHERE orders.order_status = '${status}';`,
+    };
+    return db.query(query).then((result) => JSON.stringify(result.rows));
   };
 
   const confirmOrder = (orderId, waitTime) => {
@@ -52,9 +52,9 @@ module.exports = (db) => {
       WHERE id = $3
       RETURNING *;
       `,
-      values: [waitTime, '2020-06-29 09:05:06', orderId]
+      values: [waitTime, "2020-06-29 09:05:06", orderId],
     };
-    return db.query(query).then(result => JSON.stringify(result.rows));
+    return db.query(query).then((result) => JSON.stringify(result.rows));
   };
 
   const updateOrderReady = (orderId) => {
@@ -65,9 +65,9 @@ module.exports = (db) => {
       WHERE id = $1
       RETURNING *;
       `,
-      values: [orderId]
+      values: [orderId],
     };
-    return db.query(query).then(result => JSON.stringify(result.rows));
+    return db.query(query).then((result) => JSON.stringify(result.rows));
   };
 
   // const addMenuItem = (menu_item_id, qty) => {
@@ -89,12 +89,13 @@ module.exports = (db) => {
   };
 
   const addMenuItem = (order_id, menu_item_id, qty) => {
-      const query = {
-        text: 'INSERT INTO ordered_items(order_id, menu_item_id, qty) VALUES ($1, $2, $3) RETURNING *',
-        values: [order_id, menu_item_id, qty]
-      }
-      return db.query(query).then(result => result.rows)
+    const query = {
+      text:
+        "INSERT INTO ordered_items(order_id, menu_item_id, qty) VALUES ($1, $2, $3) RETURNING *",
+      values: [order_id, menu_item_id, qty],
     };
+    return db.query(query).then((result) => result.rows);
+  };
 
   // const getOrders = () => {
   //   const query = {
@@ -132,9 +133,17 @@ module.exports = (db) => {
     const query = {
       text: `SELECT users.name as name, users.phone as phone_number, orders.* FROM users
       JOIN orders ON users.id = user_id
-      WHERE orders.id = ${id};`
-    }
-    return db.query(query).then(result => result.rows[0])
+      WHERE orders.id = ${id};`,
+    };
+    return db.query(query).then((result) => result.rows[0]);
+  };
+
+  const getPhoneNumberByOrderID = (id) => {
+    const query = {
+      text: `SELECT orders.id, name, phone FROM orders JOIN users ON users.id = orders.user_id where orders.id = $1`,
+      values: [id],
+    };
+    return db.query(query).then((result) => result.rows[0]);
   };
 
   // Template default
@@ -176,6 +185,10 @@ module.exports = (db) => {
     fetchOrderDetailsByStatus,
     confirmOrder,
     updateOrderReady,
+<<<<<<< HEAD
     getPhoneNumberByOrderID
+=======
+    getPhoneNumberByOrderID,
+>>>>>>> master
   };
 };

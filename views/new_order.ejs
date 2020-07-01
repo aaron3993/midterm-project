@@ -1,41 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Midterm Project</title>
 
-    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-    <script type="text/javascript" src="/scripts/app.js"></script>
-  </head>
-  <body>
+<head>
+  <title>Aa-So-Sa Aisan Fusion - Review & Place New Order!</title>
 
-    <%- include('partials/_header') %>
-    <div class="container mt-5 text-center">
-      <form class="border border-secondary p-4" method="post" action="/orders">
-        <h2>My order:</h2>
-
-        <ul class="list-group order-list"></ul>
+  <%- include('partials/_header') %>
 
 
-        <p>total: $<span class="ml-auto order-total"></span></p>
+  <script type="text/javascript" src="/scripts/app.js"></script>
 
-        <div class="form-group">
-          <label for="specialInstructions">Special Instructions:</label>
-          <textarea name="specialInstructions" class="form-control"></textarea>
-        </div>
+</head>
 
-        <input type="hidden" name="orderDetails" class="form-order-details" value='{}'></input>
+<body>
 
-        <button type="submit" class="btn btn-dark">Place Order</button>
-      </form>
-    </div>
+  <%- include('partials/_navbar') %>
+  <div class="container mt-5 text-center">
+    <form class="border border-secondary p-4" method="post" action="/orders">
+      <h2>My order:</h2>
 
-    <script>
-      const menu= <%- JSON.stringify(menuItems) %>;
-    </script>
-    <script type ="text/javascript" src="/scripts/client-orders.js"></script>
-  </body>
+      <ul class="list-group order-list"></ul>
+
+
+      <p>total: $<span class="ml-auto order-total"></span></p>
+
+      <div class="form-group">
+        <label for="specialInstructions">Special Instructions:</label>
+        <textarea name="specialInstructions" class="form-control"></textarea>
+      </div>
+
+      <input type="hidden" name="orderDetails" class="form-order-details" value='{}'></input>
+
+      <button type="submit" class="btn btn-dark">Place Order</button>
+    </form>
+  </div>
+
+  <script>
+    const menu = <%-JSON.stringify(menuItems)%>;
+  </script>
+  <script type="text/javascript" src="/scripts/client-orders.js"></script>
+</body>
+
 </html>

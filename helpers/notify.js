@@ -29,16 +29,21 @@ const notifyOwner = (id = 1234, phoneNumber = "+16477837891") => {
 };
 
 const notifyCustomerOrderConfirmed = (
-  id = 1234,
+  id = 7,
   waitTime = 10,
-  phoneNumber
+  phoneNumber = "+16477837891"
 ) => {
   const options = {
     text: `Order id ${id} is confirmed and will be ready in ${waitTime}`,
     phoneNumber: phoneNumber,
   };
+<<<<<<< HEAD:helpers/notifyOwner.js
   console.log('notifying the client');
   // notifySMS(options);
+=======
+  console.log(JSON.stringify(options));
+  //notifySMS(options);
+>>>>>>> master:helpers/notify.js
 };
 
 const notifyCustomerOrderReady = (id = 1234, phoneNumber = "+16477837891") => {

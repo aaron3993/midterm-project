@@ -1,12 +1,12 @@
 const express = require("express");
 const router = express.Router();
 
-module.exports = ({getUserByEmail}) => {
+module.exports = ({ getUserByEmail }) => {
   // GET menu items
   // GET * FROM MENU_ITEMS TABLE
   router.get("/", (req, res) => {
     templateVars = {
-      errorMsg: null
+      errorMsg: null,
     };
     res.render("login", templateVars);
   });
@@ -38,35 +38,34 @@ module.exports = ({getUserByEmail}) => {
   // });
 
   router.post("/", (req, res) => {
-    const {userEmail, userPassword} = req.body;
+    const { userEmail, userPassword } = req.body;
     // If user submits with missing inputs, redirect back to register page with error message
     if (!userEmail || !userPassword) {
       let templateVars = {
-        errorMsg: 'Please fill out all fields before submitting'
+        errorMsg: "Please fill out all fields before submitting",
       };
       res.render("login", templateVars);
-    };
+    }
     // Fetch user from db
-    getUserByEmail(userEmail)
-      .then(user => {
-        // If user is undefined, it means the db query retuned nothing and the email is not on file
-        if (!user) {
-          let templateVars = {
-            errorMsg: 'That email is not registered'
-          }
-          res.render('login', templateVars);
-        } else if (user.password !== userPassword) {
-          // If password doesn't match, redirect to login with error message
-          let templateVars = {
-            errorMsg: 'Invalid credentials'
-          };
-          res.render('login', templateVars);
-        } else {
-          // All good, set cookie to user id and redirect to menu
-          req.session.user_id = user.id;
-          res.redirect('/menu');
-        }
-      });
+    getUserByEmail(userEmail).then((user) => {
+      // If user is undefined, it means the db query retuned nothing and the email is not on file
+      if (!user) {
+        let templateVars = {
+          errorMsg: "That email is not registered",
+        };
+        res.render("login", templateVars);
+      } else if (user.password !== userPassword) {
+        // If password doesn't match, redirect to login with error message
+        let templateVars = {
+          errorMsg: "Invalid credentials",
+        };
+        res.render("login", templateVars);
+      } else {
+        // All good, set cookie to user id and redirect to menu
+        req.session.user_id = user.id;
+        res.redirect("/menu");
+      }
     });
+  });
   return router;
 };

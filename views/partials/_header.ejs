@@ -1,18 +1,8 @@
-<header>
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-    <div class="navbar-nav mr-auto">
-      <a class="navbar-brand" href="/">*APP-NAME*</a>
-      <a class="nav-item nav-link" href="/menu">Menu</a>
-    </div>
-    <div class="navbar-nav ml-auto">
-      <a class="nav-item nav-link" href="/orders/new">Checkout</a>
-      <% if (user) { %>
-      <form method="post" action="/logout">
-        <a onclick="this.parentNode.submit();" class="nav-item nav-link">Logout</a>
-      </form>
-      <% } %>
-    </div>
-  </nav>
-</header>
-
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+<link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+<link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+  integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+<script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>

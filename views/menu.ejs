@@ -1,40 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Midterm Project</title>
 
-    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-    <script type="text/javascript" src="/scripts/app.js"></script>
-    <script type ="text/javascript" src="/scripts/client-menu.js"></script>
-  </head>
+<head>
+  <title>Aa-So-Sa Asian Fusion Menu</title>
 
-  <body>
-    <%- include('partials/_header') %>
-    <h1>Our Menu</h1>
+  <%- include('partials/_header') %>
 
-    <div class="container">
-      <ul style="list-style-type: none">
-        <% for (const menuItem of menuItems) { %>
-        <li class="bg-light p-2">
-          <div class="card" style="width: 18rem;">
-            <img src= <%= menuItem.thumbnail_url %> class="card-img-left" alt="...">
-            <div class="card-body" data-itemId="<%= menuItem.id %>">
-              <h5 class="card-title"> <%= menuItem.name %> </h5>
-              <p class="card-text"> <%= menuItem.description %> </p>
-              <p> <%= `$${(menuItem.price / 100).toFixed(2)}` %> </p>
-              <p class="item-qty">0</p>
-              <a class="btn btn-dark add-item">+</a>
-              <a class="btn btn-dark remove-item">-</a>
-            </div>
+
+  <script type="text/javascript" src="/scripts/app.js"></script>
+  <script type="text/javascript" src="/scripts/client-menu.js"></script>
+
+
+</head>
+
+<body>
+  <%- include('partials/_navbar') %>
+  <h1>Our Menu</h1>
+
+  <div class="container">
+    <ul style="list-style-type: none">
+      <% for (const menuItem of menuItems) { %>
+      <li class="bg-light p-2">
+        <div class="card" style="width: 18rem;">
+          <img src=<%= menuItem.thumbnail_url %> class="card-img-left" alt="...">
+          <div class="card-body" data-itemId="<%= menuItem.id %>">
+            <h5 class="card-title"> <%= menuItem.name %> </h5>
+            <p class="card-text"> <%= menuItem.description %> </p>
+            <p> <%= `$${(menuItem.price / 100).toFixed(2)}` %> </p>
+            <p class="item-qty">0</p>
+            <a class="btn btn-dark add-item">+</a>
+            <a class="btn btn-dark remove-item">-</a>
           </div>
-        </li>
-        <% } %>
-      </ul>
-    </div>
+        </div>
+      </li>
+      <% } %>
+    </ul>
+  </div>
 
-  </body>
+</body>
+
 </html>
