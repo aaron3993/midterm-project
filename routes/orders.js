@@ -8,6 +8,7 @@ module.exports = ({
   getCompletedOrder,
   placeOrder,
   addMenuItem,
+  getOwnerPhoneNumber,
 }) => {
   // GET all orders
   // GET * FROM ORDERED_ITEMS TABLE
@@ -15,14 +16,14 @@ module.exports = ({
     if (!req.session.user_id) {
       return res.redirect("/");
     }
-    if (req.session.role === 'owner') {
-      return res.redirect("/admin")
+    if (req.session.role === "owner") {
+      return res.redirect("/admin");
     }
     getMenuItems()
       .then((menu) => {
         let templateVars = {
           menuItems: menu,
-          user: req.session.username
+          user: req.session.username,
         };
         res.render("new_order", templateVars);
       })
@@ -35,14 +36,14 @@ module.exports = ({
     if (!req.session.user_id) {
       return res.redirect("/");
     }
-    if (req.session.role === 'owner') {
-      return res.redirect("/admin")
+    if (req.session.role === "owner") {
+      return res.redirect("/admin");
     }
     getCompletedOrder(req.params.id)
       .then((completedOrder) => {
         let templateVars = {
           completedOrder,
-          user: req.session.username
+          user: req.session.username,
         };
         if (completedOrder.user_id === req.session.user_id) {
           res.render("order_status", templateVars);
@@ -75,7 +76,7 @@ module.exports = ({
         for (const menuItem in menuItems) {
           addMenuItem(order.id, Number(menuItem), menuItems[menuItem]);
         }
-        // notifyOwner(order)
+        getOwnerPhoneNumber().then((phone) => notifyOwner(order.id, phone));
         res.redirect(`/orders/${order.id}`);
       })
       .catch((err) => console.log(err));
