@@ -84,38 +84,7 @@ app.get("/", (req, res) => {
   res.render("index", templateVars);
 });
 
-app.get("/admin", (req, res) => {
-  const templateVars = {
-    pendingOrders: [],
-    allOrders: []
-  };
-  res.render('admin');
-})
-
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
-
-
-/*
-FIRST QUERY
-
-SELECT id, user_id, placed_at, special_instructions
-FROM orders
-WHERE order_status = 'pending';
-
--> [id, user_id, placed_at, special_instructions]
-*/
-
-/*
-Using id from first query
-
-SELECT orders.id as order_id, menu_items.name, ordered_items.qty
-FROM ordered_items
-JOIN menu_items ON menu_items.id = ordered_items.menu_item_id
-JOIN orders ON orders.id = ordered_items.order_id
-WHERE orders.order_status = 'pending';
--> [name, qty]
-*/
-
 

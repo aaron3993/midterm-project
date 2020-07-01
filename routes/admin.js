@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-module.exports = ({ fetchPendingOrderDetails, fetchPendingOrders }) => {
+module.exports = ({ fetchPendingOrderDetails, fetchPendingOrders, confirmOrder }) => {
   router.get("/", (req, res) => {
     const templateVars = {};
     res.render('admin');
@@ -43,12 +43,21 @@ module.exports = ({ fetchPendingOrderDetails, fetchPendingOrders }) => {
       // .then
       res.redirect("admin");
     } else {
+      confirmOrder(order_id, wait_time)
+        .then(order => {
+
+          console.log('------------------------>',order);
+          console.log(`notifying guest it will take ${wait_time} minutes and ready at ${JSON.parse(order).ready_at}`);
+          res.redirect("admin");
+        })
       // Order is confirmed => notify guest, update wait time and ready_at in db, update status to 'confirmed' in db
       // .then
-      res.redirect("admin");
+      // res.redirect("admin");
     }
   });
 
 
   return router;
 };
+
+

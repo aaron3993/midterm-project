@@ -40,6 +40,19 @@ module.exports = (db) => {
       WHERE orders.order_status = 'pending';`
     }
     return db.query(query).then(result => JSON.stringify(result.rows));
+  };
+
+  const confirmOrder = (orderId, waitTime) => {
+    const query = {
+      text: `
+      UPDATE orders
+      SET order_status = 'confirmed', wait_time = $1, ready_at = $2
+      WHERE id = $3
+      RETURNING *;
+      `,
+      values: [waitTime, '2020-06-29 09:05:06', orderId]
+    };
+    return db.query(query).then(result => JSON.stringify(result.rows));
   }
 
   // const addMenuItem = (menu_item_id, qty) => {
@@ -133,6 +146,7 @@ module.exports = (db) => {
     registerUser,
     getUserByEmail,
     fetchPendingOrders,
-    fetchPendingOrderDetails
+    fetchPendingOrderDetails,
+    confirmOrder
   };
 };
