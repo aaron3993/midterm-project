@@ -15,7 +15,8 @@ module.exports = ({ registerUser, getUserByEmail }) => {
     // If user submits with missing inputs, redirect back to register page with error message
     if (!userName || !userEmail || !userPhone || !userPassword) {
       let templateVars = {
-        errorMsg: "Please fill out all fields before submitting"
+        errorMsg: "Please fill out all fields before submitting",
+        user: req.session.username
       };
       res.render("register", templateVars)
     };
@@ -23,7 +24,8 @@ module.exports = ({ registerUser, getUserByEmail }) => {
     .then(user => {
       if (user.email === userEmail) {
         let templateVars = {
-          errorMsg: 'Email is already taken'
+          errorMsg: 'Email is already taken',
+          user: req.session.username
         };
         res.render("register", templateVars)
       }
