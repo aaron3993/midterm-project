@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
+const { notifyOwner } = require("../helpers/notifyOwner");
+
 module.exports = ({ fetchOrderDetailsByStatus, fetchOrdersByStatus, confirmOrder, updateOrderReady }) => {
   router.get("/", (req, res) => {
     const templateVars = {};
@@ -45,6 +47,8 @@ module.exports = ({ fetchOrderDetailsByStatus, fetchOrdersByStatus, confirmOrder
     if (parseInt(wait_time) === 0) {
       updateOrderReady(order_id)
         .then(order => {
+
+
           console.log(`notifying guest order is ready for pickup`);
           console.log(JSON.parse(order));
           res.redirect("admin");
@@ -52,6 +56,10 @@ module.exports = ({ fetchOrderDetailsByStatus, fetchOrdersByStatus, confirmOrder
     } else {
       confirmOrder(order_id, wait_time)
         .then(order => {
+          // Fetch number by id
+          // .then(number => {
+            // notifyCustomerOrderConfirmed(order_id, wait_time, number);
+          // })
           console.log(`notifying guest it will take ${wait_time} minutes`);
           console.log(JSON.parse(order));
           res.redirect("admin");
