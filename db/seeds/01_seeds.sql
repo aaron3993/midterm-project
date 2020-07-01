@@ -1,13 +1,15 @@
 
 INSERT INTO users (name, email, password, phone, role)
 VALUES
-  ('Devin Sanders', 'tristanjacobs@gmail.com', 'password', '(255) 633-6919', 'customer'),
-  ('Iva Harrison', 'allisonjackson@mail.com', 'password', '(517) 311-5301', 'customer'),
-  ('Lloyd Jefferson', 'asherpoole@gmx.com', 'password', '(308) 441-4630', 'customer'),
-  ('Dale Coleman', 'michaelgray@mail.com', 'password', '(450) 547-7689', 'customer'),
-  ('Alejandro Osborne', 'ariaatkinson@outlook.com', 'password', '(387) 647-6695', 'customer'),
-  ('Nell Medina', 'juliansantos@aol.com', 'password', '(575) 912-7053', 'customer'),
-  ('Bob Robertson', 'bob@bob.com', 'password', '(575) 913-7053', 'owner');
+  ('Devin Sanders', 'tristanjacobs@gmail.com', 'password', '+16477837891', 'customer'),
+  ('Iva Harrison', 'allisonjackson@mail.com', 'password', '+16477837891', 'customer'),
+  ('Lloyd Jefferson', 'asherpoole@gmx.com', 'password', '+16477837891', 'customer'),
+  ('Dale Coleman', 'michaelgray@mail.com', 'password', '+16477837891', 'customer'),
+  ('Alejandro Osborne', 'ariaatkinson@outlook.com', 'password', '+16477837891', 'customer'),
+  ('Nell Medina', 'juliansantos@aol.com', 'password', '+16477837891', 'customer'),
+  ('Sandeep', 'sandeep@LHL.com', 'password', '+16477837891', 'customer'),
+  ('Sophie', 'sophie@LHL.com', 'password', '+12064886774', 'customer'),
+  ('Aaron', 'aaron@LHL.com', 'password', '+16476256490', 'owner');
 
 
 INSERT INTO menu_items
@@ -29,11 +31,11 @@ VALUES
 
   INSERT INTO orders (user_id, placed_at, special_instructions, wait_time, order_status, ready_at)
   VALUES
-    (4, '2020-06-27 08:05:06', 'No plastic cutlery', 15, 'complete', '2020-06-27 08:20:06'),
-    (2, '2020-06-28 06:05:06', 'Extra sauce', 20, 'complete', '2020-06-28 06:25:06'),
-    (3, '2020-06-29 07:05:06', 'No onions', 30, 'ready', '2020-06-29 07:35:06'),
-    (4, '2020-06-29 08:05:06', 'Extra napkins', 30, 'confirmed', '2020-06-27 08:35:06'),
-    (5, '2020-06-29 09:05:06', 'Extra napkins', null, 'pending', null);
+    (4, '6/28/2020, 8:05:06 PM', 'No plastic cutlery', 15, 'complete', '6/28/2020, 8:20:06 PM'),
+    (2, '6/28/2020, 9:10:25 PM', 'Extra sauce', 20, 'complete', '6/28/2020, 9:30:25 PM'),
+    (3, '6/29/2020, 6:28:56 PM', 'No onions', 30, 'complete', '6/29/2020, 6:58:56 PM'),
+    (4, '6/29/2020, 7:13:20 PM', 'Extra napkins', 30, 'complete', '6/29/2020, 7:43:20 PM'),
+    (5, '6/30/2020, 1:45:47 PM', 'Extra napkins', 15, 'complete', '6/30/2020, 2:00:47 PM');
 
 
   INSERT INTO ordered_items

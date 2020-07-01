@@ -38,16 +38,16 @@ const notifyCustomerOrderConfirmed = (
     phoneNumber: phoneNumber,
   };
   console.log('notifying the client');
-  // notifySMS(options);
+  notifySMS(options);
 };
 
 const notifyCustomerOrderReady = (id = 1234, phoneNumber = "+16477837891") => {
   const options = {
     text: `Order ${id} is ready. Please proceed to the restuarant to pick it up.`,
-    phoneNumber: phoneNumber,
+    phoneNumber,
   };
   console.log('Notifying from notify owner');
-  // notifySMS(options);
+  notifySMS(options);
 };
 
 module.exports = {
