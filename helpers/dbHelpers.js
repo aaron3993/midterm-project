@@ -62,17 +62,6 @@ module.exports = (db) => {
     return db.query(query).then(result => JSON.stringify(result.rows));
   };
 
-  // const addMenuItem = (menu_item_id, qty) => {
-  //   // const query = {
-  //   //   text: 'INSERT INTO ordered_items(order_id, menu_item_id, price_charged, qty) VALUES ($1, $2, $3, $4) RETURNING *',
-  //   //   values: [order_id, menu_item_id, price_charged, qty]
-  //   // }
-  //     const query = {
-  //       text: 'INSERT INTO ordered_items(menu_item_id, qty) VALUES ($1, $2) RETURNING *',
-  //       values: [menu_item_id, qty]
-  //     }
-  //     return db.query(query).then(result => result.rows)
-  //   };
   const getMenuItems = () => {
     const query = {
       text: `SELECT * FROM menu_items;`,
