@@ -14,42 +14,61 @@
 
   <body>
     <%- include('partials/_header') %>
-    <div class="container bg-white mt-5">
+    <div class="container bg-white mt-5 text-center">
+      <h2>Pending Orders</h2>
+
       <ul style="list-style: none">
+      <% for (const [id,order] of Object.entries(pendingOrders)) { %>
         <li>
           <div class="card" style="width: 18rem">
             <div class="card-body">
-              <h5 class="card-title"> Order #7 </h5>
-              <h6 class="card-subtitle mb-2 text-muted">2020-06-29 09:05:06</h6>
-              <ul>
-                <li class="card-text">2X braised beef</li>
-                <li class="card-text">3X stirfry </li>
-                <li class="card-text">1X water bottle </li>
+              <h5 class="card-title"> Order #<%=id%> </h5>
+              <h6 class="card-subtitle mb-2 text-muted"><%=order.placed_at%></h6>
+              <ul style="list-style: none">
+                <% for (const item of order.menu_items) {%>
+                <li class="card-text"><span><%=item.qty%></span>X <%=item.name%></li>
+                <% } %>
               </ul>
-              <p class="card-text">Special instructions: extra napkins please</p>
+              <p class="card-text">Special instructions: <%=order.special_instructions%></p>
               <form action="/admin" method="post">
-                <input type="hidden" value="7" name="order_id">
+                <input type="hidden" value="<%=id%>" name="order_id">
                 <input type="text" placeholder="estimated wait time" name="wait_time">
                 <input type="submit" class="btn btn-dark" value="confirm order">
               </form>
             </div>
           </div>
         </li>
+      <%}%>
       </ul>
-
-
-
     </div>
 
-    <!-- <div class="card" style="width: 18rem;">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <a href="#" class="card-link">Card link</a>
-        <a href="#" class="card-link">Another link</a>
-      </div>
-    </div> -->
 
+    <div class="container bg-white mt-5 text-center">
+      <h2>Confirmed Orders</h2>
+
+    </div>
+    <ul style="list-style: none">
+      <% for (const [id,order] of Object.entries(pendingOrders)) { %>
+        <li>
+          <div class="card" style="width: 18rem">
+            <div class="card-body">
+              <h5 class="card-title"> Order #<%=id%> </h5>
+              <h6 class="card-subtitle mb-2 text-muted"><%=order.placed_at%></h6>
+              <ul style="list-style: none">
+                <% for (const item of order.menu_items) {%>
+                <li class="card-text"><span><%=item.qty%></span>X <%=item.name%></li>
+                <% } %>
+              </ul>
+              <p class="card-text">Special instructions: <%=order.special_instructions%></p>
+              <form action="/admin" method="post">
+                <input type="hidden" value="<%=id%>" name="order_id">
+                <input type="hidden" name="wait_time" value="0">
+                <input type="submit" class="btn btn-dark" value="Ready!">
+              </form>
+            </div>
+          </div>
+        </li>
+      <%}%>
+      </ul>
   </body>
 </html>

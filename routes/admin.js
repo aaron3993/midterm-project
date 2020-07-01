@@ -1,12 +1,43 @@
 const express = require("express");
 const router = express.Router();
 
-module.exports = ({ fetchPendingOrderDetails, fetchPendingOrders, confirmOrder }) => {
+module.exports = ({ fetchOrderDetailsByStatus, fetchOrdersByStatus, confirmOrder, updateOrderReady }) => {
   router.get("/", (req, res) => {
     const templateVars = {};
-    res.render('admin');
-    // fetchPendingOrders()
-    //   .then(pendingOrders => {
+      fetchOrdersByStatus('pending')
+      .then(pendingOrders => {
+        const pendingOrdersObj = {};
+        for (const order of JSON.parse(pendingOrders)) {
+          pendingOrdersObj[order.order_id] = order;
+          pendingOrdersObj[order.order_id].menu_items = [];
+        };
+        fetchOrderDetailsByStatus('pending')
+        .then(pendingOrderDetails => {
+          for (const order_detail of JSON.parse(pendingOrderDetails)) {
+            pendingOrdersObj[order_detail.order_id].menu_items.push(order_detail);
+
+
+
+
+
+
+
+
+
+          };
+          templateVars.pendingOrders = pendingOrdersObj;
+          res.render('admin', templateVars);
+        })
+
+
+
+
+
+
+
+
+
+      });
     //     // pendingOrders is an array of objects which includes order_id, user_id, placed_at, special_instructions
     //     templateVars.pendingOrders = JSON.parse(pendingOrders);
 
@@ -38,25 +69,22 @@ module.exports = ({ fetchPendingOrderDetails, fetchPendingOrders, confirmOrder }
   router.post("/", (req, res) => {
     console.log(req.body);
     const {order_id, wait_time} = req.body;
-    if (wait_time === 0) {
-      // Order is ready => notify guest and change status in order to 'ready'
-      // .then
-      res.redirect("admin");
+    if (parseInt(wait_time) === 0) {
+      updateOrderReady(order_id)
+        .then(order => {
+          console.log(`notifying guest order is ready for pickup`);
+          console.log(JSON.parse(order));
+          res.redirect("admin");
+      })
     } else {
       confirmOrder(order_id, wait_time)
         .then(order => {
-
-          console.log('------------------------>',order);
-          console.log(`notifying guest it will take ${wait_time} minutes and ready at ${JSON.parse(order).ready_at}`);
+          console.log(`notifying guest it will take ${wait_time} minutes`);
+          console.log(JSON.parse(order));
           res.redirect("admin");
-        })
-      // Order is confirmed => notify guest, update wait time and ready_at in db, update status to 'confirmed' in db
-      // .then
-      // res.redirect("admin");
+      })
     }
   });
-
-
   return router;
 };
 

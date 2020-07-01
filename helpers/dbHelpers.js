@@ -22,27 +22,28 @@ module.exports = (db) => {
     return db.query(query).then(result => result.rows[0]);
   };
 
-  const fetchPendingOrders = () => {
+  const fetchOrdersByStatus = (status) => {
     const query = {
       text: `SELECT id as order_id, user_id, placed_at, special_instructions
             FROM orders
-            WHERE order_status = 'pending';`
+            WHERE order_status = '${status}';`
     }
     return db.query(query).then(result => JSON.stringify(result.rows));
   };
 
-  const fetchPendingOrderDetails = () => {
+  const fetchOrderDetailsByStatus = (status) => {
     const query = {
       text: `SELECT orders.id as order_id, menu_items.name, ordered_items.qty
       FROM ordered_items
       JOIN menu_items ON menu_items.id = ordered_items.menu_item_id
       JOIN orders ON orders.id = ordered_items.order_id
-      WHERE orders.order_status = 'pending';`
+      WHERE orders.order_status = '${status}';`
     }
     return db.query(query).then(result => JSON.stringify(result.rows));
   };
 
   const confirmOrder = (orderId, waitTime) => {
+    // TODO: fix timestamp to be now + waittime
     const query = {
       text: `
       UPDATE orders
@@ -53,7 +54,20 @@ module.exports = (db) => {
       values: [waitTime, '2020-06-29 09:05:06', orderId]
     };
     return db.query(query).then(result => JSON.stringify(result.rows));
-  }
+  };
+
+  const updateOrderReady = (orderId) => {
+    const query = {
+      text: `
+      UPDATE orders
+      SET order_status = 'ready'
+      WHERE id = $1
+      RETURNING *;
+      `,
+      values: [orderId]
+    };
+    return db.query(query).then(result => JSON.stringify(result.rows));
+  };
 
   // const addMenuItem = (menu_item_id, qty) => {
   //   // const query = {
@@ -145,8 +159,9 @@ module.exports = (db) => {
     addUser,
     registerUser,
     getUserByEmail,
-    fetchPendingOrders,
-    fetchPendingOrderDetails,
-    confirmOrder
+    fetchOrdersByStatus,
+    fetchOrderDetailsByStatus,
+    confirmOrder,
+    updateOrderReady
   };
 };
