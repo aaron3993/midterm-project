@@ -10,7 +10,7 @@ INSERT INTO menu_items (name, thumbnail_url, price, description, category)
 ('Fried Chicken in Sauce 양념치킨', 'https://thefry.ca/wp-content/uploads/2018/04/Fried-Chicken-in-Sauce-1-800x600.jpg', 1795, 'fresh fried chicken with your choice of sauce with secret ingredients','main'), ('half and half (original, fried chicken in sauce)
 반반치킨', 'https://thefry.ca/wp-content/uploads/2018/04/HalfHalf-Chicken-1-700x600.jpg', 871, 'get the best of the both worlds, your choice of two varities of chicne with sauce of your liking','main'),
 ('Special Half & Half Chicken
-스페셜 반반', 'https:/plo0-/thefry.ca/wp-content/uploads/2018/04/Special-HalfHalf-1-700x600.jpg', 1730, 'freshly fried chicken finger lickin food','main'),
+스페셜 반반', 'https:/thefry.ca/wp-content/uploads/2018/04/Special-HalfHalf-1-700x600.jpg', 1730, 'freshly fried chicken finger lickin food','main'),
 ('Boneless Chicken
 순살치킨', 'https://thefry.ca/wp-content/uploads/2018/04/Boneless-Fried-Chicken-1-800x600.jpg', 1012, 'house special fried chicken with lots of sauces.','main'),
  ('Boneless Chicken in Sauce
@@ -37,7 +37,10 @@ INSERT INTO menu_items (name, thumbnail_url, price, description, category)
 해물 짬뽕', 'https://thefry.ca/wp-content/uploads/2018/04/Spicy-Seafood-Noodle-Soup-2-2-400x300.jpg', 1099, 'Nem eledom nugejnu bizwan gavak.','soup'),
 ('Sweet Potato Fries
 고구마 튀김', 'https://thefry.ca/wp-content/uploads/2018/04/Sweet-Potato-Fries-3-800x600.jpg', 1099, 'Nem eledom nugejnu bizwan gavak.','side'),
-('Bottle Beer | 병맥주', '', 500, 'Korean Beer, Domestic Beer, Premium Beer, Imported Beer','drink'),
+('Korean Beer | 병맥주', '', 500, 'Bottled Beer','drink'),
+('Premium Beer | 병맥주', '', 500, 'Bottled Beer','drink'),
+('Imported Bee | 병맥주', '', 500, 'Bottled Beer','drink'),
+('Domestic Beer | 병맥주', '', 500, 'Bottled Beer','drink'),
 ('Soju | 소주', '', 500, '참이슬(Fresh, Original)','drink'),
 ('Coke | 음료', '', 152, 'Beverage','drink'),
 ('Diet Coke | 음료', '', 152, 'Beverage','drink'),
