@@ -10,13 +10,45 @@
   <script type="text/javascript" src="/scripts/app.js"></script>
   <script type="text/javascript" src="/scripts/client-menu.js"></script>
 
-
 </head>
 
 <body>
   <%- include('partials/_navbar') %>
-  <div class="menu">
-    <h1>Our Menu</h1>
+
+<div class='menu'>
+  <h1>Our Menu</h1>
+
+
+
+  <ul style="list-style-type: none">
+      <% for (const menuItem of menuItems) { %>
+        <li>
+<div class='row justify-content-center'>
+  <div class='col-md-6'>
+  <div class="card mb-3 p-2" style="max-width: 740px;">
+    <div class="row no-gutters justify-content-cente">
+      <div class="col-md-6">
+        <img src="<%= menuItem.thumbnail_url %>" class="card-img" alt="...">
+      </div>
+      <div class="col-md-6">
+        <div class="card-body">
+          <h5 class="card-title"><%= menuItem.name %></h5>
+          <p class="card-text"><%= menuItem.description %><h5><%= `$${(menuItem.price / 100).toFixed(2)}` %></h5>
+          <h5 class="item-qty">0</h5></p>
+          <p class="card-text"><a class="btn btn-warning add-item">+</a>
+          <a class="btn btn-warning remove-item">-</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</li>
+  <% } %>
+</ul>
+
+
+
     <ul style="list-style-type: none">
       <% for (const menuItem of menuItems) { %>
       <li class="card menu-item bg-light p-2 mb-5 d-flex flex-row">
@@ -32,9 +64,7 @@
       </li>
       <% } %>
     </ul>
-
-
-  </div>
+</div>
 
 </body>
 
