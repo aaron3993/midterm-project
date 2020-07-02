@@ -1,21 +1,20 @@
 <header>
-  <nav class="navbar navbar-expand-md fixed-top w-100 navbar-dark bg-dark">
-    <div class="navbar-nav mr-auto">
-      <a class="navbar-brand" href="/">Aa-So-Sa</a>
-      <a class="nav-item nav-link" href="/menu">Menu</a>
-    </div>
-    <div class="navbar-nav ml-auto">
-      <% if (user.username) { %>
-        <p class="nav-link">Logged in as: <%= user.username %></p>
-        <% if (user.role === 'customer') { %>
-          <a class="nav-item nav-link" href="/orders/new">Checkout</a>
+  <nav class="custom-nav">
+    <ul class="nav-elements">
+      <li>
+        <a class="nav-logo nav-elem" href="/">AaSoSa</a>
+        <a class="nav-button nav-elem" href="/menu">Menu</a>
+      </li>
+      <li>
+        <% if (user.username) { %>
+          <p class="nav-elem">Logged in as: <%= user.username %></p>
+          <% if (user.role === 'customer') { %>
+            <a class="nav-button nav-elem" href="/orders/new">Checkout</a>
+          <% } %>
+        <form method="post" action="/logout" class="nav-button nev-elem">
+          <a onclick="this.parentNode.submit();" class="logout">Logout</a>
+        </form>
         <% } %>
-      <form method="post" action="/logout">
-        <a onclick="this.parentNode.submit();" class="nav-item nav-link">Logout</a>
-      </form>
-      <% } %>
-    </div>
+      </li>
   </nav>
 </header>
-
-
