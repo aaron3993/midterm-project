@@ -6,11 +6,11 @@ const populateOrder = function(userOrder, menuObjects){
     <li class="list-group-item" data-itemID="${key}">
       <span class="item-count"> ${value} X </span>
       <span> ${menuObjects[key].name} </span>
-      <span>
-        <a href="#" class="btn btn-dark increment">+</a>
-        <a href="#" class="btn btn-dark decrement">-</a>
-        <a href="#" class="btn btn-dark remove">X</a>
-      </span>
+      <p>
+        <a href="#" class="btn btn-warning decrement">-</a>
+        <a href="#" class="btn btn-warning increment">+</a>
+        <a href="#" class="btn btn-warning remove">X</a>
+      </p>
       <span class="item-total">$${((menuObjects[key].price * value)/100).toFixed(2)}</span>
     </li>`
     $(orderList).append(childLI);
