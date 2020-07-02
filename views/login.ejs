@@ -3,17 +3,15 @@
 
 <head>
   <%- include('partials/_header') %>
-  <title>Document</title>
 </head>
 <body class="login">
   <div class="login-container">
     <% if (errorMsg) { %>
-    <div class="login-error-msg" role="alert">
+    <div class="login-error-msg">
       <p><%= errorMsg %></p>
     </div>
     <% } %>
     <div class="login-form text-center">
-
       <form method="post" action="/login">
         <h1 class="login-logo">AaSoSa</h1>
         <div class="form-group">
