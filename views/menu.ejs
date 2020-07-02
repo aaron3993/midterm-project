@@ -17,16 +17,16 @@
   <%- include('partials/_navbar') %>
   <div class="menu">
     <div class="bg-warning w-100">
-      <a href="mains">Mains</a>>
+      <a href="#mains">Mains</a>
     </div>
-    <ul class="menu-list">
-      <div class="bg-warning w-100">
+    <ul class="menu-list d-flex flex-column align-items-center">
+      <div class="mains bg-warning w-100">
         <h1>Mains</h1>
       </div>
       <% for (const menuItem of mains) { %>
       <li class="menu-item bg-light p-2 mb-5 d-flex flex-row">
         <img src=<%= menuItem.thumbnail_url %> class="card-img-left" alt="...">
-        <div class="menu-item-body d-flex flex-column justify-content-between" data-itemId="<%= menuItem.id %>">
+        <div class="menu-item-body p-2 d-flex flex-column justify-content-between" data-itemId="<%= menuItem.id %>">
           <h1 class="card-title"> <%= menuItem.name %> </h1>
           <h4 class="card-text"> <%= menuItem.description %> </h4>
           <h5> <%= `$${(menuItem.price / 100).toFixed(2)}` %> </h5>
