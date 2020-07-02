@@ -19,6 +19,9 @@
   <div class="admin-pending-div">
     <h1 class="admin-header">Today's Pending Orders:</h1>
     <ul class="admin-ul">
+      <% if (JSON.stringify(pendingOrders) === '{}') { %>
+        <p class="no-orders">No pending orders at the moment...</p>
+      <% } %>
       <% for (const [id,order] of Object.entries(pendingOrders)) { %>
         <li>
           <div class="card" style="width: 18rem">
@@ -46,6 +49,9 @@
     <div class="admin-pending-div">
       <h1 class="admin-header">Today's Confirmed Orders:</h1>
       <ul class="admin-ul">
+        <% if (JSON.stringify(confirmedOrders) === '{}') { %>
+          <p class="no-orders">No confirmed orders at the moment...</p>
+        <% } %>
         <% for (const [id,order] of Object.entries(confirmedOrders)) { %>
       <li>
         <div class="card admin-card">
