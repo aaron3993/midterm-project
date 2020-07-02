@@ -24,7 +24,7 @@ CREATE TABLE menu_items(
   thumbnail_url VARCHAR(255),
   price INTEGER NOT NULL,
   description TEXT,
-  category VARCHAR(255) NOT NULL
+  category VARCHAR(255) DEFAULT 'mains'
 );
 
 CREATE TABLE orders(

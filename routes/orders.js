@@ -23,7 +23,7 @@ module.exports = ({
       .then((menu) => {
         let templateVars = {
           menuItems: menu,
-          user: req.session
+          user: req.session,
         };
         res.render("new_order", templateVars);
       })
@@ -43,7 +43,7 @@ module.exports = ({
       .then((completedOrder) => {
         let templateVars = {
           completedOrder,
-          user: req.session
+          user: req.session,
         };
         if (completedOrder.user_id === req.session.user_id) {
           res.render("order_status", templateVars);
