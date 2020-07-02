@@ -15,9 +15,9 @@
 
 <body>
   <%- include('partials/_navbar') %>
+  
   <h1>Our Menu</h1>
-
-  <div class="container body">
+  <div class="container">
     <ul style="list-style-type: none">
       <% for (const menuItem of menuItems) { %>
       <li class="bg-light p-2">
@@ -27,7 +27,7 @@
             <h5 class="card-title"> <%= menuItem.name %> </h5>
             <p class="card-text"> <%= menuItem.description %> </p>
             <p> <%= `$${(menuItem.price / 100).toFixed(2)}` %> </p>
-            <p class="item-qty">0</p>
+            <span>Quantitiy:</span><p class="item-qty">0</p>
             <a class="btn btn-dark remove-item">-</a>
             <a class="btn btn-dark add-item">+</a>
           </div>
