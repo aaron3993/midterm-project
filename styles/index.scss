@@ -2,4 +2,61 @@
   background-image: url('/images/index-bg.jpg');
   background-repeat: no-repeat;
   background-size: 100vw auto;
+
+}
+
+.logo {
+  color: black;
+  font-family: 'Caveat', cursive;
+  font-size: 5.5vw;
+  text-shadow: 2px 2px rgb(243, 214, 171);
+}
+
+.index-container {
+  width: 30vw;
+  height: 70vh;
+  background: rgba(255, 166, 0, 0.488);
+  color:  white;
+  font-weight: 600;
+  margin-left: auto;
+  margin-right: 6vw;
+  margin-top: 14vh;
+  font-family: 'Raleway', sans-serif;
+}
+
+.index h3{
+  font-size: 2vw;
+  text-shadow: 1px 1px rgb(63, 62, 62);
+}
+
+.index p {
+  font-size: 1.4vw;
+}
+
+.index-button {
+  background: rgba(0, 0, 0, 0.797);
+  border: 0;
+  color: white;
+  padding: 0.5vw;
+  width: 10vw;
+  height: 5vh;
+  margin: 0.7vh;
+  font-size: 1.3vw;
+}
+
+.index-button a{
+  color: rgb(249, 227, 195);
+}
+
+.index-button a:hover{
+  color: rgb(249, 227, 195);
+  text-decoration: none;
+}
+
+.index-button a:visited{
+  color: rgb(249, 227, 195);
+}
+
+.index-button:hover {
+  outline: 2px solid rgb(243, 214, 171);
 }

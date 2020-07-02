@@ -11,24 +11,27 @@
 </head>
 
 <body class="text-center index">
-  <%- include("partials/_navbar") %>
-  <div class="container text-center bg-white p-4 mt-5">
-    <h1 class="text-dark">Welcome to APP_NAME</h1>
-    <h3>We are a super cool app that lets you order delicious food and get real-time notifications regarding your order
-      status</h3>
-      <% console.log('I AM TRYING MAN'); %>
-       <!-- console.log(isLoggedIn);  -->
+  <!-- <div class="logo">아소사</div> -->
+  <div class="index-container text-center p-4">
+    <h1 class="logo">AaSoSa</h1>
+    <h3>We serve the best fried chicken in town. Order any of our signature dishes at the click of a button and recieve real time SMS notifications regarding your order status. </h3>
 
-    <!--  if (isLoggedIn === '{}') {  -->
     <% if (!user.username) { %>
       <p>Please login or register to continue</p>
-      <a href="/login" class="btn btn-dark index-button">Login</a>
+      <button class="index-button">
+        <a href="/login">login</a>
+      </button>
       <br>
-      <a href="/register" class="btn btn-dark mt-3 index-button">register</a>
+      <button class="index-button">
+        <a href="/register" class="mt-3">register</a>
+      </button>
+
     <%} else { %>
-      <form method="post" action="/logout">
-        <a onclick="this.parentNode.submit();" class="btn btn-dark mt-3">Logout</a>
-      </form>
+      <button class="index-button">
+        <form method="post" action="/logout">
+          <a onclick="this.parentNode.submit();" class="mt-3 index-button">Logout</a>
+        </form>
+      </button>
     <% } %>
 
   </div>
