@@ -1,0 +1,42 @@
+.order_status {
+  background: url('/images/order_status-bg.jpeg');
+  background-repeat: no-repeat;
+  background-size: 100vw 100vh;
+
+  .order_status-container {
+    margin: auto;
+    background: rgba(255, 255, 255, 0.612);
+    width: 30vw;
+    height: 60vh;
+    text-align: center;
+    margin-top: 13vh;
+    padding-top: 4vh;
+    color: black;
+    font-family: 'Raleway', sans-serif;
+  }
+
+  .pending-container {
+    margin-top: 7vh;
+  }
+
+  .ready-container {
+    margin-top: 5vh;
+  }
+
+  img {
+    margin-top: 3vh;
+    margin-bottom: 2vh;
+  }
+
+  .spinner-div {
+    margin-top: 3vh;
+  }
+
+  .order_status-logo {
+    color: black;
+    font-family: 'Caveat', cursive;
+    font-size: 4vw;
+    text-shadow: 2px 2px rgb(243, 214, 171);
+  }
+}
+
