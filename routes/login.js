@@ -51,7 +51,7 @@ module.exports = ({ getUserByEmail }) => {
     // Fetch user from db
     getUserByEmail(userEmail)
       .then(user => {
-        // If user is undefined, it means the db query retuned nothing and the email is not on file
+        // If user is undefined, it means the db query returned nothing and the email is not on file
         if (!user) {
           let templateVars = {
             errorMsg: 'That email is not registered',
