@@ -4,15 +4,15 @@ INSERT INTO users (name, email, PASSWORD, phone, ROLE)
 INSERT INTO menu_items (name, thumbnail_url, price, description, category)
   VALUES
 ('Green Onion Chicken
-파닭', 'https://thefry.ca/wp-content/uploads/2018/04/Green-Onion-Chicken-3-800x600.jpg', 1322, 'Ziron et ke womiris pohaz.','main'),
-('Crispy Chicken 크리스피 치킨', 'https://thefry.ca/wp-content/uploads/2018/04/Crispy-Chicken-2-800x600.jpg', 1683, 'Ik rub vu omowomam wufhujub.','main'),
-('Soy Garlic Chicken 간장마늘치킨', 'https://thefry.ca/wp-content/uploads/2018/04/Fry-Wingsoy-garlic-1-800x600.jpg', 822, 'Colazimu havbacve jicijte fuwgozfin sibjetur.','main'),
-('Fried Chicken in Sauce 양념치킨', 'https://thefry.ca/wp-content/uploads/2018/04/Fried-Chicken-in-Sauce-1-800x600.jpg', 1795, 'Topi nalo kiwoem nezieki futzafno.','main'), ('half and half (original, fried chicken in sauce)
-반반치킨', 'https://thefry.ca/wp-content/uploads/2018/04/HalfHalf-Chicken-1-700x600.jpg', 871, 'Tece lol asehazu usdibeh dupsidmem.','main'),
+파닭', 'https://thefry.ca/wp-content/uploads/2018/04/Green-Onion-Chicken-3-800x600.jpg', 1322, 'fresh fried onion chicken with fresh green onion herbs.','main'),
+('Crispy Chicken 크리스피 치킨', 'https://thefry.ca/wp-content/uploads/2018/04/Crispy-Chicken-2-800x600.jpg', 1683, 'fresh fried chicken crispy on the outside , soft on the inside.','main'),
+('Soy Garlic Chicken 간장마늘치킨', 'https://thefry.ca/wp-content/uploads/2018/04/Fry-Wingsoy-garlic-1-800x600.jpg', 822, 'fresh fried chicken in special soy sauce.','main'),
+('Fried Chicken in Sauce 양념치킨', 'https://thefry.ca/wp-content/uploads/2018/04/Fried-Chicken-in-Sauce-1-800x600.jpg', 1795, 'fresh fried chicken with your choice of sauce with secret ingredients','main'), ('half and half (original, fried chicken in sauce)
+반반치킨', 'https://thefry.ca/wp-content/uploads/2018/04/HalfHalf-Chicken-1-700x600.jpg', 871, 'get the best of the both worlds, your choice of two varities of chicne with sauce of your liking','main'),
 ('Special Half & Half Chicken
-스페셜 반반', 'https:/plo0-/thefry.ca/wp-content/uploads/2018/04/Special-HalfHalf-1-700x600.jpg', 1730, 'Red ha inwicag ura us.','main'),
+스페셜 반반', 'https:/plo0-/thefry.ca/wp-content/uploads/2018/04/Special-HalfHalf-1-700x600.jpg', 1730, 'freshly fried chicken finger lickin food','main'),
 ('Boneless Chicken
-순살치킨', 'https://thefry.ca/wp-content/uploads/2018/04/Boneless-Fried-Chicken-1-800x600.jpg', 1012, 'Fo hut dezcufas buhniuca tobetce.','main'),
+순살치킨', 'https://thefry.ca/wp-content/uploads/2018/04/Boneless-Fried-Chicken-1-800x600.jpg', 1012, 'house special fried chicken with lots of sauces.','main'),
  ('Boneless Chicken in Sauce
 순살양념치킨', 'https://thefry.ca/wp-content/uploads/2018/04/Boneless-Fried-Chicken-in-Sauce-3-800x600.jpg', 1457, 'Solicho fo ucutowom kuguwji fa.','main'),
 ('Boneless Chicken in Soy Sauce
