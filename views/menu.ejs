@@ -15,22 +15,25 @@
 
 <body>
   <%- include('partials/_navbar') %>
+<<<<<<< HEAD
   <h1>Our Menu</h1>
 
   <div class="order_status-container">
+=======
+  <div class="menu">
+    <h1>Our Menu</h1>
+>>>>>>> cd6e5a2e325e7eddf5d1ce3a1b569b13f0bca34e
     <ul style="list-style-type: none">
       <% for (const menuItem of menuItems) { %>
-      <li class="bg-light p-2">
-        <div class="card" style="width: 18rem;">
-          <img src=<%= menuItem.thumbnail_url %> class="card-img-left" alt="...">
-          <div class="card-body" data-itemId="<%= menuItem.id %>">
-            <h5 class="card-title"> <%= menuItem.name %> </h5>
-            <p class="card-text"> <%= menuItem.description %> </p>
-            <p> <%= `$${(menuItem.price / 100).toFixed(2)}` %> </p>
-            <p class="item-qty">0</p>
-            <a class="btn btn-dark add-item">+</a>
-            <a class="btn btn-dark remove-item">-</a>
-          </div>
+      <li class="card menu-item bg-light p-2 mb-5 d-flex flex-row">
+        <img src=<%= menuItem.thumbnail_url %> class="card-img-left" alt="...">
+        <div class="card-body d-flex flex-column justify-content-between" data-itemId="<%= menuItem.id %>">
+          <h1 class="card-title"> <%= menuItem.name %> </h1>
+          <h4 class="card-text"> <%= menuItem.description %> </h4>
+          <h5> <%= `$${(menuItem.price / 100).toFixed(2)}` %> </h5>
+          <h5 class="item-qty">0</h5>
+          <a class="btn btn-warning add-item">+</a>
+          <a class="btn btn-warning remove-item">-</a>
         </div>
       </li>
       <% } %>
@@ -40,3 +43,4 @@
 </body>
 
 </html>
+

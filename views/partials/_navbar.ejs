@@ -1,12 +1,12 @@
 <header>
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-md fixed-top w-100 navbar-dark bg-dark">
     <div class="navbar-nav mr-auto">
       <a class="navbar-brand" href="/">Aa-So-Sa</a>
       <a class="nav-item nav-link" href="/menu">Menu</a>
     </div>
     <div class="navbar-nav ml-auto">
       <% if (user.username) { %>
-        <p>Logged in as: <%= user.username %></p>
+        <p class="nav-link">Logged in as: <%= user.username %></p>
         <% if (user.role === 'customer') { %>
           <a class="nav-item nav-link" href="/orders/new">Checkout</a>
         <% } %>
