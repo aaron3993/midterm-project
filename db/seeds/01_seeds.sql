@@ -29,8 +29,14 @@ INSERT INTO menu_items (name, thumbnail_url, price, description, category)
 콘치즈', 'https://thefry.ca/wp-content/uploads/2018/04/Corn-with-Cheese-1-3-800x600.jpg', 818, 'Kiikiruw fun him ugze es.','side'),
 ('Crispy French Fries
 크리스피 감자튀김', 'https://thefry.ca/wp-content/uploads/2018/04/Crispy-French-Fries-3-800x600.jpg', 1107, 'De sogavac kewouf puh hisehbe.','side'),
+('Egg Soup
+계란탕', 'https://thefry.ca/wp-content/uploads/2018/04/Egg-Soup-1-400x300.png', 1099, 'Nem eledom nugejnu bizwan gavak.','soup'),
+('Fish Cake Soup
+오뎅탕', 'https://thefry.ca/wp-content/uploads/2018/04/Fish-Cake-Soup-2-400x300.jpg', 899, 'Nem eledom nugejnu bizwan gavak.','soup'),
+('Spicy Seafood Soup
+해물 짬뽕', 'https://thefry.ca/wp-content/uploads/2018/04/Spicy-Seafood-Noodle-Soup-2-2-400x300.jpg', 1099, 'Nem eledom nugejnu bizwan gavak.','soup'),
 ('Sweet Potato Fries
-고구마 튀김', 'https://thefry.ca/wp-content/uploads/2018/04/Sweet-Potato-Fries-3-800x600.jpg', 1583, 'Nem eledom nugejnu bizwan gavak.','side'),
+고구마 튀김', 'https://thefry.ca/wp-content/uploads/2018/04/Sweet-Potato-Fries-3-800x600.jpg', 1099, 'Nem eledom nugejnu bizwan gavak.','side'),
 ('Bottle Beer | 병맥주', '', 500, 'Korean Beer, Domestic Beer, Premium Beer, Imported Beer','drink'),
 ('Soju | 소주', '', 500, '참이슬(Fresh, Original)','drink'),
 ('Beverage | 음료', '', 152, 'Coke, Diet Coke, Sprite, Fanta, Ginger Ale, Nestea, Sanpelle, Perrier','drink');
