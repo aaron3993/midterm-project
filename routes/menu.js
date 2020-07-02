@@ -14,7 +14,10 @@ module.exports = ({ getMenuItems }) => {
     getMenuItems()
       .then((menu) => {
         let templateVars = {
-          menuItems: menu,
+          mains: menu.filter(menuItem => menuItem.category === 'main'),
+          sides: menu.filter(menuItem => menuItem.category === 'side'),
+          soups: menu.filter(menuItem => menuItem.category === 'soup'),
+          drinks: menu.filter(menuItem => menuItem.category === 'drink'),
           user: req.session
         };
         res.render("menu", templateVars)

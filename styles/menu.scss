@@ -9,18 +9,13 @@
   background-attachment: fixed;
   z-index: -1;
   padding-top: 65px;
+  text-align: center;
 }
 
 .menu-item {
   margin: 2rem 20rem;
 }
 
-
-.card-img-top {
-  height: 35vh;
-  object-fit: cover;
-}
-
-.card-title {
-  font-size: 1.5rem;
+.menu-list {
+  list-style-type: none;
 }
