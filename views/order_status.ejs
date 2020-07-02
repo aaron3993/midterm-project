@@ -23,7 +23,7 @@
       <h3>Your order has been confirmed!</h3>
       <h4>Estimated Wait Time: <%= completedOrder.wait_time %> minutes </h4>
 
-      <img src="/wok.png" style="width: 8rem; height: auto"  class="animated headShake infinite slow" alt="wok animation">
+      <img src="/images/wok.png" style="width: 8rem; height: auto"  class="animated headShake infinite slow" alt="wok animation">
       <p>Your order is being prepared.</p>
       <p>The estimated pick up time is <%= completedOrder.ready_at %> </p>
       <p> We will notify you via SMS when it is ready!</p>
@@ -32,7 +32,7 @@
     </div> -->
     <% }  else { %>
       <h3>Your order is ready for pick up!</h3>
-      <img src="/food.png" style="width: 8rem; height: auto"  class="animated rubberBand infinite slow" alt="wok animation">
+      <img src="/images/food.png" style="width: 8rem; height: auto"  class="animated rubberBand infinite slow" alt="wok animation">
       <h5 class="mt-3">Thank you for choosing Aa-So-Sa!</h5>
     <% } %>
   </div>
