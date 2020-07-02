@@ -53,7 +53,7 @@ $(document).ready(() => {
       userOrder[itemId] += 1;
       localStorage.setItem('user_order', JSON.stringify(userOrder));
       // adjust count in li
-      $(parentLi).find('.item-count').html(userOrder[itemId]);
+      $(parentLi).find('.item-count').html(userOrder[itemId] + ' X ');
       // adjust price for this li
       $(parentLi).find('.item-total').html(`$${((userOrder[itemId] * menuObjects[itemId].price)/100).toFixed(2)}`)
       // adjust total price and order value
@@ -76,7 +76,7 @@ $(document).ready(() => {
         $(parentLi).remove();
       } else {
         // adjust count in li
-        $(parentLi).find('.item-count').html(userOrder[itemId]);
+        $(parentLi).find('.item-count').html(userOrder[itemId] + " X ");
         // // adjust price for this li
         $(parentLi).find('.item-total').html(`$${((userOrder[itemId] * menuObjects[itemId].price)/100).toFixed(2)}`);
       }
