@@ -18,7 +18,7 @@ module.exports = ({ registerUser, getUserByEmail }) => {
         errorMsg: "Please fill out all fields before submitting",
         user: req.session
       };
-      res.render("register", templateVars)
+      return res.render("register", templateVars)
     };
     getUserByEmail(userEmail)
     .then(user => {
@@ -29,7 +29,9 @@ module.exports = ({ registerUser, getUserByEmail }) => {
         };
         res.render("register", templateVars)
       }
-    })
+    }).catch((err) => {
+      res.status(500).json({ error: err.message });
+    });
     const values = [userName, userEmail, userPhone, userPassword, 'customer'];
     registerUser(values)
       .then((newUser) => {
