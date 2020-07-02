@@ -37,17 +37,17 @@ INSERT INTO menu_items (name, thumbnail_url, price, description, category)
 해물 짬뽕', 'https://thefry.ca/wp-content/uploads/2018/04/Spicy-Seafood-Noodle-Soup-2-2-400x300.jpg', 1099, 'Nem eledom nugejnu bizwan gavak.','soup'),
 ('Sweet Potato Fries
 고구마 튀김', 'https://thefry.ca/wp-content/uploads/2018/04/Sweet-Potato-Fries-3-800x600.jpg', 1099, 'Nem eledom nugejnu bizwan gavak.','side'),
-('Korean Beer | 병맥주', '', 500, 'Bottled Beer','drink'),
-('Premium Beer | 병맥주', '', 500, 'Bottled Beer','drink'),
-('Imported Bee | 병맥주', '', 500, 'Bottled Beer','drink'),
-('Domestic Beer | 병맥주', '', 500, 'Bottled Beer','drink'),
-('Soju | 소주', '', 500, '참이슬(Fresh, Original)','drink'),
-('Coke | 음료', '', 152, 'Beverage','drink'),
-('Diet Coke | 음료', '', 152, 'Beverage','drink'),
-('Sprite | 음료', '', 152, 'Beverage','drink'),
-('Ginger Ale | 음료', '', 152, 'Beverage','drink'),
-('Sanpelle | 음료', '', 152, 'Beverage','drink'),
-('Perrier | 음료', '', 152, 'Beverage','drink');
+('Korean Beer | 병맥주', '', 500, 'Bottled Beer','alcohol'),
+('Premium Beer | 병맥주', '', 500, 'Bottled Beer','alcohol'),
+('Imported Beer | 병맥주', '', 500, 'Bottled Beer','alcohol'),
+('Domestic Beer | 병맥주', '', 500, 'Bottled Beer','alcohol'),
+('Soju | 소주', '', 500, '참이슬(Fresh, Original)','alcohol'),
+('Coke | 음료', '', 152, 'Beverage','beverage'),
+('Diet Coke | 음료', '', 152, 'Beverage','beverage'),
+('Sprite | 음료', '', 152, 'Beverage','beverage'),
+('Ginger Ale | 음료', '', 152, 'Beverage','beverage'),
+('Sanpelle | 음료', '', 152, 'Beverage','beverage'),
+('Perrier | 음료', '', 152, 'Beverage','beverage');
 
 
 

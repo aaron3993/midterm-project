@@ -17,7 +17,8 @@ module.exports = ({ getMenuItems }) => {
           mains: menu.filter(menuItem => menuItem.category === 'main'),
           sides: menu.filter(menuItem => menuItem.category === 'side'),
           soups: menu.filter(menuItem => menuItem.category === 'soup'),
-          drinks: menu.filter(menuItem => menuItem.category === 'drink'),
+          alcohol: menu.filter(menuItem => menuItem.category === 'alcohol'),
+          beverages: menu.filter(menuItem => menuItem.category === 'beverage'),
           user: req.session
         };
         res.render("menu", templateVars)
