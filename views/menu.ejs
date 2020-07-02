@@ -18,7 +18,7 @@
   <div class="menu">
     <h1>Our Menu</h1>
     <ul style="list-style-type: none">
-      <% for (const menuItem of menuItemsMains) { %>
+      <% for (const menuItem of menuItems) { %>
       <li class="card menu-item bg-light p-2 mb-5 d-flex flex-row">
         <img src=<%= menuItem.thumbnail_url %> class="card-img-left" alt="...">
         <div class="card-body d-flex flex-column justify-content-between" data-itemId="<%= menuItem.id %>">
