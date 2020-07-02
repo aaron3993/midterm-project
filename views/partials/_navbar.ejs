@@ -6,7 +6,7 @@
     </div>
     <div class="navbar-nav ml-auto">
       <% if (user.username) { %>
-        <p>Logged in as: <%= user.username %></p>
+        <p class="nav-link">Logged in as: <%= user.username %></p>
         <% if (user.role === 'customer') { %>
           <a class="nav-item nav-link" href="/orders/new">Checkout</a>
         <% } %>
