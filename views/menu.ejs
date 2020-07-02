@@ -17,20 +17,20 @@
   <%- include('partials/_navbar') %>
   <h1>Our Menu</h1>
 
-  <div class="container">
+  <div class="container body">
     <ul style="list-style-type: none">
       <% for (const menuItem of menuItems) { %>
-      <li class="bg-light p-2">
-        <div class="card" style="width: 18rem;">
+      <li class="bg-light p-2 mb-5 d-flex flex-row">
           <img src=<%= menuItem.thumbnail_url %> class="card-img-left" alt="...">
-          <div class="card-body" data-itemId="<%= menuItem.id %>">
+          <div class="card-body d-flex flex-column justify-content-between" data-itemId="<%= menuItem.id %>">
             <h5 class="card-title"> <%= menuItem.name %> </h5>
             <p class="card-text"> <%= menuItem.description %> </p>
             <p> <%= `$${(menuItem.price / 100).toFixed(2)}` %> </p>
-            <p class="item-qty">0</p>
-            <a class="btn btn-dark add-item">+</a>
-            <a class="btn btn-dark remove-item">-</a>
-          </div>
+            <div class="buttons">
+              <p class="item-qty">0</p>
+              <a class="btn btn-dark remove-item">-</a>
+              <a class="btn btn-dark add-item">+</a>
+            </div>
         </div>
       </li>
       <% } %>
