@@ -39,7 +39,13 @@ INSERT INTO menu_items (name, thumbnail_url, price, description, category)
 고구마 튀김', 'https://thefry.ca/wp-content/uploads/2018/04/Sweet-Potato-Fries-3-800x600.jpg', 1099, 'Nem eledom nugejnu bizwan gavak.','side'),
 ('Bottle Beer | 병맥주', '', 500, 'Korean Beer, Domestic Beer, Premium Beer, Imported Beer','drink'),
 ('Soju | 소주', '', 500, '참이슬(Fresh, Original)','drink'),
-('Beverage | 음료', '', 152, 'Coke, Diet Coke, Sprite, Fanta, Ginger Ale, Nestea, Sanpelle, Perrier','drink');
+('Coke | 음료', '', 152, 'Beverage','drink'),
+('Diet Coke | 음료', '', 152, 'Beverage','drink'),
+('Sprite | 음료', '', 152, 'Beverage','drink'),
+('Ginger Ale | 음료', '', 152, 'Beverage','drink'),
+('Sanpelle | 음료', '', 152, 'Beverage','drink'),
+('Perrier | 음료', '', 152, 'Beverage','drink');
+
 
 
 INSERT INTO orders (user_id, placed_at, special_instructions, wait_time, order_status, ready_at)
