@@ -10,6 +10,7 @@
   z-index: -1;
   padding-top: 65px;
   text-align: center;
+  font-family: 'Caveat', cursive;
 }
 
 .menu-item {
@@ -21,11 +22,28 @@
 }
 
 .menu-item-anchors {
-  font-size: 2rem;
+  font-size: 1.5rem;
   padding: 1rem 0;
   
   a {
+    text-decoration: none;
     color: inherit;
     margin: 0 3rem;
   }
+}
+
+#mains {
+  border: 5px solid black;
+}
+#sides {
+  border: 5px solid black;
+}
+#soups {
+  border: 5px solid black;
+}
+#alcohol {
+  border: 5px solid black;
+}
+#beverages {
+  border: 5px solid black;
 }

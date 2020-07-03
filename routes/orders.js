@@ -74,7 +74,7 @@ module.exports = ({
         for (const menuItem in menuItems) {
           addMenuItem(order.id, Number(menuItem), menuItems[menuItem]);
         }
-        getOwnerPhoneNumber().then((phone) => notifyOwner(order.id, phone));
+        // getOwnerPhoneNumber().then((phone) => notifyOwner(order.id, phone));
         res.redirect(`/orders/${order.id}`);
       })
       .catch((err) => console.log(err));
