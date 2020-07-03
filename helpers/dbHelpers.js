@@ -61,7 +61,7 @@ module.exports = (db) => {
       WHERE id = $3
       RETURNING *;
       `,
-      values: [waitTime, date.toLocaleString() , orderId],
+      values: [waitTime, date.toLocaleString("en-US", {timeZone: "Canada/Eastern"}) , orderId],
     };
     return db.query(query).then((result) => JSON.stringify(result.rows));
   };

@@ -63,7 +63,7 @@ module.exports = ({
     const date = new Date();
     placeOrder(
       req.session.user_id,
-      date.toLocaleString(),
+      date.toLocaleString("en-US", {timeZone: "Canada/Eastern"}),
       req.body.specialInstructions,
       null,
       "pending",
