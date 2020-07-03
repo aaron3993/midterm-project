@@ -14,29 +14,29 @@ INSERT INTO menu_items (name, thumbnail_url, price, description, category)
 ('Boneless Chicken
 순살치킨', 'https://thefry.ca/wp-content/uploads/2018/04/Boneless-Fried-Chicken-1-800x600.jpg', 1012, 'house special fried chicken with lots of sauces.','main'),
  ('Boneless Chicken in Sauce
-순살양념치킨', 'https://thefry.ca/wp-content/uploads/2018/04/Boneless-Fried-Chicken-in-Sauce-3-800x600.jpg', 1457, 'Solicho fo ucutowom kuguwji fa.','main'),
+순살양념치킨', 'https://thefry.ca/wp-content/uploads/2018/04/Boneless-Fried-Chicken-in-Sauce-3-800x600.jpg', 1457, 'Premium chicken in sauce.','main'),
 ('Boneless Chicken in Soy Sauce
-순살간장치킨', 'https://thefry.ca/wp-content/uploads/2018/04/Boneless-Fried-Chicken-in-Soy-Garlic-Sauce-2-800x600.jpg', 1427, 'Ra obe tamo mag tepzivev.', 'main'),
+순살간장치킨', 'https://thefry.ca/wp-content/uploads/2018/04/Boneless-Fried-Chicken-in-Soy-Garlic-Sauce-2-800x600.jpg', 1427, 'Premium chicken tossed in deliciously savory sauce', 'main'),
 ('Wings
-프라이 윙: Sauce(Spicy Sauce, Soy Garlic, Crispy)', 'https://thefry.ca/wp-content/uploads/2018/04/Fry-Wingoriginal-1-800x600.jpg', 1393, 'Haswuwkep evhozwaj pic ve onovadi.', 'main'),
+프라이 윙: Sauce(Spicy Sauce, Soy Garlic, Crispy)', 'https://thefry.ca/wp-content/uploads/2018/04/Fry-Wingoriginal-1-800x600.jpg', 1393, 'Spicy and savory chicken.', 'main'),
 ('Boneless Chicken in Spicy Sauce
-순살매운양념치킨', 'https://thefry.ca/wp-content/uploads/2018/04/Boneless-Fried-Chicken-in-Spicy-Sauce-1-800x600.jpg', 1130, 'Wupledefu be mi nal di.','main'),
+순살매운양념치킨', 'https://thefry.ca/wp-content/uploads/2018/04/Boneless-Fried-Chicken-in-Spicy-Sauce-1-800x600.jpg', 1130, 'Spicy chicken goodness','main'),
 ('Cheese Seasoning Chicken
-순살치즐링', 'https://thefry.ca/wp-content/uploads/2018/04/Boneless-Cheesling-Chicken-1-800x600.jpg', 1373, 'Ru uw igumo apu lu.','main'),
+순살치즐링', 'https://thefry.ca/wp-content/uploads/2018/04/Boneless-Cheesling-Chicken-1-800x600.jpg', 1373, 'Who can resist cheese?','main'),
  ('Garlic Butter Fries
-버터갈릭감자튀김', 'https://thefry.ca/wp-content/uploads/2018/04/Garilc-Butter-Fries-1-800x600.jpg', 1616, 'Luteba vosiv nilpon cas lubif.','side'),
+버터갈릭감자튀김', 'https://thefry.ca/wp-content/uploads/2018/04/Garilc-Butter-Fries-1-800x600.jpg', 1616, 'Deliciously seasoned fries','side'),
 ('Corn with Cheese
-콘치즈', 'https://thefry.ca/wp-content/uploads/2018/04/Corn-with-Cheese-1-3-800x600.jpg', 818, 'Kiikiruw fun him ugze es.','side'),
+콘치즈', 'https://thefry.ca/wp-content/uploads/2018/04/Corn-with-Cheese-1-3-800x600.jpg', 818, 'Cheesy corn goodness.','side'),
 ('Crispy French Fries
-크리스피 감자튀김', 'https://thefry.ca/wp-content/uploads/2018/04/Crispy-French-Fries-3-800x600.jpg', 1107, 'De sogavac kewouf puh hisehbe.','side'),
+크리스피 감자튀김', 'https://thefry.ca/wp-content/uploads/2018/04/Crispy-French-Fries-3-800x600.jpg', 1107, 'The name says it all.','side'),
 ('Egg Soup
-계란탕', 'https://thefry.ca/wp-content/uploads/2018/04/Egg-Soup-1-400x300.png', 1099, 'Nem eledom nugejnu bizwan gavak.','soup'),
+계란탕', 'https://thefry.ca/wp-content/uploads/2018/04/Egg-Soup-1-400x300.png', 1099, 'Rich flavorful egg based soup','soup'),
 ('Fish Cake Soup
-오뎅탕', 'https://thefry.ca/wp-content/uploads/2018/04/Fish-Cake-Soup-2-400x300.jpg', 899, 'Nem eledom nugejnu bizwan gavak.','soup'),
+오뎅탕', 'https://thefry.ca/wp-content/uploads/2018/04/Fish-Cake-Soup-2-400x300.jpg', 899, 'A traditional korean dish.','soup'),
 ('Spicy Seafood Soup
-해물 짬뽕', 'https://thefry.ca/wp-content/uploads/2018/04/Spicy-Seafood-Noodle-Soup-2-2-400x300.jpg', 1099, 'Nem eledom nugejnu bizwan gavak.','soup'),
+해물 짬뽕', 'https://thefry.ca/wp-content/uploads/2018/04/Spicy-Seafood-Noodle-Soup-2-2-400x300.jpg', 1099, 'A traditiona korean dish, but spicier!','soup'),
 ('Sweet Potato Fries
-고구마 튀김', 'https://thefry.ca/wp-content/uploads/2018/04/Sweet-Potato-Fries-3-800x600.jpg', 1099, 'Nem eledom nugejnu bizwan gavak.','side'),
+고구마 튀김', 'https://thefry.ca/wp-content/uploads/2018/04/Sweet-Potato-Fries-3-800x600.jpg', 1099, 'Crispy declicious sweet potato.','side'),
 ('Korean Beer | 병맥주', '', 500, 'Bottled Beer','alcohol'),
 ('Premium Beer | 병맥주', '', 500, 'Bottled Beer','alcohol'),
 ('Imported Beer | 병맥주', '', 500, 'Bottled Beer','alcohol'),
