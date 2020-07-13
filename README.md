@@ -1,4 +1,4 @@
-## Project Introduction
+<!-- ## Project Introduction
 
 The Project implements a Restaurant Ordering System supported by backend in NodeJS (Express Server and EJs templating) and frontend built & styled using SASS pre-processor, HTML5 & JQuery. Project uses POSTGRESQL for database needs. Realtime order updates are sent to both owner of the restaurant and the customer using Twilio SMS API whenever order is place, confirmed and ready for pickup.
 
@@ -36,4 +36,4 @@ Fig 4. Mockups & Wireframe 2
 3. sass
 4. morgan
 5. cookieSession
-6. node-postgresql
+6. node-postgresql -->
