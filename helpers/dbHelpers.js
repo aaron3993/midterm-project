@@ -95,15 +95,6 @@ module.exports = (db) => {
     return db.query(query).then((result) => result.rows);
   };
 
-  // const getOrders = () => {
-  //   const query = {
-  //     text: `SELECT ordered_items.*, menu_items.name
-  //     FROM ordered_items
-  //     JOIN menu_items ON menu_items.id = menu_item_id;`,
-  //   }
-  //   return db.query(query).then(result => result.rows)
-  // };
-
   const placeOrder = (
     user_id,
     placed_at,
