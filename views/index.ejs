@@ -12,8 +12,7 @@
     <h1 class="index-logo">AaSoSa</h1>
     <h3>We serve the best fried chicken in town. Order any of our signature dishes at the click of a button and recieve real time SMS notifications regarding your order status. </h3>
 
-    <% if (!user.username) { %>
-      <p>Please login or register to continue</p>
+      <!-- <p>Please login or register to continue</p>
       <form method="post" action="/login">
         <button class="index-button">Login</button>
       </form>
@@ -21,12 +20,29 @@
         <button class="index-button mt-3">Register</button>
       </form>
       <br>
+      <form method="post" action="/logout">
+        <button class="index-button" onclick="this.parentNode.submit();" class="mt-3">Logout</button>
+      </form> -->
+    <% if (!user.username) { %>
+      <p>Please login or register to continue</p>
+      <form action="/login">
+        <button class="index-button">Login</button>
+      </form>
+      <!-- <button class="index-button">
+        <a href="/login">login</a>
+      </button> -->
+      <br>
+      <form action="/register">
+        <button class="index-button mt-3">Register</button>
+      </form>
+      <!-- <button class="index-button">
+        <a href="/register" class="mt-3">register</a>
+      </button> -->
     <%} else { %>
       <form method="post" action="/logout">
         <button class="index-button" onclick="this.parentNode.submit();" class="mt-3">Logout</button>
       </form>
     <% } %>
-
   </div>
 </body>
 

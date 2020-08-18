@@ -1,3 +1,7 @@
+.order-body {
+  height: 100vh;
+}
+
 .order-container {
   background-image: url('/images/restaurant.jpeg');
   background-repeat: no-repeat;
@@ -5,7 +9,6 @@
   background-attachment: fixed;
   z-index: -1;
   padding-top: 65px;
-  height: 100vh;
 }
 
 .order-form {
