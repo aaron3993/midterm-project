@@ -43,7 +43,6 @@ module.exports = ({
             templateVars.confirmedOrders = confirmedOrdersObj;
             templateVars.pendingOrders = pendingOrdersObj;
             templateVars.user = req.session;
-            console.log(templateVars);
             res.render('admin', templateVars);
           })
         })
@@ -57,18 +56,18 @@ module.exports = ({
     if (parseInt(wait_time) === 0) {
       updateOrderReady(order_id).then((order) => {
         getPhoneNumberByOrderID(order_id).then((phone) => {
-          notifyCustomerOrderReady(order_id, JSON.parse(phone).phone);
+          // notifyCustomerOrderReady(order_id, JSON.parse(phone).phone);
           res.redirect("admin");
         });
       });
     } else {
       confirmOrder(order_id, wait_time).then((order) => {
         getPhoneNumberByOrderID(order_id).then((phone) => {
-          notifyCustomerOrderConfirmed(
-            order_id,
-            wait_time,
-            JSON.parse(phone).phone
-          );
+          // notifyCustomerOrderConfirmed(
+          //   order_id,
+          //   wait_time,
+          //   JSON.parse(phone).phone
+          // );
           res.redirect("admin");
         });
       });
