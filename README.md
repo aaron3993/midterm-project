@@ -5,6 +5,11 @@ The Project implements a Restaurant Ordering System supported by backend in Node
 ## Illustration
 
 Below are some of the routes a user can visit.
+!['Home Page'](https://github.com/aaron3993/Aa-So-Sa/blob/master/documentation/home.png)
+!['Menu Page'](https://github.com/aaron3993/Aa-So-Sa/blob/master/documentation/menu.png)
+!['Order Page'](https://github.com/aaron3993/Aa-So-Sa/blob/master/documentation/new_order.png)
+!['Completed Order Page'](https://github.com/aaron3993/Aa-So-Sa/blob/master/documentation/completed_order.png)
+!['Admin Page'](https://github.com/aaron3993/Aa-So-Sa/blob/master/documentation/admin.png)
 
 ## Planning
 
